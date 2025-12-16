@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* Fuentes Monument Grotesk */
+@font-face {
+  font-family: 'Monument Grotesk Variable';
+  src: url('/fonts/MonumentGrotesk-Variable.woff2') format('woff2'),
+       url('/fonts/MonumentGrotesk-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Monument Grotesk Mono Variable';
+  src: url('/fonts/MonumentGroteskMono-Variable.woff2') format('woff2'),
+       url('/fonts/MonumentGroteskMono-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fuente Guyot Text */
+@font-face {
+  font-family: 'Guyot Text';
+  src: url('/fonts/GuyotText-Regular.woff2') format('woff2'),
+       url('/fonts/GuyotText-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Guyot Text';
+  src: url('/fonts/GuyotText-Italic.woff2') format('woff2'),
+       url('/fonts/GuyotText-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --color-background-primary: #000000;
+  --color-background-secondary: #0A0A0A;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #999999;
+  --color-text-tertiary: #666666;
+  --color-text-on-light: #000000;
+  --color-border: #1A1A1A;
+  --color-divider: #333333;
+  
+  --font-sans: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: 'Monument Grotesk Mono Variable', 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Aplicar Monument Grotesk Variable a todos los títulos y contenido */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, li, td, th {
+  font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+/* Clase para el título principal con Sentient */
+.crimson-text-title {
+  font-family: 'Sentient', serif !important;
+}
+
+/* Clase específica para "Trabajos" con Sentient */
+.sentient-text {
+  font-family: 'Sentient', serif !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.04em !important;
+}
+
+/* Aplicar Monument Grotesk Mono Variable a todos los botones */
+button {
+  font-family: 'Monument Grotesk Mono Variable', 'Courier New', monospace;
+}
+
+/* Utility classes for z-index */
+.z-100 {
+  z-index: 100;
+}
+
+/* Clases CSS del diseño de referencia */
+.page-content {
+  padding: 2rem;
+  text-align: left;
+}
+
+.page-layout {
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+.text-style-468401 {
+  font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  font-size: calc(8rem * 0.55);
+  line-height: 0.95;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: -0.040em;
+}
+
+@media (max-width: 768px) {
+  .text-style-468401 {
+    font-size: calc(4rem * 0.55);
+  }
+}
+
+/* Estilos para el overlay/modal de proyecto */
+.project-overlay.page {
+  background-color: rgba(0, 0, 0, 0.25);
+  min-height: auto;
+  justify-content: flex-start;
+}
+
+.project-overlay .page-layout {
+  padding: 1.5rem;
+  padding-top: 4rem;
+  padding-bottom: 10rem;
+  padding-left: 0;
+  padding-right: 0;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+.project-overlay .page-content {
+  padding: 2rem;
+  background-color: #ffffff;
+  border-width: 0rem;
+  border-style: solid;
+  border-radius: 3rem;
+  text-align: left;
+}
+
+/* Animaciones para el modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-overlay {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  animation: slideUpFade 0.4s ease-out;
+}
