@@ -6,10 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "enrich-story": "node scripts/project-enricher.js",
+    "generate-images": "node scripts/image-generator.js",
+    "update-images": "node scripts/update-project-images.js"
   },
   "dependencies": {
-    "next": "^16.0.10",
+    "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -21,9 +24,18 @@
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
-    "eslint-config-next": "^16.0.10",
+    "eslint-config-next": "15.2.4",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.17",
     "typescript": "^5"
+  },
+  "optionalDependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "openai": "^4.47.1",
+    "sharp": "^0.33.2",
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -4,7 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-.yarn/install-state.gz
 
 # testing
 /coverage
@@ -35,3 +34,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated files
+/generated/
+!generated/.gitkeep
+
+# MCP servers (mantener en repo, pero ignorar logs)
+mcp-servers/*.log
+
+# API keys (backup)
+*.key
+*.pem

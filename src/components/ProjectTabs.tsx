@@ -25,7 +25,7 @@ export default function ProjectTabs({ activeCategory, onCategoryChange }: Projec
           key={category.key}
           id={`tab-${category.key}`}
           onClick={() => onCategoryChange(category.key)}
-          className={`text-base font-normal transition-all duration-300 ${
+          className={`text-base font-normal transition-all duration-300 cursor-pointer ${
             activeCategory === category.key
               ? "text-white border-b-2 border-white pb-1"
               : "text-white/60 hover:text-white/80"
@@ -34,6 +34,7 @@ export default function ProjectTabs({ activeCategory, onCategoryChange }: Projec
             fontSize: '0.875rem',
             paddingBottom: activeCategory === category.key ? '4px' : '0',
             borderBottomWidth: activeCategory === category.key ? '1px' : '0',
+            cursor: 'pointer',
           }}
         >
           {category.label[locale]}

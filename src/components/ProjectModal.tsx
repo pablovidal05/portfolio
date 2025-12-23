@@ -21,6 +21,7 @@ export default function ProjectModal({
   const title = project.title[locale];
   const role = project.role[locale];
   const description = project.fullDescription[locale];
+  const [shareSuccess, setShareSuccess] = useState(false);
   const [carouselOpen, setCarouselOpen] = useState(false);
   const [carouselInitialIndex, setCarouselInitialIndex] = useState(0);
 
@@ -42,6 +43,38 @@ export default function ProjectModal({
     e.stopPropagation();
     setCarouselInitialIndex(index);
     setCarouselOpen(true);
+  };
+
+  const projectUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}/case-study/${project.slug}`
+    : '';
+
+  const handleShare = async () => {
+    const shareData = {
+      title: title,
+      text: description.substring(0, 200) + '...',
+      url: projectUrl,
+    };
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        // Fallback: copiar al portapapeles
+        await navigator.clipboard.writeText(projectUrl);
+        setShareSuccess(true);
+        setTimeout(() => setShareSuccess(false), 2000);
+      }
+    } catch (error) {
+      // Si el usuario cancela o hay error, intentar copiar al portapapeles
+      try {
+        await navigator.clipboard.writeText(projectUrl);
+        setShareSuccess(true);
+        setTimeout(() => setShareSuccess(false), 2000);
+      } catch (clipboardError) {
+        console.error('Error al compartir:', clipboardError);
+      }
+    }
   };
 
   useEffect(() => {

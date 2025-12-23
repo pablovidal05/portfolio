@@ -1,52 +1,114 @@
-# Pablo Vidal - Portfolio
+# Pablo Vidal - Portafolio Web
 
-> Product Designer especializado en UX/UI, Growth Design y E-commerce con más de 5 años de experiencia en agencias y empresas tecnológicas.
+Portafolio profesional diseñado con Next.js, Tailwind CSS y TypeScript, siguiendo un diseño minimalista y moderno inspirado en el estilo de tash.work.
 
-## 👋 Sobre mí
+## Características
 
-Soy un **Product Designer** chileno con base sólida en UX/UI, enfocado en crear experiencias digitales que convierten. Mi experiencia abarca desde diseño de interfaces hasta implementación directa en producción, trabajando con equipos multidisciplinarios para entregar soluciones escalables y orientadas a resultados.
+- ✨ Diseño minimalista con alto contraste (fondo negro, texto blanco)
+- 🌐 Soporte multiidioma (Español/Inglés) con cambio dinámico
+- 📱 Completamente responsive
+- 🎨 Sistema de diseño basado en design.json
+- 🚀 Optimizado para performance
+- 📄 Páginas dinámicas para casos de estudio
+- 🎭 Modal overlay para vista rápida de proyectos
 
-### 🎯 Especialización
+## Estructura del Proyecto
 
-- **Growth Design** para web, e-commerce y email marketing
-- **CRO (Conversion Rate Optimization)** y optimización de funnels
-- **Diseño de sistemas visuales** claros, escalables y orientados a conversión
-- **Implementación directa** en WordPress, Shopify y Webflow
-- **Ciclo completo**: ideación, diseño, implementación y testeo basado en datos
+```
+portfolio/
+├── src/
+│   ├── app/                    # Páginas de Next.js (App Router)
+│   │   ├── page.tsx           # Página de inicio
+│   │   ├── info/              # Página de información
+│   │   └── case-study/[slug]/ # Páginas dinámicas de proyectos
+│   ├── components/            # Componentes reutilizables
+│   │   ├── Navigation.tsx
+│   │   ├── ProjectCard.tsx
+│   │   ├── ProjectModal.tsx
+│   │   ├── Breadcrumbs.tsx
+│   │   └── Footer.tsx
+│   ├── contexts/              # Contextos de React
+│   │   └── LocaleContext.tsx
+│   ├── data/                  # Datos mock
+│   │   ├── projects.ts
+│   │   └── profile.ts
+│   └── lib/                   # Utilidades
+│       └── i18n.ts
+├── public/
+│   └── images/
+│       └── projects/          # Imágenes de proyectos
+└── design.json                # Sistema de diseño
 
-### 💼 Experiencia
+```
 
-- **UX Specialist** en McCann (2025)
-- **Product Designer** en Eleva (2024-2025)
-- **UX UI Designer** en Agencia Cebra (2023-2024)
+## Instalación
 
-## 🚀 Proyectos Destacados
+```bash
+# Instalar dependencias
+npm install
 
-Este portfolio presenta casos de estudio detallados que demuestran mi enfoque en:
+# Ejecutar en desarrollo
+npm run dev
 
-- **Diseño centrado en el usuario** con investigación y análisis de datos
-- **Optimización de conversión** (CRO) para e-commerce y landing pages
-- **Diseño B2B** dentro de entornos retail
-- **Colaboración cross-functional** con equipos de desarrollo y ventas
-- **Implementación práctica** priorizando velocidad y capacidad de iteración
+# Construir para producción
+npm run build
 
-## 🛠️ Stack Tecnológico
+# Iniciar servidor de producción
+npm start
+```
 
-- **Diseño**: Figma, Design Systems, Prototipado
-- **Desarrollo**: Next.js, React, TypeScript, Tailwind CSS
-- **Plataformas**: WordPress, Shopify, Webflow
-- **Análisis**: Google Analytics, Hotjar, A/B Testing
+## Agregar Proyectos
 
-## 📬 Contacto
+Edita `src/data/projects.ts` para agregar nuevos proyectos. Cada proyecto debe incluir:
 
-- **Email**: [p.vidal005@gmail.com](mailto:p.vidal005@gmail.com)
-- **LinkedIn**: [@pablovidalg](https://www.linkedin.com/in/pablovidalg)
-- **GitHub**: [@pablovidal05](https://github.com/pablovidal05)
+- `id`: Identificador único
+- `slug`: URL amigable (ej: "mi-proyecto")
+- `title`: Título en español e inglés
+- `role`: Rol desempeñado
+- `year`: Año del proyecto
+- `tags`: Array de etiquetas
+- `shortDescription`: Descripción corta (para tarjetas)
+- `fullDescription`: Descripción completa (para modal y página detalle)
+- `images`: Array de rutas de imágenes
+- `demoUrl` (opcional): URL del demo
+- `videoUrl` (opcional): URL del video
+- `learnMoreUrl` (opcional): URL para más información
 
-## 🌐 Portfolio en vivo
+## Agregar Imágenes
 
-[Ver portfolio →](https://portfolio-pablovidal.vercel.app) *(Link disponible después del deploy)*
+Coloca las imágenes de tus proyectos en `public/images/projects/` y referencia las rutas en el array `images` de cada proyecto.
 
----
+Ejemplo:
+```typescript
+images: [
+  "/images/projects/ecommerce-1.jpg",
+  "/images/projects/ecommerce-2.jpg",
+]
+```
 
-**Nota para reclutadores**: Este portfolio fue diseñado y desarrollado completamente por mí, demostrando tanto mis habilidades de diseño como de implementación front-end. Cada proyecto incluye contexto, proceso de diseño, decisiones estratégicas y resultados medibles.
+## Personalización
+
+### Colores y Tipografía
+
+Los estilos están definidos en `src/app/globals.css` y siguen el sistema de diseño en `design.json`.
+
+### Contenido
+
+- **Perfil**: Edita `src/data/profile.ts`
+- **Proyectos**: Edita `src/data/projects.ts`
+- **Traducciones**: Edita `src/contexts/LocaleContext.tsx`
+
+## Tecnologías
+
+- **Next.js 15** - Framework React
+- **TypeScript** - Tipado estático
+- **Tailwind CSS 4** - Estilos utility-first
+- **React 19** - Biblioteca UI
+
+## Dominio
+
+El proyecto está configurado para el dominio: `pablovidalg.com`
+
+## Licencia
+
+Privado - Todos los derechos reservados

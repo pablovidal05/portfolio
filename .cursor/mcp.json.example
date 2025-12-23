@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "portfolio-image-generator": {
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp-servers/image-generator-mcp.js"],
+      "env": {
+        "GEMINI_API_KEY": "${env:GEMINI_API_KEY}",
+        "OPENAI_API_KEY": "${env:OPENAI_API_KEY}",
+        "REPLICATE_API_TOKEN": "${env:REPLICATE_API_TOKEN}"
+      }
+    },
+    "portfolio-project-enricher": {
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp-servers/project-enricher-mcp.js"]
+    }
+  }
+}
+
+
+
+
+

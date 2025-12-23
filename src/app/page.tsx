@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { projects, ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -9,7 +9,7 @@ import ProjectModal from "@/components/ProjectModal";
 import ProjectTabs from "@/components/ProjectTabs";
 import { Project } from "@/data/projects";
 
-function HomeContent() {
+export default function Home() {
   const { locale } = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -131,17 +131,5 @@ function HomeContent() {
         />
       )}
     </>
-  );
-}
-
-export default function Home() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
-    }>
-      <HomeContent />
-    </Suspense>
   );
 }
