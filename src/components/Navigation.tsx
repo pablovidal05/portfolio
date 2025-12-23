@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { addLocaleToPath } from "@/lib/i18n";
 
 export default function Navigation() {
-  const { locale, setLocale, t } = useLocale();
+  const { locale, t } = useLocale();
   const pathname = usePathname();
 
   const navLinks = [
