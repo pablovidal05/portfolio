@@ -13,10 +13,10 @@ export default function Navigation() {
     { href: "/info", label: t("nav.info") },
   ];
 
-  const toggleLocale = () => {
-    const newLocale = locale === "es" ? "en" : "es";
-    setLocale(newLocale);
-  };
+  // const toggleLocale = () => {
+  //   const newLocale = locale === "es" ? "en" : "es";
+  //   setLocale(newLocale);
+  // };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-100 bg-black border-b border-[#1A1A1A]" style={{ height: '3.5rem' }}>

@@ -9,6 +9,8 @@ import ProjectModal from "@/components/ProjectModal";
 import ProjectTabs from "@/components/ProjectTabs";
 import { Project } from "@/data/projects";
 
+const VALID_CATEGORIES: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
+
 function SearchParamsHandler({ 
   onCategoryChange, 
   onProjectChange 
@@ -17,11 +19,10 @@ function SearchParamsHandler({
   onProjectChange: (project: Project | null) => void;
 }) {
   const searchParams = useSearchParams();
-  const validCategories: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
 
   useEffect(() => {
     const categoryFromUrl = searchParams.get("category") as ProjectCategory | null;
-    if (categoryFromUrl && validCategories.includes(categoryFromUrl)) {
+    if (categoryFromUrl && VALID_CATEGORIES.includes(categoryFromUrl)) {
       onCategoryChange(categoryFromUrl);
     } else {
       onCategoryChange("all");
@@ -51,9 +52,8 @@ function HomeContent() {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const category = params.get("category") as ProjectCategory | null;
-      const validCategories: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
       
-      if (category && validCategories.includes(category)) {
+      if (category && VALID_CATEGORIES.includes(category)) {
         setActiveCategory(category);
       }
       
