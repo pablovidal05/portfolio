@@ -9,48 +9,64 @@ import ProjectModal from "@/components/ProjectModal";
 import ProjectTabs from "@/components/ProjectTabs";
 import { Project } from "@/data/projects";
 
-function HomeContent() {
-  const { locale } = useLocale();
-  const router = useRouter();
+function SearchParamsHandler({ 
+  onCategoryChange, 
+  onProjectChange 
+}: { 
+  onCategoryChange: (category: ProjectCategory) => void;
+  onProjectChange: (project: Project | null) => void;
+}) {
   const searchParams = useSearchParams();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // Leer categoría desde la URL o usar "all" por defecto
-  const categoryFromUrl = searchParams.get("category") as ProjectCategory | null;
   const validCategories: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
-  const initialCategory = categoryFromUrl && validCategories.includes(categoryFromUrl) 
-    ? categoryFromUrl 
-    : "all";
-  
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>(initialCategory);
-  
-  // Sincronizar estado con URL cuando cambia la URL (solo al montar o cuando cambia searchParams)
+
   useEffect(() => {
     const categoryFromUrl = searchParams.get("category") as ProjectCategory | null;
     if (categoryFromUrl && validCategories.includes(categoryFromUrl)) {
-      setActiveCategory(categoryFromUrl);
-    } else if (!categoryFromUrl) {
-      setActiveCategory("all");
+      onCategoryChange(categoryFromUrl);
+    } else {
+      onCategoryChange("all");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
-  
-  // Abrir/cerrar modal según el parámetro "project" en la URL
-  useEffect(() => {
-    const projectSlug = searchParams.get("project");
 
+    const projectSlug = searchParams.get("project");
     if (projectSlug) {
       const projectFromSlug = projects.find((p) => p.slug === projectSlug);
-      if (projectFromSlug) {
-        setSelectedProject(projectFromSlug);
-        setIsModalOpen(true);
-      }
+      onProjectChange(projectFromSlug || null);
     } else {
-      setIsModalOpen(false);
-      setSelectedProject(null);
+      onProjectChange(null);
     }
-  }, [searchParams]);
+  }, [searchParams, onCategoryChange, onProjectChange]);
+
+  return null;
+}
+
+function HomeContent() {
+  const { locale } = useLocale();
+  const router = useRouter();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
+  
+  // Inicializar desde URL en el cliente
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category") as ProjectCategory | null;
+      const validCategories: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
+      
+      if (category && validCategories.includes(category)) {
+        setActiveCategory(category);
+      }
+      
+      const projectSlug = params.get("project");
+      if (projectSlug) {
+        const projectFromSlug = projects.find((p) => p.slug === projectSlug);
+        if (projectFromSlug) {
+          setSelectedProject(projectFromSlug);
+          setIsModalOpen(true);
+        }
+      }
+    }
+  }, []);
 
   // Sincronizar URL cuando cambia la categoría
   const handleCategoryChange = (category: ProjectCategory) => {
@@ -67,14 +83,14 @@ function HomeContent() {
     setSelectedProject(project);
     setIsModalOpen(true);
 
-     // Actualizar la URL para que el modal tenga un enlace único por proyecto
-     const params = new URLSearchParams(searchParams.toString());
-     params.set("project", project.slug);
-     if (activeCategory !== "all") {
-       params.set("category", activeCategory);
-     }
-     const newUrl = params.toString() ? `/?${params.toString()}` : "/";
-     router.replace(newUrl, { scroll: false });
+    // Actualizar la URL para que el modal tenga un enlace único por proyecto
+    const params = new URLSearchParams();
+    params.set("project", project.slug);
+    if (activeCategory !== "all") {
+      params.set("category", activeCategory);
+    }
+    const newUrl = params.toString() ? `/?${params.toString()}` : "/";
+    router.replace(newUrl, { scroll: false });
   };
 
   const handleCloseModal = () => {
@@ -82,10 +98,22 @@ function HomeContent() {
     setSelectedProject(null);
 
     // Limpiar el parámetro de proyecto de la URL al cerrar el modal
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("project");
+    const params = new URLSearchParams();
+    if (activeCategory !== "all") {
+      params.set("category", activeCategory);
+    }
     const newUrl = params.toString() ? `/?${params.toString()}` : "/";
     router.replace(newUrl, { scroll: false });
+  };
+
+  const handleProjectFromUrl = (project: Project | null) => {
+    if (project) {
+      setSelectedProject(project);
+      setIsModalOpen(true);
+    } else {
+      setSelectedProject(null);
+      setIsModalOpen(false);
+    }
   };
 
   const filteredProjects = useMemo(() => {
@@ -97,6 +125,12 @@ function HomeContent() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <SearchParamsHandler 
+          onCategoryChange={setActiveCategory}
+          onProjectChange={handleProjectFromUrl}
+        />
+      </Suspense>
       <div className="min-h-screen bg-black">
         <div className="page-layout">
           <div className="page-content">
@@ -135,13 +169,5 @@ function HomeContent() {
 }
 
 export default function Home() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
-    }>
-      <HomeContent />
-    </Suspense>
-  );
+  return <HomeContent />;
 }
