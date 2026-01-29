@@ -172,6 +172,39 @@ export const projects: Project[] = [
     ],
     demoUrl: "https://testing-viajero.pgo-explora.com/#/profile",
     learnMoreUrl: "https://testing-viajero.pgo-explora.com/#/profile"
+  },
+  {
+    id: "10",
+    slug: "buk-design-system-escalamiento",
+    title: {
+      es: "Buk Design System: Escalamiento y Developer Experience",
+      en: "Buk Design System: Scaling and Developer Experience"
+    },
+    role: {
+      es: "Product Designer",
+      en: "Product Designer"
+    },
+    year: "2023",
+    category: "product-design",
+    tags: ["Design System", "Product Design", "Developer Experience", "DesignOps", "UX/UI"],
+    shortDescription: {
+      es: "Escalamiento del Design System de Buk mediante componentes avanzados (FileUpload, Opciones Avanzadas, Agregar Participantes) que se integraron sin romper la arquitectura existente, optimizando la Developer Experience y reduciendo tiempo de desarrollo.",
+      en: "Scaling of Buk's Design System through advanced components (FileUpload, Advanced Options, Add Participants) integrated without breaking existing architecture, optimizing Developer Experience and reducing development time."
+    },
+    fullDescription: {
+      es: "Problema\n\nEl sistema de formularios de Buk era funcional pero rígido, lo que dificultaba la extensibilidad hacia flujos más complejos. La necesidad de integrar componentes avanzados como gestión de archivos y selección de equipos representaba un riesgo de fragmentación visual y técnica. El desafío era añadir estas capacidades sin romper la arquitectura de formularios ya existentes en producción.\n\nContexto\n\nComo Product Designer, traté el Design System como un producto para usuarios internos: UX Engineers y otros diseñadores. Realicé un mapeo de usos actuales y benchmark técnico para asegurar que las nuevas piezas (FileUpload, Opciones Avanzadas y Agregar Participantes) se integraran de forma orgánica en el ecosistema de Buk sin generar deuda técnica.\n\nRestricciones\n\n- Integración no destructiva: Los componentes debían inyectarse en el sistema actual sin forzar refactorizaciones masivas.\n- Alineación técnica: La estructura debía ser 1:1 con el framework de desarrollo para garantizar handoff sin fricciones.\n- Jerarquía y limpieza: Componentes como Opciones Avanzadas debían usar divulgación progresiva para no abrumar al usuario en formularios estándar.\n- Consistencia normativa: Se requerían reglas claras (Do's & Don'ts) para evitar que la flexibilidad de los nuevos componentes degradara la experiencia global.\n\nDecisión\n\nAnatomía atómica: Descompuse el FileUpload en sus elementos mínimos (Labels, Inputs, Tooltips) y definí sus estados lógicos para cubrir todos los escenarios de uso.\n\nEstandarización de uso: Establecí guías de implementación (Do & Don't) que dictan, por ejemplo, que el cargador de archivos debe ocupar el ancho completo para mantener consistencia en vistas complejas.\n\nEspecificación técnica (DX): El entregable final incluyó mapeos de HTML y links directos a documentación en GitHub, permitiendo que los ingenieros implementaran el diseño con precisión quirúrgica.\n\nTrade-off: Decidí basar los nuevos componentes en la estructura de Inputs existente de Buk para asegurar estabilidad total, priorizando factibilidad técnica sobre innovación visual disruptiva.\n\nImpacto\n\nEl diseño fue construido para mover métricas clave de eficiencia y escalabilidad: se proyecta una reducción del 25% en tiempo de construcción de nuevos formularios al eliminar la necesidad de crear soluciones personalizadas para carga de archivos o selección de participantes. Se espera cero errores de regresión visual en formularios antiguos gracias a la arquitectura de inyección no destructiva. Al utilizar nomenclaturas compartidas entre Figma y el framework, se estima una disminución del 30% en tiempo dedicado a reuniones de aclaración técnica y correcciones en QA. La nueva infraestructura permitirá a Buk desplegar módulos corporativos avanzados (como gestión de contratos o equipos) con mayor velocidad, manteniendo la confianza del usuario en la estabilidad del SaaS.",
+      en: "Problem\n\nBuk's form system was functional but rigid, making it difficult to extend toward more complex flows. The need to integrate advanced components like file management and team selection represented a risk of visual and technical fragmentation. The challenge was to add these capabilities without breaking the architecture of forms already in production.\n\nContext\n\nAs a Product Designer, I treated the Design System as a product for internal users: UX Engineers and other designers. I conducted a mapping of current uses and technical benchmarking to ensure that new pieces (FileUpload, Advanced Options, and Add Participants) integrated organically into Buk's ecosystem without generating technical debt.\n\nConstraints\n\n- Non-destructive integration: Components had to be injected into the current system without forcing massive refactors.\n- Technical alignment: The structure had to be 1:1 with the development framework to ensure frictionless handoff.\n- Hierarchy and clarity: Components like Advanced Options had to use progressive disclosure to avoid overwhelming users in standard forms.\n- Normative consistency: Clear rules (Do's & Don'ts) were required to prevent the flexibility of new components from degrading the global experience.\n\nDecision\n\nAtomic anatomy: I decomposed FileUpload into its minimal elements (Labels, Inputs, Tooltips) and defined their logical states to cover all use scenarios.\n\nUsage standardization: I established implementation guidelines (Do & Don't) that dictate, for example, that the file loader must occupy full width to maintain consistency in complex views.\n\nTechnical specification (DX): The final deliverable included HTML mappings and direct links to GitHub documentation, allowing engineers to implement the design with surgical precision.\n\nTrade-off: I decided to base new components on Buk's existing Input structure to ensure total stability, prioritizing technical feasibility over disruptive visual innovation.\n\nImpact\n\nThe design was built to move key efficiency and scalability metrics: a 25% reduction in new form construction time is projected by eliminating the need to create custom solutions for file uploads or participant selection. Zero visual regression errors are expected in old forms thanks to the non-destructive injection architecture. By using shared nomenclature between Figma and the framework, a 30% reduction in time spent on technical clarification meetings and QA corrections is estimated. The new infrastructure will allow Buk to deploy advanced corporate modules (such as contract or team management) with greater speed, maintaining user trust in SaaS stability."
+    },
+    images: [
+      "/images/buk/buk-1.png",
+      "/images/buk/buk-2.png",
+      "/images/buk/buk-3.png",
+      "/images/buk/buk-4.png",
+      "/images/buk/buk-5.png",
+      "/images/buk/buk-6.png",
+      "/images/buk/buk-7.png",
+      "/images/buk/buk-8.png"
+    ]
   }
 ];
 
