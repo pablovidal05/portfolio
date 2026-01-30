@@ -1,5 +1,12 @@
 export type ProjectCategory = "all" | "product-design" | "ecommerce-landings" | "graphic-design";
 
+export const CATEGORY_LABELS: Record<ProjectCategory, { es: string; en: string }> = {
+  all: { es: "Todos", en: "All" },
+  "product-design": { es: "Diseño de producto", en: "Product Design" },
+  "ecommerce-landings": { es: "E-commerce y landings", en: "E-commerce & Landings" },
+  "graphic-design": { es: "Diseño gráfico", en: "Graphic Design" },
+};
+
 export interface Project {
   id: string;
   slug: string;

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Project } from "@/data/projects";
+import { Project, CATEGORY_LABELS } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ImageCarousel from "./ImageCarousel";
 
@@ -18,93 +18,90 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
   const [carouselOpen, setCarouselOpen] = useState(false);
   const [carouselInitialIndex, setCarouselInitialIndex] = useState(0);
 
-  // Combinar videos e imágenes en un solo array
+  // Combinar videos e imágenes; mostrar hasta 3 en desktop, solo 1 en mobile (< 850px)
   const videos = project.videos || [];
   const allMedia: Array<{ type: 'video' | 'image'; src: string }> = [];
-  
-  // Agregar todos los videos primero
-  videos.forEach(video => {
-    allMedia.push({ type: 'video', src: video });
-  });
-  
-  // Agregar todas las imágenes después
-  project.images.forEach(image => {
-    allMedia.push({ type: 'image', src: image });
-  });
-  
-  // Mostrar solo los primeros 3 elementos en la card
+  videos.forEach(video => allMedia.push({ type: 'video', src: video }));
+  project.images.forEach(image => allMedia.push({ type: 'image', src: image }));
   const displayItems = allMedia.slice(0, 3);
 
   const handleMediaClick = (index: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    // Encontrar el índice en el array completo de allMedia
-    const clickedItem = displayItems[index];
     const fullIndex = allMedia.findIndex(
-      item => item.src === clickedItem.src && item.type === clickedItem.type
+      (item) => item.src === displayItems[index].src && item.type === displayItems[index].type
     );
     setCarouselInitialIndex(fullIndex >= 0 ? fullIndex : 0);
     setCarouselOpen(true);
   };
 
+  const categoryLabel = project.category !== "all" ? CATEGORY_LABELS[project.category][locale] : null;
+
   return (
     <>
       <div className="bg-black border-t border-[#333333] pt-8 pb-8">
-        {/* Grid de 3 medios (video + imágenes) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12" style={{ marginTop: '16px' }}>
-          {displayItems.map((item, index) => {
-            if (item.type === 'video') {
-              return (
-                <div
-                  key={`video-${project.id}-${index}`}
-                  className="aspect-video bg-[#1A1A1A] relative overflow-hidden cursor-pointer"
-                  onClick={(e) => handleMediaClick(index, e)}
-                >
-                  <video
-                    src={item.src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              );
-            }
-
-            return (
-              <div
-                key={`image-${index}`}
-                className="aspect-video bg-[#1A1A1A] relative overflow-hidden cursor-pointer"
-                onClick={(e) => handleMediaClick(index, e)}
-              >
+        {/* Grid: 1 columna < 850px (solo primera visible), 3 columnas >= 850px */}
+        <div
+          className="grid grid-cols-1 min-[850px]:grid-cols-3 gap-4 mb-12"
+          style={{ marginTop: "16px" }}
+        >
+          {displayItems.map((item, index) => (
+            <div
+              key={item.type === "video" ? `video-${project.id}-${index}` : `image-${index}`}
+              className={`
+                aspect-video bg-[#1A1A1A] relative overflow-hidden cursor-pointer w-full
+                ${index >= 1 ? "hidden min-[850px]:block" : ""}
+              `}
+              onClick={(e) => handleMediaClick(index, e)}
+            >
+              {item.type === "video" ? (
+                <video
+                  src={item.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
                 <Image
                   src={item.src}
-                  alt={`${title} - Image ${index + 1}`}
+                  alt={`${title} - ${index + 1}`}
                   fill
                   className="object-cover transition-opacity duration-300 hover:opacity-80"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                  sizes="(max-width: 849px) 100vw, 33vw"
                   unoptimized
                 />
-              </div>
-            );
-          })}
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Layout de 3 columnas: Título/Fecha | Contenido | Vacío */}
-        <div className="grid grid-cols-12 gap-4" style={{ marginTop: '8px', marginBottom: '96px' }}>
-          {/* Columna 1: Título y Fecha */}
+        {/* Layout: Título + chip disciplina | Descripción */}
+        <div className="grid grid-cols-12 gap-4" style={{ marginTop: "8px", marginBottom: "96px" }}>
           <div className="col-span-12 md:col-span-4">
-            <h3 className="font-normal text-white mb-2" style={{ fontSize: '0.75rem' }}>
-              <strong>{title}</strong>
-            </h3>
-            <div className="text-white" style={{ fontSize: '12px' }}>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              {categoryLabel && (
+                <span
+                  className="inline-flex items-center px-5 py-7.5 rounded text-white/100"
+                  style={{ fontSize: "0.75rem", fontWeight: 500, color:"#c2c2c2"}}
+                >
+                  {categoryLabel}
+                </span>
+              )}
+            </div>
+            <h3 className="text-white font-bold" style={{ fontSize: "1.rem" }}>
+                {title}
+              </h3>
+            <div className="text-white" style={{ fontSize: "0.75rem", color:"#c2c2c2" }}>
               {project.year}
             </div>
           </div>
 
-          {/* Columna 2: Descripción (debajo de la segunda imagen) */}
           <div className="col-span-12 md:col-span-4">
-            <p className="font-normal text-white leading-relaxed opacity-90" style={{ fontSize: '0.75rem' }}>
+            <p
+              className="text-white leading-relaxed opacity-90 font-normal"
+              style={{ fontSize: "0.85rem" }}
+            >
               {description}
             </p>
             <button
@@ -112,16 +109,14 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
                 e.stopPropagation();
                 if (onReadMore) onReadMore();
               }}
-              className="font-normal text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer"
-              style={{ marginTop: '8px', fontSize: '0.75rem' }}
+              className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-2"
+              style={{ fontSize: "0.85rem", textTransform: "uppercase" }}
             >
               {t("project.readMore")} →
             </button>
           </div>
 
-          {/* Columna 3: Vacía */}
-          <div className="col-span-12 md:col-span-4">
-          </div>
+          <div className="col-span-12 md:col-span-4" />
         </div>
       </div>
 

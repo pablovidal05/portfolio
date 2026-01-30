@@ -49,7 +49,7 @@
   --color-divider: #333333;
   
   --font-sans: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-mono: 'Monument Grotesk Mono Variable', 'Courier New', monospace;
+  --font-mono: 'Roboto Condensed', 'Courier New', monospace;
 }
 
 * {
@@ -93,7 +93,7 @@ p, span, div, a, li, td, th {
 
 /* Aplicar Monument Grotesk Mono Variable a todos los botones */
 button {
-  font-family: 'Monument Grotesk Mono Variable', 'Courier New', monospace;
+  font-family: 'Roboto Condensed', 'Courier New', monospace;
 }
 
 /* Utility classes for z-index */

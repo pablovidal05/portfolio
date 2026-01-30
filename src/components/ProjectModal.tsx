@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Project } from "@/data/projects";
+import { Project, CATEGORY_LABELS } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ImageCarousel from "./ImageCarousel";
 
@@ -153,9 +153,21 @@ export default function ProjectModal({
 
             <br />
 
-            {/* Título centrado */}
+            {/* Título centrado + chip disciplina */}
             <div className="text-center mb-4">
-              <h1 className="font-normal text-black" style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: '1.7rem', fontWeight: 400, fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif" }}>
+              {project.category !== "all" && (
+                <span
+                  className="inline-flex items-center px-2 py-0.5"
+                  style={{
+                    fontSize: "0.75rem",
+                    fontWeight: 500,
+                    color: "rgba(0, 0, 0, 0.7)",
+                  }}
+                >
+                  {CATEGORY_LABELS[project.category][locale]}
+                </span>
+              )}
+              <h1 className="font-bold text-black mt-2" style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: '1rem', fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif" }}>
                 {title}
               </h1>
             </div>
@@ -220,7 +232,7 @@ export default function ProjectModal({
 
               {/* Columna derecha: Descripción */}
               <div className="col-span-12 md:col-span-6">
-                <div className="font-normal text-black leading-relaxed opacity-90" style={{ fontSize: '0.75rem', lineHeight: '1.5' }}>
+                <div className="font-normal text-black leading-relaxed opacity-90" style={{ fontSize: '0.85rem', lineHeight: '1.5' }}>
                   {description.split('\n\n').map((section, sectionIndex) => {
                     const trimmedSection = section.trim();
                     if (!trimmedSection) return null;
@@ -263,7 +275,7 @@ export default function ProjectModal({
                       // Renderizar como título
                       return (
                         <div key={sectionIndex} style={{ marginTop: sectionIndex > 0 ? '1rem' : '0', marginBottom: '0.25rem' }}>
-                          <strong style={{ fontSize: '0.75rem', fontWeight: 600 }}>{renderTextWithLinks(firstLine)}</strong>
+                          <strong style={{ fontSize: '1rem', fontWeight: 600 }}>{renderTextWithLinks(firstLine)}</strong>
                         </div>
                       );
                     } else {
