@@ -292,3 +292,4 @@ Si ya tienes imágenes (como heliboss o literas), el sistema:
 
 
 
+

@@ -31,3 +31,4 @@ Ver [MCP_INTEGRATION.md](../.workflows/MCP_INTEGRATION.md) para documentación c
 
 
 
+

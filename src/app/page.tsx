@@ -11,10 +11,10 @@ import { Project } from "@/data/projects";
 
 const VALID_CATEGORIES: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
 
-function SearchParamsHandler({ 
-  onCategoryChange, 
-  onProjectChange 
-}: { 
+function SearchParamsHandler({
+  onCategoryChange,
+  onProjectChange
+}: {
   onCategoryChange: (category: ProjectCategory) => void;
   onProjectChange: (project: Project | null) => void;
 }) {
@@ -46,17 +46,17 @@ function HomeContent() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
-  
+
   // Inicializar desde URL en el cliente
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const category = params.get("category") as ProjectCategory | null;
-      
+
       if (category && VALID_CATEGORIES.includes(category)) {
         setActiveCategory(category);
       }
-      
+
       const projectSlug = params.get("project");
       if (projectSlug) {
         const projectFromSlug = projects.find((p) => p.slug === projectSlug);
@@ -126,7 +126,7 @@ function HomeContent() {
   return (
     <>
       <Suspense fallback={null}>
-        <SearchParamsHandler 
+        <SearchParamsHandler
           onCategoryChange={setActiveCategory}
           onProjectChange={handleProjectFromUrl}
         />
@@ -143,6 +143,7 @@ function HomeContent() {
                 </h1>
               </div>
             </div>
+            <div id="projects-anchor" className="h-0 w-0" />
             <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
             <div className="space-y-24 md:space-y-32">
               {filteredProjects.map((project) => (
