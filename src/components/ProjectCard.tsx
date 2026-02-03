@@ -83,16 +83,16 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               {categoryLabel && (
                 <span
                   className="inline-flex items-center px-5 py-7.5 rounded text-white/100"
-                  style={{ fontSize: "0.75rem", fontWeight: 500, color:"#c2c2c2"}}
+                  style={{ fontSize: "0.75rem", fontWeight: 500, color: "#c2c2c2" }}
                 >
                   {categoryLabel}
                 </span>
               )}
             </div>
             <h3 className="text-white font-bold" style={{ fontSize: "1.rem" }}>
-                {title}
-              </h3>
-            <div className="text-white" style={{ fontSize: "0.75rem", color:"#c2c2c2" }}>
+              {title}
+            </h3>
+            <div className="text-white" style={{ fontSize: "0.75rem", color: "#c2c2c2" }}>
               {project.year}
             </div>
           </div>
@@ -110,7 +110,11 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
                 if (onReadMore) onReadMore();
               }}
               className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-2"
-              style={{ fontSize: "0.85rem", textTransform: "uppercase" }}
+              style={{
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                fontFamily: "'Monument Grotesk Mono Variable', 'Courier New', monospace"
+              }}
             >
               {t("project.readMore")} →
             </button>

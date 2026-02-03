@@ -20,11 +20,10 @@ export default function ProjectTabs({ activeCategory, onCategoryChange }: Projec
 
   return (
     <div
-      className="sticky top-[3.5rem] z-[90] bg-black/95 backdrop-blur-xl -mx-8 px-8 border-b border-white/10"
+      className="sticky top-[3.5rem] z-[90] bg-black/95 backdrop-blur-xl border-b border-white/10"
       style={{
         marginTop: '2rem',
-        marginBottom: '2rem',
-        width: 'calc(100% + 4rem)'
+        marginBottom: '2rem'
       }}
     >
       <div

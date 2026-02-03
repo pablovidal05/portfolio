@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'Monument Grotesk Variable';
   src: url('/fonts/MonumentGrotesk-Variable.woff2') format('woff2'),
-       url('/fonts/MonumentGrotesk-Variable.woff') format('woff');
+    url('/fonts/MonumentGrotesk-Variable.woff') format('woff');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -13,7 +13,7 @@
 @font-face {
   font-family: 'Monument Grotesk Mono Variable';
   src: url('/fonts/MonumentGroteskMono-Variable.woff2') format('woff2'),
-       url('/fonts/MonumentGroteskMono-Variable.woff') format('woff');
+    url('/fonts/MonumentGroteskMono-Variable.woff') format('woff');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -23,7 +23,7 @@
 @font-face {
   font-family: 'Guyot Text';
   src: url('/fonts/GuyotText-Regular.woff2') format('woff2'),
-       url('/fonts/GuyotText-Regular.woff') format('woff');
+    url('/fonts/GuyotText-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@
 @font-face {
   font-family: 'Guyot Text';
   src: url('/fonts/GuyotText-Italic.woff2') format('woff2'),
-       url('/fonts/GuyotText-Italic.woff') format('woff');
+    url('/fonts/GuyotText-Italic.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -47,7 +47,7 @@
   --color-text-on-light: #000000;
   --color-border: #1A1A1A;
   --color-divider: #333333;
-  
+
   --font-sans: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-mono: 'Roboto Condensed', 'Courier New', monospace;
 }
@@ -60,6 +60,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -70,11 +71,23 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Aplicar Monument Grotesk Variable a todos los títulos y contenido */
-h1, h2, h3, h4, h5, h6,
-p, span, div, a, li, td, th {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+a,
+li,
+td,
+th {
   font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
@@ -93,7 +106,7 @@ p, span, div, a, li, td, th {
 
 /* Aplicar Monument Grotesk Mono Variable a todos los botones */
 button {
-  font-family: 'Roboto Condensed', 'Courier New', monospace;
+  font-family: 'Monument Grotesk Mono Variable', 'Courier New', monospace;
 }
 
 /* Utility classes for z-index */
@@ -160,6 +173,7 @@ button {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -170,6 +184,7 @@ button {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -191,6 +206,8 @@ button {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
