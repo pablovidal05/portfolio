@@ -131,29 +131,31 @@ function HomeContent() {
           onProjectChange={handleProjectFromUrl}
         />
       </Suspense>
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-black flex flex-col">
         <div className="page-layout">
-          <div className="page-content">
-            <div className="text-center" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
-              <div>
-                <h1 className="crimson-text-title" style={{ fontSize: '2rem', color: 'rgba(255, 255, 255, 0.85)', fontWeight: 400, lineHeight: 1.1 }}>
-                  <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontStyle: 'italic', fontWeight: 300 }}>{locale === "es" ? "Trabajos" : "Works"}</span>
-                  <br />
-                  {locale === "es" ? "Seleccionados" : "Selected"}
-                </h1>
-              </div>
+          <div className="text-center" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
+            <div>
+              <h1 className="crimson-text-title" style={{ fontSize: '2rem', color: 'rgba(255, 255, 255, 0.85)', fontWeight: 400, lineHeight: 1.1 }}>
+                <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontStyle: 'italic', fontWeight: 300 }}>{locale === "es" ? "Trabajos" : "Works"}</span>
+                <br />
+                {locale === "es" ? "Seleccionados" : "Selected"}
+              </h1>
             </div>
-            <div id="projects-anchor" className="h-0 w-0" />
-            <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
-            <div className="space-y-24 md:space-y-32">
-              {filteredProjects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onReadMore={() => handleReadMore(project)}
-                />
-              ))}
-            </div>
+          </div>
+          <div id="projects-anchor" className="h-0 w-0" />
+        </div>
+
+        <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
+
+        <div className="page-layout">
+          <div className="space-y-24 md:space-y-32" style={{ paddingTop: '2rem' }}>
+            {filteredProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onReadMore={() => handleReadMore(project)}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -77,19 +77,19 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
         </div>
 
         {/* Layout: Título + chip disciplina | Descripción */}
-        <div className="grid grid-cols-12 gap-4" style={{ marginTop: "8px", marginBottom: "96px" }}>
-          <div className="col-span-12 md:col-span-4">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16" style={{ marginTop: "8px", marginBottom: "96px" }}>
+          <div className="flex-1 max-w-sm">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               {categoryLabel && (
                 <span
-                  className="inline-flex items-center px-5 py-7.5 rounded text-white/100"
-                  style={{ fontSize: "0.75rem", fontWeight: 500, color: "#c2c2c2" }}
+                  className="inline-flex items-center rounded text-white/100"
+                  style={{ fontSize: "0.75rem", fontWeight: 500, color: "#c2c2c2", paddingBottom: "7.5px" }}
                 >
                   {categoryLabel}
                 </span>
               )}
             </div>
-            <h3 className="text-white font-bold" style={{ fontSize: "1.rem" }}>
+            <h3 className="text-white font-bold" style={{ fontSize: "1rem" }}>
               {title}
             </h3>
             <div className="text-white" style={{ fontSize: "0.75rem", color: "#c2c2c2" }}>
@@ -97,9 +97,9 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
             </div>
           </div>
 
-          <div className="col-span-12 md:col-span-4">
+          <div className="flex-[2]">
             <p
-              className="text-white leading-relaxed opacity-90 font-normal"
+              className="text-white leading-relaxed opacity-90 font-normal max-w-2xl"
               style={{ fontSize: "0.85rem" }}
             >
               {description}
@@ -119,8 +119,6 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               {t("project.readMore")} →
             </button>
           </div>
-
-          <div className="col-span-12 md:col-span-4" />
         </div>
       </div>
 

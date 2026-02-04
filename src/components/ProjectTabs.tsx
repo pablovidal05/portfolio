@@ -20,51 +20,36 @@ export default function ProjectTabs({ activeCategory, onCategoryChange }: Projec
 
   return (
     <div
-      className="sticky top-[3.5rem] z-[90] bg-black/95 backdrop-blur-xl border-b border-white/10"
+      className="sticky top-[3.5rem] z-50 bg-black/80 backdrop-blur-md border-b border-white/10 w-full"
       style={{
-        marginTop: '2rem',
+        marginTop: '0rem',
         marginBottom: '2rem'
       }}
     >
-      <div
-        id="project-tabs-container"
-        className="overflow-x-auto no-scrollbar flex flex-nowrap gap-8 py-5"
-      >
-        {categories.map((category) => (
-          <button
-            key={category.key}
-            id={`tab-${category.key}`}
-            onClick={() => {
-              onCategoryChange(category.key);
-
-              // Smooth scroll to top of projects section
-              setTimeout(() => {
-                const headerHeight = 56; // 3.5rem (height of fixed navigation)
-                const anchor = document.getElementById('projects-anchor');
-                if (anchor) {
-                  const rect = anchor.getBoundingClientRect();
-                  const absoluteTop = rect.top + window.pageYOffset;
-
-                  window.scrollTo({
-                    top: absoluteTop - headerHeight - 16, // Extra breathing room
-                    behavior: 'smooth'
-                  });
-                }
-              }, 100);
-            }}
-            className={`text-base font-normal transition-all duration-300 cursor-pointer flex-shrink-0 whitespace-nowrap ${activeCategory === category.key
-              ? "text-white border-b-2 border-white"
-              : "text-white/60 hover:text-white/80"
-              }`}
-            style={{
-              fontSize: '0.875rem',
-              paddingBottom: '4px',
-              borderBottomWidth: activeCategory === category.key ? '1px' : '0',
-            }}
-          >
-            {category.label[locale]}
-          </button>
-        ))}
+      <div className="page-layout">
+        <div
+          id="project-tabs-container"
+          className="overflow-x-auto no-scrollbar flex flex-nowrap gap-8 py-4"
+        >
+          {categories.map((category) => (
+            <button
+              key={category.key}
+              id={`tab-${category.key}`}
+              onClick={() => onCategoryChange(category.key)}
+              className={`text-base font-normal transition-all duration-300 cursor-pointer flex-shrink-0 whitespace-nowrap ${activeCategory === category.key
+                ? "text-white border-b-2 border-white"
+                : "text-white/60 hover:text-white/80"
+                }`}
+              style={{
+                fontSize: '0.875rem',
+                paddingBottom: '4px',
+                borderBottomWidth: activeCategory === category.key ? '1px' : '0',
+              }}
+            >
+              {category.label[locale]}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

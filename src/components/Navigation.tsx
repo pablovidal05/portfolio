@@ -20,7 +20,7 @@ export default function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-100 bg-black border-b border-[#1A1A1A]" style={{ height: '3.5rem' }}>
-      <nav className="max-w-[1440px] mx-auto h-full flex items-center justify-between" style={{ paddingLeft: '32px', paddingRight: '32px' }}>
+      <nav className="page-layout h-full flex items-center justify-between">
         <Link
           href={addLocaleToPath("/", locale)}
           className="text-lg md:text-xl font-normal text-white tracking-[-0.01em] hover:opacity-70 transition-opacity cursor-pointer"
@@ -36,9 +36,8 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={href}
-                className={`text-base font-normal transition-opacity ${
-                  isActive ? "text-white" : "text-white hover:opacity-70"
-                }`}
+                className={`text-base font-normal transition-opacity ${isActive ? "text-white" : "text-white hover:opacity-70"
+                  }`}
               >
                 {link.label}
               </Link>
