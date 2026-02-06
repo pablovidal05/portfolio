@@ -41,7 +41,7 @@ function SearchParamsHandler({
 }
 
 function HomeContent() {
-  const { locale } = useLocale();
+  const { locale, t } = useLocale();
   const router = useRouter();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -133,13 +133,16 @@ function HomeContent() {
       </Suspense>
       <div className="min-h-screen bg-black flex flex-col">
         <div className="page-layout">
-          <div className="text-center" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
-            <div>
-              <h1 className="crimson-text-title" style={{ fontSize: '2rem', color: 'rgba(255, 255, 255, 0.85)', fontWeight: 400, lineHeight: 1.1 }}>
-                <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontStyle: 'italic', fontWeight: 300 }}>{locale === "es" ? "Trabajos" : "Works"}</span>
+          <div className="text-center" style={{ paddingTop: '5rem', paddingBottom: '7rem' }}>
+            <div className="max-w-4xl mx-auto px-4">
+              <h1 className="crimson-text-title mb-6" style={{ fontSize: '2.5rem', color: 'rgba(255, 255, 255, 0.95)', fontWeight: 400, lineHeight: 1.1 }}>
+                <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontStyle: 'italic', fontWeight: 300 }}>{t("hero.works")}</span>
                 <br />
-                {locale === "es" ? "Seleccionados" : "Selected"}
+                {t("hero.selected")}
               </h1>
+              <p className="opacity-70 font-normal leading-relaxed text-balance max-w-2xl mx-auto" style={{ fontSize: '1rem', fontFamily: "'Inter', sans-serif" }}>
+                {t("hero.shortDescription")}
+              </p>
             </div>
           </div>
           <div id="projects-anchor" className="h-0 w-0" />
