@@ -195,7 +195,7 @@ export const projects: Project[] = [
     category: "product-design",
     tags: ["Design System", "Product Design", "Developer Experience", "DesignOps", "UX/UI"],
     shortDescription: {
-      es: "Cómo integré componentes de alta complejidad en un SaaS de alta complejidad para optimizar el ciclo de desarrollo de producto.",
+      es: "Cómo integré componentes de alta complejidad en un SaaS para optimizar el ciclo de desarrollo de producto.",
       en: "Integrating high-complexity components in a mature SaaS to optimize the product development cycle."
     },
     fullDescription: {
