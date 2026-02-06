@@ -27,12 +27,12 @@ export default function ProjectModal({
   // Combinar videos e imágenes en un solo array (para el carrusel)
   const videos = project.videos || [];
   const allMedia: Array<{ type: 'video' | 'image'; src: string }> = [];
-  
+
   // Agregar todos los videos primero
   videos.forEach(video => {
     allMedia.push({ type: 'video', src: video });
   });
-  
+
   // Agregar todas las imágenes después
   project.images.forEach(image => {
     allMedia.push({ type: 'image', src: image });
@@ -107,7 +107,7 @@ export default function ProjectModal({
     <div
       className="fixed inset-0 z-[1000] overflow-y-auto project-overlay page modal-overlay"
       onClick={onClose}
-      style={{ paddingTop: '3rem', paddingLeft: '24px', paddingRight: '24px', paddingBottom: '24px', cursor: 'pointer' }}
+      style={{ paddingTop: '3rem', paddingBottom: '24px', cursor: 'pointer' }}
     >
       <div
         className="relative max-w-full"
@@ -122,10 +122,10 @@ export default function ProjectModal({
             <div className="grid grid-cols-12 gap-4 mb-8">
               {/* Columna 1: Vacía (span 3) */}
               <div className="col-span-12 md:col-span-3"></div>
-              
+
               {/* Columna 2: Centrada (span 5) */}
               <div className="col-span-12 md:col-span-5 text-center"></div>
-              
+
               {/* Columna 3: Botón cerrar a la derecha (span 4) */}
               <div className="col-span-12 md:col-span-4 text-right">
                 <button
@@ -236,20 +236,23 @@ export default function ProjectModal({
                   {description.split('\n\n').map((section, sectionIndex) => {
                     const trimmedSection = section.trim();
                     if (!trimmedSection) return null;
-                    
+
                     const lines = trimmedSection.split('\n').filter(line => line.trim());
                     if (lines.length === 0) return null;
-                    
-                    // Función para convertir URLs en enlaces
+
+                    // Función para convertir URLs en enlaces y soportar negrita (**texto**)
                     const renderTextWithLinks = (text: string) => {
                       const urlRegex = /(https?:\/\/[^\s]+)/g;
+                      const boldRegex = /\*\*(.*?)\*\*/g;
+
+                      // Primero dividimos por URLs
                       const parts = text.split(urlRegex);
-                      
+
                       return parts.map((part, index) => {
                         if (urlRegex.test(part)) {
                           return (
                             <a
-                              key={index}
+                              key={`link-${index}`}
                               href={part}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -260,17 +263,30 @@ export default function ProjectModal({
                             </a>
                           );
                         }
+
+                        // Si no es URL, procesamos la negrita
+                        const boldParts = part.split(boldRegex);
+                        if (boldParts.length > 1) {
+                          return boldParts.map((boldPart, boldIndex) => {
+                            // Los índices impares en boldParts son los contenidos entre **
+                            if (boldIndex % 2 === 1) {
+                              return <strong key={`bold-${index}-${boldIndex}`} style={{ fontWeight: 600 }}>{boldPart}</strong>;
+                            }
+                            return boldPart;
+                          });
+                        }
+
                         return part;
                       });
                     };
-                    
+
                     // Detectar si es un título (línea única, corta, sin punto, o todo mayúsculas)
                     const firstLine = lines[0].trim();
                     const isTitle = lines.length === 1 && (
                       firstLine.toUpperCase() === firstLine ||
-                      (firstLine.length < 60 && !firstLine.includes('.'))
+                      (firstLine.length < 100 && !firstLine.includes('.'))
                     );
-                    
+
                     if (isTitle) {
                       // Renderizar como título
                       return (
@@ -285,14 +301,14 @@ export default function ProjectModal({
                           {lines.map((line, lineIndex) => {
                             const trimmedLine = line.trim();
                             if (!trimmedLine) return null;
-                            
+
                             // Detectar si es un bullet point o lista
                             const isBullet = trimmedLine.startsWith('-') || trimmedLine.match(/^\d+\./);
-                            
+
                             return (
-                              <div 
-                                key={lineIndex} 
-                                style={{ 
+                              <div
+                                key={lineIndex}
+                                style={{
                                   marginBottom: lineIndex < lines.length - 1 ? '0.25rem' : '0',
                                   paddingLeft: isBullet ? '0.75rem' : '0'
                                 }}

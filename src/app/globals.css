@@ -163,6 +163,8 @@ button {
   background-color: rgba(0, 0, 0, 0.25);
   min-height: auto;
   justify-content: flex-start;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .project-overlay .page-layout {
@@ -182,6 +184,23 @@ button {
   border-style: solid;
   border-radius: 3rem;
   text-align: left;
+}
+
+@media (max-width: 640px) {
+  .project-overlay.page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .project-overlay .page-layout {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .project-overlay .page-content {
+    padding: 1.5rem 1rem;
+    border-radius: 2rem;
+  }
 }
 
 /* Animaciones para el modal */
