@@ -133,7 +133,7 @@ function HomeContent() {
       </Suspense>
       <div className="min-h-screen bg-black flex flex-col">
         <div className="page-layout">
-          <div className="text-center" style={{ paddingTop: '5rem', paddingBottom: '7rem' }}>
+          <div className="text-center" style={{ paddingTop: '5rem', paddingBottom: '7rem', justifyItems: "center" }}>
             <div className="max-w-4xl mx-auto px-4">
               <h1 className="crimson-text-title mb-6" style={{ fontSize: '2.5rem', color: 'rgba(255, 255, 255, 0.95)', fontWeight: 400, lineHeight: 1.1 }}>
                 <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontStyle: 'italic', fontWeight: 300 }}>{t("hero.works")}</span>
