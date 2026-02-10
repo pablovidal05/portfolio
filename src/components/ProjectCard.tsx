@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { Project, CATEGORY_LABELS } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -104,11 +105,8 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
             >
               {description}
             </p>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onReadMore) onReadMore();
-              }}
+            <Link
+              href={`/work/${project.category}/${project.slug}`}
               className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-2"
               style={{
                 fontSize: "0.85rem",
@@ -117,7 +115,7 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               }}
             >
               {t("project.readMore")} →
-            </button>
+            </Link>
           </div>
         </div>
       </div>

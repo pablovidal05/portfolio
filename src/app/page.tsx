@@ -5,18 +5,15 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { projects, ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ProjectCard from "@/components/ProjectCard";
-import ProjectModal from "@/components/ProjectModal";
 import ProjectTabs from "@/components/ProjectTabs";
 import { Project } from "@/data/projects";
 
 const VALID_CATEGORIES: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
 
 function SearchParamsHandler({
-  onCategoryChange,
-  onProjectChange
+  onCategoryChange
 }: {
   onCategoryChange: (category: ProjectCategory) => void;
-  onProjectChange: (project: Project | null) => void;
 }) {
   const searchParams = useSearchParams();
 
@@ -27,15 +24,7 @@ function SearchParamsHandler({
     } else {
       onCategoryChange("all");
     }
-
-    const projectSlug = searchParams.get("project");
-    if (projectSlug) {
-      const projectFromSlug = projects.find((p) => p.slug === projectSlug);
-      onProjectChange(projectFromSlug || null);
-    } else {
-      onProjectChange(null);
-    }
-  }, [searchParams, onCategoryChange, onProjectChange]);
+  }, [searchParams, onCategoryChange]);
 
   return null;
 }
@@ -43,8 +32,6 @@ function SearchParamsHandler({
 function HomeContent() {
   const { locale, t } = useLocale();
   const router = useRouter();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
 
   // Inicializar desde URL en el cliente
@@ -55,15 +42,6 @@ function HomeContent() {
 
       if (category && VALID_CATEGORIES.includes(category)) {
         setActiveCategory(category);
-      }
-
-      const projectSlug = params.get("project");
-      if (projectSlug) {
-        const projectFromSlug = projects.find((p) => p.slug === projectSlug);
-        if (projectFromSlug) {
-          setSelectedProject(projectFromSlug);
-          setIsModalOpen(true);
-        }
       }
     }
   }, []);
@@ -79,43 +57,6 @@ function HomeContent() {
     router.replace(newUrl, { scroll: false });
   };
 
-  const handleReadMore = (project: Project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-
-    // Actualizar la URL para que el modal tenga un enlace único por proyecto
-    const params = new URLSearchParams();
-    params.set("project", project.slug);
-    if (activeCategory !== "all") {
-      params.set("category", activeCategory);
-    }
-    const newUrl = params.toString() ? `/?${params.toString()}` : "/";
-    router.replace(newUrl, { scroll: false });
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
-
-    // Limpiar el parámetro de proyecto de la URL al cerrar el modal
-    const params = new URLSearchParams();
-    if (activeCategory !== "all") {
-      params.set("category", activeCategory);
-    }
-    const newUrl = params.toString() ? `/?${params.toString()}` : "/";
-    router.replace(newUrl, { scroll: false });
-  };
-
-  const handleProjectFromUrl = (project: Project | null) => {
-    if (project) {
-      setSelectedProject(project);
-      setIsModalOpen(true);
-    } else {
-      setSelectedProject(null);
-      setIsModalOpen(false);
-    }
-  };
-
   const filteredProjects = useMemo(() => {
     if (activeCategory === "all") {
       return projects;
@@ -128,7 +69,6 @@ function HomeContent() {
       <Suspense fallback={null}>
         <SearchParamsHandler
           onCategoryChange={setActiveCategory}
-          onProjectChange={handleProjectFromUrl}
         />
       </Suspense>
       <div className="min-h-screen bg-black flex flex-col">
@@ -156,20 +96,11 @@ function HomeContent() {
               <ProjectCard
                 key={project.id}
                 project={project}
-                onReadMore={() => handleReadMore(project)}
               />
             ))}
           </div>
         </div>
       </div>
-
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
-      )}
     </>
   );
 }
