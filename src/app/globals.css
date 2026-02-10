@@ -48,8 +48,8 @@
   --color-border: #1A1A1A;
   --color-divider: #333333;
 
-  --font-sans: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-mono: 'Roboto Condensed', 'Courier New', monospace;
+  --font-sans: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  --font-serif: var(--font-source-serif), 'Source Serif 4', serif;
 }
 
 * {
@@ -65,20 +65,25 @@ html {
 body {
   background: var(--color-background-primary);
   color: var(--color-text-primary);
-  font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Aplicar Monument Grotesk Variable a todos los títulos y contenido */
+/* Aplicar JetBrains Mono UPPERCASE a los títulos */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 p,
 span,
 div,
@@ -86,25 +91,26 @@ a,
 li,
 td,
 th {
-  font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
 }
 
-/* Clase para el título principal con Sentient */
+/* Clase para el título principal con JetBrains Mono */
 .crimson-text-title {
-  font-family: 'Sentient', serif !important;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace !important;
 }
 
-/* Clase específica para "Trabajos" con Sentient */
+/* Clase específica para títulos con JetBrains Mono */
 .sentient-text {
-  font-family: 'Sentient', serif !important;
-  font-style: italic !important;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace !important;
   font-weight: 300 !important;
   letter-spacing: -0.04em !important;
 }
 
-/* Aplicar Monument Grotesk Mono Variable a todos los botones */
+/* Aplicar JetBrains Mono UPPERCASE a todos los botones */
 button {
-  font-family: 'Monument Grotesk Mono Variable', 'Courier New', monospace;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Utility classes for z-index */
@@ -142,7 +148,7 @@ button {
 }
 
 .text-style-468401 {
-  font-family: 'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-source-serif), 'Source Serif 4', serif;
   font-style: normal;
   font-weight: 400;
   margin: 0;

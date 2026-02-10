@@ -97,7 +97,7 @@ export default function ProjectDetail({
 
                     {/* Subtítulo centrado */}
                     <div className="text-center mb-8">
-                        <span style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: '0.75rem', fontFamily: "'Monument Grotesk Mono Variable', 'Courier New', monospace" }}>
+                        <span style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: '0.75rem', fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace" }}>
                             {role.toUpperCase()}
                             <br />
                             {project.year.toUpperCase()}

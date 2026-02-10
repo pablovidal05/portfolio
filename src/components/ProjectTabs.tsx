@@ -11,11 +11,11 @@ interface ProjectTabsProps {
 export default function ProjectTabs({ activeCategory, onCategoryChange }: ProjectTabsProps) {
   const { locale } = useLocale();
 
-  const categories: { key: ProjectCategory; label: { es: string; en: string } }[] = [
+  const categories: { key: ProjectCategory; label: { es: string; en: string }; hidden?: boolean }[] = [
     { key: "all", label: { es: "Todos", en: "All" } },
     { key: "product-design", label: { es: "Product Design", en: "Product Design" } },
-    { key: "ecommerce-landings", label: { es: "E-commerce & Landings pages", en: "E-commerce & Landing pages" } },
-    { key: "graphic-design", label: { es: "Diseño gráfico", en: "Graphic Design" } },
+    { key: "ecommerce-landings", label: { es: "E-commerce & Landings pages", en: "E-commerce & Landing pages" }, hidden: true },
+    { key: "graphic-design", label: { es: "Diseño gráfico", en: "Graphic Design" }, hidden: true },
   ];
 
   return (
@@ -31,7 +31,7 @@ export default function ProjectTabs({ activeCategory, onCategoryChange }: Projec
           id="project-tabs-container"
           className="overflow-x-auto no-scrollbar flex flex-nowrap gap-8 py-4"
         >
-          {categories.map((category) => (
+          {categories.filter(cat => !cat.hidden).map((category) => (
             <button
               key={category.key}
               id={`tab-${category.key}`}

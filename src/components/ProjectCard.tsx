@@ -111,7 +111,8 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               style={{
                 fontSize: "0.85rem",
                 textTransform: "uppercase",
-                fontFamily: "'Monument Grotesk Mono Variable', 'Courier New', monospace"
+                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                letterSpacing: "0.05em"
               }}
             >
               {t("project.readMore")} →

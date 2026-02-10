@@ -18,7 +18,7 @@ export default function Loader() {
     const handleLoad = () => {
       const elapsed = Date.now() - startTime;
       const remainingTime = Math.max(0, minLoadTime - elapsed);
-      
+
       setTimeout(() => {
         setIsLoading(false);
       }, remainingTime);
@@ -49,7 +49,7 @@ export default function Loader() {
     <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-        <div className="text-white/60 text-xs uppercase tracking-wider" style={{ fontSize: '0.75rem', fontFamily: "'Monument Grotesk Mono Variable', 'Courier New', monospace" }}>
+        <div className="text-white/60 text-xs uppercase tracking-wider" style={{ fontSize: '0.75rem', fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace" }}>
           Loading
         </div>
       </div>

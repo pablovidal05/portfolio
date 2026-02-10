@@ -58,10 +58,8 @@ function HomeContent() {
   };
 
   const filteredProjects = useMemo(() => {
-    if (activeCategory === "all") {
-      return projects;
-    }
-    return projects.filter((project) => project.category === activeCategory);
+    // Solo mostrar proyectos de product-design
+    return projects.filter((project) => project.category === "product-design");
   }, [activeCategory]);
 
   return (
@@ -76,19 +74,16 @@ function HomeContent() {
           <div className="text-center" style={{ paddingTop: '5rem', paddingBottom: '7rem', justifyItems: "center" }}>
             <div className="max-w-4xl mx-auto px-4">
               <h1 className="crimson-text-title mb-6" style={{ fontSize: '2.5rem', color: 'rgba(255, 255, 255, 0.95)', fontWeight: 400, lineHeight: 1.1 }}>
-                <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontStyle: 'italic', fontWeight: 300 }}>{t("hero.works")}</span>
+                <span className="sentient-text" style={{ fontFamily: "'Sentient', serif", fontWeight: 300 }}>{t("hero.works")}</span>
                 <br />
-                {t("hero.selected")}
+                {t("")}
               </h1>
-              <p className="opacity-70 font-normal leading-relaxed text-balance max-w-2xl mx-auto" style={{ fontSize: '1rem', fontFamily: "'Inter', sans-serif" }}>
-                {t("hero.shortDescription")}
-              </p>
             </div>
           </div>
           <div id="projects-anchor" className="h-0 w-0" />
         </div>
 
-        <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} />
+        {/* <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} /> */}
 
         <div className="page-layout">
           <div className="space-y-24 md:space-y-32" style={{ paddingTop: '2rem' }}>

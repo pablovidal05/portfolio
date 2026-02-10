@@ -1,30 +1,24 @@
 import type { Metadata } from "next";
-import { Inter, Crimson_Text, Libre_Baskerville } from "next/font/google";
+import { JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 
-const inter = Inter({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
-const crimsonText = Crimson_Text({
+const sourceSerif4 = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["300", "400", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-crimson-text",
-  display: "swap",
-});
-
-const libreBaskerville = Libre_Baskerville({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-libre-baskerville",
+  variable: "--font-source-serif",
   display: "swap",
 });
 
@@ -48,7 +42,7 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=sentient@200,300,400,600&display=swap" rel="stylesheet" />
       </head>
       <body
-        className={`${inter.variable} ${crimsonText.variable} ${libreBaskerville.variable} antialiased bg-black text-white`}
+        className={`${jetbrainsMono.variable} ${sourceSerif4.variable} antialiased bg-black text-white`}
       >
         <LocaleProvider>
           <Loader />

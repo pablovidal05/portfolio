@@ -45,7 +45,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 <Link
                     href="/"
                     className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-2 mb-8"
-                    style={{ fontFamily: "'Monument Grotesk Mono Variable', monospace", fontSize: '0.75rem' }}
+                    style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace", fontSize: '0.75rem' }}
                 >
                     ← VOLVER
                 </Link>
