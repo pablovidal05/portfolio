@@ -212,6 +212,34 @@ export const projects: Project[] = [
       "/images/buk/buk-7.png",
       "/images/buk/buk-8.png"
     ]
+  },
+  {
+    id: "11",
+    slug: "latam-airlines-recap",
+    title: {
+      es: "LATAM Airlines — Corporate Partner Recap Platform",
+      en: "LATAM Airlines — Corporate Partner Recap Platform"
+    },
+    role: {
+      es: "Product Designer",
+      en: "Product Designer"
+    },
+    year: "2024",
+    category: "product-design",
+    tags: ["Product Design", "Data Visualization", "B2B", "Salesforce"],
+    shortDescription: {
+      es: "Transformando datos complejos de ahorro y viajes en una experiencia digital dinámica para +1,600 empresas globales.",
+      en: "Transforming complex savings and travel data into a dynamic digital experience for +1,600 global companies."
+    },
+    fullDescription: {
+      es: "El Desafío: Visualizar el valor B2B a escala ejecutiva\n\nLATAM necesitaba entregar a sus clientes corporativos un resumen mensual de indicadores clave (ahorro, beneficios y comportamiento de viaje). El reto consistió en pasar de reportes estáticos a una plataforma digital que permitiera a gerentes y tomadores de decisión interpretar datos críticos en segundos, optimizando la visualización para cualquier tipo de dispositivo.\n\nContexto: Diseño bajo restricciones de Salesforce Marketing Cloud\n\nA diferencia de un desarrollo web tradicional, este proyecto se ejecutó sobre la infraestructura de CloudPages en Salesforce. Esto impuso una restricción técnica fundamental: el diseño debía ser totalmente modular para permitir el renderizado dinámico de contenido vía AMPscript, personalizando el resumen por cliente, país e idioma de forma automática y masiva.\n\nMi Rol: Arquitectura de Información y Sistemas Visuales\n\nComo Product Designer, mi enfoque fue asegurar la viabilidad técnica de la data sin sacrificar la claridad ejecutiva necesaria para este perfil de usuario:\n\nDiseño de Visualizaciones: Traducción de métricas complejas en gráficos claros y comparativos, diseñados como componentes reutilizables mediante ECharts.\n\nLayouts Modulares: Creación de un sistema de slots dinámicos que permitía renderizar diferentes secciones (KPIs, tablas de tendencias) según la disponibilidad de datos de cada cliente corporativo.\n\nJerarquía de Lectura: Priorización visual de ahorros y beneficios, permitiendo que el usuario identifique el valor del servicio de manera inmediata.\n\nLa Solución: Un ecosistema de componentes reutilizables\n\nEn lugar de una página estática, el entregable fue un sistema dinámico optimizado para el consumo de información en movilidad:\n\nComponentes UI Variables: Cards y gráficos diseñados para adaptarse a distintos volúmenes de información sin romper la integridad del layout.\n\nConsistencia Técnica: Cada decisión de diseño fue validada con los equipos de Data y Desarrollo para asegurar una implementación fluida sobre Bootstrap dentro de Salesforce.\n\nEnfoque Ejecutivo: Navegación y jerarquía pensadas para una lectura rápida, ideal para usuarios que consumen estos reportes en entornos de alta movilidad como aeropuertos.\n\nImpacto: Escalabilidad y Claridad Corporativa\n\nLa plataforma fue diseñada para mejorar la percepción de valor en el segmento B2B:\n\nEscalabilidad Total: Sistema preparado para operar con más de 1,600 empresas sin necesidad de intervención manual de diseño por cada reporte.\n\nEficiencia en la toma de decisiones: Reducción de la fricción en la lectura de reportes financieros y de comportamiento de viaje.\n\nHandoff de Precisión: La integración directa entre el diseño y la lógica de datos permitió un despliegue sin errores técnicos en la arquitectura de Salesforce.",
+      en: "The Challenge: Visualizing B2B Value at Executive Scale\n\nLATAM needed to deliver a monthly summary of key indicators (savings, benefits, and travel behavior) to its corporate clients. The challenge was to move from static reports to a digital platform that allowed managers and decision-makers to interpret critical data in seconds, optimizing visualization for any device.\n\nContext: Design Under Salesforce Marketing Cloud Constraints\n\nUnlike traditional web development, this project ran on Salesforce CloudPages infrastructure. This imposed a fundamental technical constraint: the design had to be fully modular to allow dynamic content rendering via AMPscript, customizing the summary by client, country, and language automatically and at scale.\n\nMy Role: Information Architecture and Visual Systems\n\nAs a Product Designer, my focus was ensuring technical data viability without sacrificing executive clarity needed for this user profile:\n\nVisualization Design: Translating complex metrics into clear, comparative charts designed as reusable components using ECharts.\n\nModular Layouts: Creating a dynamic slot system to render different sections (KPIs, trend tables) based on data availability for each corporate client.\n\nReading Hierarchy: Visual prioritization of savings and benefits, allowing users to identify service value immediately.\n\nThe Solution: An Ecosystem of Reusable Components\n\nInstead of a static page, the deliverable was a dynamic system optimized for mobile information consumption:\n\nVariable UI Components: Cards and charts designed to adapt to different information volumes without breaking layout integrity.\n\nTechnical Consistency: Every design decision was validated with Data and Development teams to ensure smooth implementation on Bootstrap within Salesforce.\n\nExecutive Focus: Navigation and hierarchy designed for quick reading, ideal for users consuming reports in high-mobility environments like airports.\n\nImpact: Scalability and Corporate Clarity\n\nThe platform was designed to improve value perception in the B2B segment:\n\nTotal Scalability: System ready to operate with over 1,600 companies without manual design intervention per report.\n\nDecision-Making Efficiency: Reduced friction in reading financial and travel behavior reports.\n\nPrecision Handoff: Direct integration between design and data logic allowed error-free technical deployment on Salesforce architecture."
+    },
+    images: [
+      "/images/latam/latam-1.png",
+      "/images/latam/latam-2.png",
+      "/images/latam/latam-3.png"
+    ]
   }
 ];
 
