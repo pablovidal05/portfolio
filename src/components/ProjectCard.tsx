@@ -106,7 +106,7 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               {description}
             </p>
             <Link
-              href={`/work/${project.category}/${project.slug}`}
+              href={`/${project.slug}`}
               className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-2"
               style={{
                 fontSize: "0.85rem",

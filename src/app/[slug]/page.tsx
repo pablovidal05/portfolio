@@ -1,16 +1,15 @@
 import { notFound } from "next/navigation";
-import { getProjectBySlug, getAllProjectSlugs, projects } from "@/data/projects";
+import { getProjectBySlug, projects } from "@/data/projects";
 import ProjectDetail from "@/components/ProjectDetail";
 import Link from "next/link";
 import { Metadata } from "next";
 
 interface PageProps {
-    params: Promise<{ category: string; slug: string }>;
+    params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
     return projects.map((project) => ({
-        category: project.category,
         slug: project.slug,
     }));
 }
@@ -32,16 +31,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ProjectPage({ params }: PageProps) {
-    const { slug, category } = await params;
+    const { slug } = await params;
     const project = getProjectBySlug(slug);
 
-    if (!project || project.category !== category) {
+    if (!project) {
         notFound();
     }
 
     return (
         <div className="min-h-screen bg-black">
-            <div className="page-layout py-8">
+            <div className="page-layout py-8" style={{ paddingTop: '8rem' }}>
                 <Link
                     href="/"
                     className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-2 mb-8"
