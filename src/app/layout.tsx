@@ -23,7 +23,7 @@ const sourceSerif4 = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Pablo Vidal | Senior Product Designer & Design Systems",
+  title: "Pablo Vidal | Product Designer & Design Systems",
   description: "Product Designer con experiencia en escalabilidad de sistemas y optimización de conversión B2B. Soluciones de diseño alineadas a la ingeniería y objetivos de negocio.",
   other: {
     "google-fonts": "https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap",
