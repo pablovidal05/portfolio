@@ -154,7 +154,7 @@ export const projects: Project[] = [
       es: "Product Designer",
       en: "Product Designer"
     },
-    year: "2022",
+    year: "2023",
     category: "product-design",
     tags: ["UI Kit", "Product Design", "Design Tokens", "DesignOps", "UX/UI"],
     shortDescription: {
@@ -191,7 +191,7 @@ export const projects: Project[] = [
       es: "Product Designer",
       en: "Product Designer"
     },
-    year: "2023",
+    year: "2024",
     category: "product-design",
     tags: ["Design System", "Product Design", "Developer Experience", "DesignOps", "UX/UI"],
     shortDescription: {
@@ -224,7 +224,7 @@ export const projects: Project[] = [
       es: "Product Designer",
       en: "Product Designer"
     },
-    year: "2024",
+    year: "2025",
     category: "product-design",
     tags: ["Product Design", "Data Visualization", "B2B", "Salesforce"],
     shortDescription: {

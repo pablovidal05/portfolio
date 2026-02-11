@@ -1,0 +1,38 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Flujo: Experiencia de Usuario - Latam Airlines Recap
+
+Person(user, "Usuario Corporativo", "Gerente o tomador de decisión.")
+
+System_Ext(email_system, "Email Recap Mensual", "Sistema de envío de correos mensuales.")
+
+System_Boundary(c1, "Plataforma Latam Recap") {
+    Container(landing_page, "Landing Dinámica", "Web App", "Renderiza contenido según POS e Idioma.")
+    
+    Container_Boundary(components, "Componentes UI") {
+        Component(header, "Header + Selector", "Componente", "Selector de idioma automático.")
+        Component(resumen_exec, "Resumen Ejecutivo", "Componente", "Muestra KPIs principales visibles.")
+        Component(tabs, "Explora Tabs", "Componente", "Navegación entre secciones:\n- Resumen\n- Beneficios\n- Ahorro\n- Uso / Comportamiento")
+        Component(graphs, "Gráficos / Tablas", "Componente", "Visualización interactiva de datos.")
+        Component(value_prop, "Comprensión de Valor", "Concepto/Mental", "Usuario entiende el valor generado.")
+        Component(decision, "Toma de Decisión", "Concepto/Mental", "Decisión interna basada en datos.")
+    }
+}
+
+Rel(user, email_system, "Recibe y abre", "Email Mensual")
+Rel(user, email_system, "Click en CTA", "Link al reporte")
+Rel(email_system, landing_page, "Redirige a", "HTTPS")
+
+Rel(landing_page, header, "Carga con contexto POS/Idioma")
+Rel(landing_page, resumen_exec, "Muestra KPIs principales")
+
+Rel(user, tabs, "Navega entre pestañas", "Interacción")
+Rel(user, graphs, "Interactúa con datos", "Filtros/Tooltips")
+
+Rel(graphs, value_prop, "Genera", "Insight")
+Rel(value_prop, decision, "Facilita", "Acción Corporativa")
+
+@enduml
