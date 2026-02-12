@@ -238,7 +238,14 @@ export const projects: Project[] = [
     images: [
       "/images/latam/latam-1.png",
       "/images/latam/latam-2.png",
-      "/images/latam/latam-3.png"
+      "/images/latam/latam-3.png",
+      "/images/latam/latam-4.png",
+      "/images/latam/latam-5.png",
+      "/images/latam/latam-6.png",
+      "/images/latam/latam-7.png",
+      "/images/latam/latam-8.png",
+      "/images/latam/latam-9.png",
+      "/images/latam/latam-10.png",
     ]
   }
 ];
