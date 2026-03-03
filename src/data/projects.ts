@@ -35,7 +35,7 @@ export interface Project {
   learnMoreUrl?: string;
 }
 
-export const projects: Project[] = [
+export const projects: Project[] = ([
   {
     id: "6",
     slug: "literas-mx",
@@ -248,7 +248,7 @@ export const projects: Project[] = [
       "/images/latam/latam-10.png",
     ]
   }
-];
+] as Project[]).sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);
