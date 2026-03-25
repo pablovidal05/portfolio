@@ -22,6 +22,11 @@ export default function ProjectDetail({
     const [carouselOpen, setCarouselOpen] = useState(false);
     const [carouselInitialIndex, setCarouselInitialIndex] = useState(0);
 
+    const getLocalizedValue = (val: string | { es: string; en: string } | undefined): string => {
+        if (!val) return "";
+        return typeof val === "string" ? val : val[locale];
+    };
+
     // Combinar videos e imágenes en un solo array (para el carrusel)
     const videos = project.videos || [];
     const allMedia: Array<{ type: 'video' | 'image'; src: string }> = [];
@@ -225,45 +230,45 @@ export default function ProjectDetail({
                                 {project.sectionProblem && project.contentProblem && (
                                     <div>
                                         <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {project.sectionProblem[locale] || project.sectionProblem}
+                                            {getLocalizedValue(project.sectionProblem)}
                                         </h3>
-                                        {renderTextBlocks(project.contentProblem[locale] || project.contentProblem)}
+                                        {renderTextBlocks(getLocalizedValue(project.contentProblem))}
                                     </div>
                                 )}
 
                                 {project.sectionContext && project.contentContext && (
                                     <div>
                                         <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {project.sectionContext[locale] || project.sectionContext}
+                                            {getLocalizedValue(project.sectionContext)}
                                         </h3>
-                                        {renderTextBlocks(project.contentContext[locale] || project.contentContext)}
+                                        {renderTextBlocks(getLocalizedValue(project.contentContext))}
                                     </div>
                                 )}
 
                                 {project.sectionAction && project.contentAction && (
                                     <div>
                                         <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {project.sectionAction[locale] || project.sectionAction}
+                                            {getLocalizedValue(project.sectionAction)}
                                         </h3>
-                                        {renderTextBlocks(project.contentAction[locale] || project.contentAction)}
+                                        {renderTextBlocks(getLocalizedValue(project.contentAction))}
                                     </div>
                                 )}
 
                                 {project.sectionDecision && project.contentDecision && (
                                     <div>
                                         <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {project.sectionDecision[locale] || project.sectionDecision}
+                                            {getLocalizedValue(project.sectionDecision)}
                                         </h3>
-                                        {renderTextBlocks(project.contentDecision[locale] || project.contentDecision)}
+                                        {renderTextBlocks(getLocalizedValue(project.contentDecision))}
                                     </div>
                                 )}
 
                                 {project.sectionResult && project.contentResult && (
                                     <div>
                                         <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {project.sectionResult[locale] || project.sectionResult}
+                                            {getLocalizedValue(project.sectionResult)}
                                         </h3>
-                                        {renderTextBlocks(project.contentResult[locale] || project.contentResult)}
+                                        {renderTextBlocks(getLocalizedValue(project.contentResult))}
                                     </div>
                                 )}
 
