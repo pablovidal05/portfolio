@@ -40,6 +40,71 @@ export default function ProjectDetail({
         setCarouselOpen(true);
     };
 
+    const renderTextBlocks = (text: string) => {
+        if (!text) return null;
+        return text.split('\n\n').map((section, sectionIndex) => {
+            const trimmedSection = section.trim();
+            if (!trimmedSection) return null;
+
+            const lines = trimmedSection.split('\n').filter(line => line.trim());
+            if (lines.length === 0) return null;
+
+            const renderTextWithLinks = (textContent: string) => {
+                const urlRegex = /(https?:\/\/[^\s]+)/g;
+                const boldRegex = /\*\*(.*?)\*\*/g;
+                const parts = textContent.split(urlRegex);
+
+                return parts.map((part, index) => {
+                    if (urlRegex.test(part)) {
+                        return (
+                            <a
+                                key={`link-${index}`}
+                                href={part}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline hover:opacity-70 transition-opacity"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                {part}
+                            </a>
+                        );
+                    }
+                    const boldParts = part.split(boldRegex);
+                    if (boldParts.length > 1) {
+                        return boldParts.map((boldPart, boldIndex) => {
+                            if (boldIndex % 2 === 1) {
+                                return <strong key={`bold-${index}-${boldIndex}`} style={{ fontWeight: 600 }}>{boldPart}</strong>;
+                            }
+                            return boldPart;
+                        });
+                    }
+                    return part;
+                });
+            };
+
+            return (
+                <div key={sectionIndex} style={{ marginTop: sectionIndex > 0 ? '0.5rem' : '0', marginBottom: '0' }}>
+                    {lines.map((line, lineIndex) => {
+                        const trimmedLine = line.trim();
+                        if (!trimmedLine) return null;
+                        const isBullet = trimmedLine.startsWith('-') || trimmedLine.match(/^\d+\./);
+                        return (
+                            <div
+                                key={lineIndex}
+                                style={{
+                                    marginBottom: lineIndex < lines.length - 1 ? '0.25rem' : '0',
+                                    paddingLeft: isBullet ? '0.75rem' : '0'
+                                }}
+                            >
+                                {renderTextWithLinks(trimmedLine)}
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        });
+    };
+
     return (
         <div className="project-overlay page" style={{ paddingTop: '3rem', paddingBottom: '24px', minHeight: '100vh', background: 'transparent' }}>
             <div className="page-layout">
@@ -155,88 +220,53 @@ export default function ProjectDetail({
 
                         {/* Columna derecha: Descripción */}
                         <div className="col-span-12 md:col-span-6">
-                            <div className="font-normal text-black leading-relaxed opacity-90" style={{ fontSize: '0.85rem', lineHeight: '1.5' }}>
-                                {description.split('\n\n').map((section, sectionIndex) => {
-                                    const trimmedSection = section.trim();
-                                    if (!trimmedSection) return null;
+                            <div className="font-normal text-black leading-relaxed opacity-90 flex flex-col gap-12" style={{ fontSize: '0.85rem', lineHeight: '1.5' }}>
 
-                                    const lines = trimmedSection.split('\n').filter(line => line.trim());
-                                    if (lines.length === 0) return null;
+                                {project.sectionProblem && project.contentProblem && (
+                                    <div>
+                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
+                                            {project.sectionProblem[locale] || project.sectionProblem}
+                                        </h3>
+                                        {renderTextBlocks(project.contentProblem[locale] || project.contentProblem)}
+                                    </div>
+                                )}
 
-                                    // Función para convertir URLs en enlaces y soportar negrita (**texto**)
-                                    const renderTextWithLinks = (text: string) => {
-                                        const urlRegex = /(https?:\/\/[^\s]+)/g;
-                                        const boldRegex = /\*\*(.*?)\*\*/g;
+                                {project.sectionContext && project.contentContext && (
+                                    <div>
+                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
+                                            {project.sectionContext[locale] || project.sectionContext}
+                                        </h3>
+                                        {renderTextBlocks(project.contentContext[locale] || project.contentContext)}
+                                    </div>
+                                )}
 
-                                        const parts = text.split(urlRegex);
+                                {project.sectionAction && project.contentAction && (
+                                    <div>
+                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
+                                            {project.sectionAction[locale] || project.sectionAction}
+                                        </h3>
+                                        {renderTextBlocks(project.contentAction[locale] || project.contentAction)}
+                                    </div>
+                                )}
 
-                                        return parts.map((part, index) => {
-                                            if (urlRegex.test(part)) {
-                                                return (
-                                                    <a
-                                                        key={`link-${index}`}
-                                                        href={part}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="underline hover:opacity-70 transition-opacity"
-                                                        onClick={(e) => e.stopPropagation()}
-                                                    >
-                                                        {part}
-                                                    </a>
-                                                );
-                                            }
+                                {project.sectionDecision && project.contentDecision && (
+                                    <div>
+                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
+                                            {project.sectionDecision[locale] || project.sectionDecision}
+                                        </h3>
+                                        {renderTextBlocks(project.contentDecision[locale] || project.contentDecision)}
+                                    </div>
+                                )}
 
-                                            const boldParts = part.split(boldRegex);
-                                            if (boldParts.length > 1) {
-                                                return boldParts.map((boldPart, boldIndex) => {
-                                                    if (boldIndex % 2 === 1) {
-                                                        return <strong key={`bold-${index}-${boldIndex}`} style={{ fontWeight: 600 }}>{boldPart}</strong>;
-                                                    }
-                                                    return boldPart;
-                                                });
-                                            }
+                                {project.sectionResult && project.contentResult && (
+                                    <div>
+                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
+                                            {project.sectionResult[locale] || project.sectionResult}
+                                        </h3>
+                                        {renderTextBlocks(project.contentResult[locale] || project.contentResult)}
+                                    </div>
+                                )}
 
-                                            return part;
-                                        });
-                                    };
-
-                                    const firstLine = lines[0].trim();
-                                    const isTitle = lines.length === 1 && (
-                                        firstLine.toUpperCase() === firstLine ||
-                                        (firstLine.length < 100 && !firstLine.includes('.'))
-                                    );
-
-                                    if (isTitle) {
-                                        return (
-                                            <div key={sectionIndex} style={{ marginTop: sectionIndex > 0 ? '1rem' : '0', marginBottom: '0.25rem' }}>
-                                                <strong style={{ fontSize: '1rem', fontWeight: 600 }}>{renderTextWithLinks(firstLine)}</strong>
-                                            </div>
-                                        );
-                                    } else {
-                                        return (
-                                            <div key={sectionIndex} style={{ marginTop: sectionIndex > 0 ? '0.5rem' : '0', marginBottom: '0' }}>
-                                                {lines.map((line, lineIndex) => {
-                                                    const trimmedLine = line.trim();
-                                                    if (!trimmedLine) return null;
-
-                                                    const isBullet = trimmedLine.startsWith('-') || trimmedLine.match(/^\d+\./);
-
-                                                    return (
-                                                        <div
-                                                            key={lineIndex}
-                                                            style={{
-                                                                marginBottom: lineIndex < lines.length - 1 ? '0.25rem' : '0',
-                                                                paddingLeft: isBullet ? '0.75rem' : '0'
-                                                            }}
-                                                        >
-                                                            {renderTextWithLinks(trimmedLine)}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        );
-                                    }
-                                })}
                             </div>
                         </div>
                     </div>

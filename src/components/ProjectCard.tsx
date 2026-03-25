@@ -39,20 +39,26 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
 
   return (
     <>
-      <div className="bg-black border-t border-[#333333] pt-8 pb-8">
+      <div className="bg-black border-t border-[#333333] pt-8 pb-8 relative">
+        {/* Enlace superpuesto en mobile para hacer toda la card clickeable hacia el detalle */}
+        <Link
+          href={`/${project.slug}`}
+          className="absolute inset-0 z-10 block md:hidden cursor-pointer"
+          aria-label={`Ver detalle de ${title}`}
+        />
         {/* Grid: 1 columna < 850px (solo primera visible), 3 columnas >= 850px */}
         <div
           className="grid grid-cols-1 min-[850px]:grid-cols-3 gap-4 mb-12"
           style={{ marginTop: "16px" }}
         >
           {displayItems.map((item, index) => (
-            <div
+            <Link
               key={item.type === "video" ? `video-${project.id}-${index}` : `image-${index}`}
+              href={`/${project.slug}`}
               className={`
-                aspect-video bg-[#1A1A1A] relative overflow-hidden cursor-pointer w-full
+                aspect-video bg-[#1A1A1A] block relative overflow-hidden cursor-pointer w-full
                 ${index >= 1 ? "hidden min-[850px]:block" : ""}
               `}
-              onClick={(e) => handleMediaClick(index, e)}
             >
               {item.type === "video" ? (
                 <video
@@ -61,7 +67,7 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-80"
                 />
               ) : (
                 <Image
@@ -73,13 +79,13 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
                   unoptimized
                 />
               )}
-            </div>
+            </Link>
           ))}
         </div>
 
         {/* Layout: Título + chip disciplina | Descripción */}
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16" style={{ marginTop: "8px", marginBottom: "96px" }}>
-          <div className="flex-1 max-w-sm">
+        <div className="grid grid-cols-1 min-[850px]:grid-cols-3 gap-y-8 min-[850px]:gap-x-8" style={{ marginTop: "24px", marginBottom: "96px" }}>
+          <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               {categoryLabel && (
                 <span
@@ -98,17 +104,18 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
             </div>
           </div>
 
-          <div className="flex-[2]">
+          <div className="flex flex-col">
             <p
-              className="text-white leading-relaxed opacity-90 font-normal max-w-2xl"
+              className="text-white leading-relaxed opacity-90 font-normal"
               style={{ fontSize: "0.85rem" }}
             >
               {description}
             </p>
             <Link
               href={`/${project.slug}`}
-              className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-2"
+              className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-8 self-start"
               style={{
+                paddingTop: "1.5rem",
                 fontSize: "0.85rem",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
@@ -118,6 +125,8 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               {t("project.readMore")} →
             </Link>
           </div>
+
+          <div className="hidden min-[850px]:block"></div>
         </div>
       </div>
 
