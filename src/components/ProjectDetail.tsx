@@ -2,9 +2,43 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Project, CATEGORY_LABELS } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ImageCarousel from "./ImageCarousel";
+
+const AccordionSection = ({ title, children, defaultOpen = true }: { title: string, children: React.ReactNode, defaultOpen?: boolean }) => {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
+    return (
+        <div className="bg-[#F8F9FA] rounded-[20px] mb-6 overflow-hidden">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full flex items-center text-left transition-opacity hover:opacity-70 focus:outline-none"
+                style={{ padding: '20px' }}
+            >
+                <div className="flex-shrink-0 mr-6 flex items-center justify-center w-6 h-6" style={{ paddingRight: '10px' }}>
+                    <svg
+                        className={`w-6 h-6 text-gray-700 transition-transform duration-300 ${isOpen ? '' : '-rotate-90'}`}
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <h3 className="font-bold text-black m-0 p-0 text-xl tracking-tight" style={{ fontWeight: 600 }}>
+                    {title}
+                </h3>
+            </button>
+
+            {isOpen && (
+                <div style={{ paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px' }}>
+                    <div className="w-full border-t border-gray-200/50 pt-5">
+                        {children}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
 interface ProjectDetailProps {
     project: Project;
@@ -44,6 +78,23 @@ export default function ProjectDetail({
         setCarouselInitialIndex(index);
         setCarouselOpen(true);
     };
+
+    const activeSections = [
+        { key: 'problem', title: project.sectionProblem, content: project.contentProblem },
+        { key: 'context', title: project.sectionContext, content: project.contentContext },
+        { key: 'action', title: project.sectionAction, content: project.contentAction },
+        { key: 'decision', title: project.sectionDecision, content: project.contentDecision },
+        { key: 'result', title: project.sectionResult, content: project.contentResult },
+    ].filter(s => s.title && s.content);
+
+    const remainingMedia = allMedia.slice(1);
+    const sectionMedia: Record<string, typeof allMedia> = {};
+    activeSections.forEach(s => sectionMedia[s.key] = []);
+
+    remainingMedia.forEach((media, idx) => {
+        const sectionKey = activeSections[idx % activeSections.length].key;
+        sectionMedia[sectionKey].push(media);
+    });
 
     const renderTextBlocks = (text: string) => {
         if (!text) return null;
@@ -110,173 +161,140 @@ export default function ProjectDetail({
         });
     };
 
-    return (
-        <div className="project-overlay page" style={{ paddingTop: '3rem', paddingBottom: '24px', minHeight: '100vh', background: 'transparent' }}>
-            <div className="page-layout">
-                <div className="page-content" style={{ marginTop: '0', animation: 'none' }}>
-                    {/* Header con botón cerrar si hay onClose */}
-                    <div className="grid grid-cols-12 gap-4 mb-8">
-                        <div className="col-span-12 md:col-span-3"></div>
-                        <div className="col-span-12 md:col-span-5 text-center"></div>
-                        <div className="col-span-12 md:col-span-4 text-right">
-                            {onClose && (
-                                <button
-                                    onClick={onClose}
-                                    className="inline-flex items-center justify-center w-8 h-8 bg-transparent border-none text-black cursor-pointer hover:opacity-60 transition-opacity"
-                                    aria-label={t("modal.close")}
-                                    style={{ fontSize: '1.85em' }}
-                                >
-                                    <svg
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
+    const renderMediaGrid = (mediaList: typeof allMedia) => {
+        if (!mediaList || mediaList.length === 0) return null;
+        return (
+            <div className={`grid gap-4 mt-8 ${mediaList.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`} style={{ marginTop: '1.5rem' }}>
+                {mediaList.map((item, localIndex) => {
+                    // Find original index for carousel
+                    const originalIndex = allMedia.findIndex(m => m.src === item.src);
+
+                    return (
+                        <div
+                            key={`media-${localIndex}`}
+                            className="relative w-full aspect-video bg-[#1A1A1A] rounded-xl overflow-hidden cursor-pointer"
+                            onClick={(e) => handleMediaClick(originalIndex >= 0 ? originalIndex : 0, e)}
+                        >
+                            {item.type === 'video' ? (
+                                <video
+                                    src={item.src}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <Image
+                                    src={item.src}
+                                    alt={`${title} - section image`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1200px) 50vw, 600px"
+                                    unoptimized
+                                />
                             )}
                         </div>
-                    </div>
+                    );
+                })}
+            </div>
+        );
+    };
 
-                    <br />
+    return (
+        <div className="bg-white text-black min-h-screen pb-24 flex flex-col items-center" style={{ paddingTop: '6rem' }}>
+            {/* The single unified width container */}
+            <div className="w-full max-w-[800px] px-5 sm:px-8">
 
-                    {/* Título centrado + chip disciplina */}
-                    <div className="text-center mb-4">
-                        {project.category !== "all" && (
-                            <span
-                                className="inline-flex items-center px-2 py-0.5"
-                                style={{
-                                    fontSize: "0.75rem",
-                                    fontWeight: 500,
-                                    color: "rgba(0, 0, 0, 0.7)",
-                                }}
+                {/* Header Centrado a lo Zapier */}
+                <div className="text-center mb-20 flex flex-col items-center" style={{ marginBottom: '4rem', gap: '1rem' }}>
+
+                    {/* Top bar: Volver + Categoría */}
+                    <div className="flex items-center justify-center gap-3 mb-5">
+                        {onClose ? (
+                            <button
+                                onClick={onClose}
+                                className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors font-medium border-b border-transparent hover:border-black"
+                                style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace", fontSize: '0.85rem' }}
                             >
-                                {CATEGORY_LABELS[project.category][locale]}
-                            </span>
+                                ← Volver
+                            </button>
+                        ) : (
+                            <Link
+                                href="/"
+                                className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors font-medium border-b border-transparent hover:border-black"
+                                style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace", fontSize: '0.85rem' }}
+                            >
+                                ← Volver
+                            </Link>
                         )}
-                        <h1 className="font-bold text-black mt-2" style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: '1rem', fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif" }}>
-                            {title}
-                        </h1>
+
+                        {project.category !== "all" && (
+                            <>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-gray-500 font-medium uppercase" style={{ fontSize: '0.85rem', fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace" }}>
+                                    {CATEGORY_LABELS[project.category][locale]}
+                                </span>
+                            </>
+                        )}
                     </div>
 
-                    {/* Subtítulo centrado */}
-                    <div className="text-center mb-8">
-                        <span style={{ color: 'rgba(0, 0, 0, 0.85)', fontSize: '0.75rem', fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace" }}>
-                            {role.toUpperCase()}
-                            <br />
-                            {project.year.toUpperCase()}
-                        </span>
+                    <h1 className="font-bold text-black leading-tight mb-6" style={{ fontSize: '2.5rem', md: { fontSize: '3rem' }, fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                        {title}
+                    </h1>
+
+                    <div className="text-gray-500 flex items-center justify-center gap-2" style={{ fontSize: '1rem', fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+                        <span>Role: <strong className="text-gray-700">{role}</strong></span>
+                        <span className="text-gray-300 mx-1">•</span>
+                        <span>Year: <strong className="text-gray-700">{project.year}</strong></span>
                     </div>
 
-                    <br />
-                    <br />
-                    <br />
+                </div>
 
-                    {/* Layout de 2 columnas: Galería | Texto */}
-                    <div className="grid grid-cols-12 gap-4">
-                        {/* Columna izquierda: Galería combinada de videos e imágenes en 2 columnas */}
-                        <div className="col-span-12 md:col-span-6">
-                            <div className="grid grid-cols-2 gap-4">
-                                {allMedia.map((item, index) => {
-                                    if (item.type === 'video') {
-                                        return (
-                                            <div
-                                                key={`media-${index}`}
-                                                className="relative w-full aspect-video bg-[#1A1A1A] rounded-lg overflow-hidden cursor-pointer"
-                                                onClick={(e) => handleMediaClick(index, e)}
-                                            >
-                                                <video
-                                                    src={item.src}
-                                                    autoPlay
-                                                    muted
-                                                    loop
-                                                    playsInline
-                                                    className="w-full h-full object-cover"
-                                                />
-                                            </div>
-                                        );
-                                    } else {
-                                        return (
-                                            <div
-                                                key={`media-${index}`}
-                                                className="relative w-full aspect-video bg-[#1A1A1A] rounded-lg overflow-hidden cursor-pointer"
-                                                onClick={(e) => handleMediaClick(index, e)}
-                                            >
-                                                <Image
-                                                    src={item.src}
-                                                    alt={`${title} - Image ${index + 1}`}
-                                                    fill
-                                                    className="object-cover"
-                                                    sizes="(max-width: 1200px) 50vw, 600px"
-                                                    unoptimized
-                                                />
-                                            </div>
-                                        );
-                                    }
-                                })}
-                            </div>
-                        </div>
-
-                        {/* Columna derecha: Descripción */}
-                        <div className="col-span-12 md:col-span-6">
-                            <div className="font-normal text-black leading-relaxed opacity-90 flex flex-col gap-12" style={{ fontSize: '0.85rem', lineHeight: '1.5' }}>
-
-                                {project.sectionProblem && project.contentProblem && (
-                                    <div>
-                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {getLocalizedValue(project.sectionProblem)}
-                                        </h3>
-                                        {renderTextBlocks(getLocalizedValue(project.contentProblem))}
-                                    </div>
-                                )}
-
-                                {project.sectionContext && project.contentContext && (
-                                    <div>
-                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {getLocalizedValue(project.sectionContext)}
-                                        </h3>
-                                        {renderTextBlocks(getLocalizedValue(project.contentContext))}
-                                    </div>
-                                )}
-
-                                {project.sectionAction && project.contentAction && (
-                                    <div>
-                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {getLocalizedValue(project.sectionAction)}
-                                        </h3>
-                                        {renderTextBlocks(getLocalizedValue(project.contentAction))}
-                                    </div>
-                                )}
-
-                                {project.sectionDecision && project.contentDecision && (
-                                    <div>
-                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {getLocalizedValue(project.sectionDecision)}
-                                        </h3>
-                                        {renderTextBlocks(getLocalizedValue(project.contentDecision))}
-                                    </div>
-                                )}
-
-                                {project.sectionResult && project.contentResult && (
-                                    <div>
-                                        <h3 className="font-bold text-base mb-6" style={{ fontSize: '1rem', fontWeight: 600 }}>
-                                            {getLocalizedValue(project.sectionResult)}
-                                        </h3>
-                                        {renderTextBlocks(getLocalizedValue(project.contentResult))}
-                                    </div>
-                                )}
-
-                            </div>
-                        </div>
+                {/* Hero Image / Video debajo del título */}
+                {allMedia.length > 0 && (
+                    <div className="mb-16 w-full relative aspect-video bg-[#1A1A1A] rounded-2xl overflow-hidden cursor-pointer shadow-sm" onClick={(e) => handleMediaClick(0, e)} style={{ marginBottom: "2rem" }}>
+                        {allMedia[0].type === 'video' ? (
+                            <video
+                                src={allMedia[0].src}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <Image
+                                src={allMedia[0].src}
+                                alt={`${title} - Hero`}
+                                fill
+                                className="object-cover"
+                                sizes="100vw"
+                                unoptimized
+                            />
+                        )}
                     </div>
+                )}
+
+                {/* Contenido en un layout de 1 columna con Accordions */}
+                <div className="mx-auto flex flex-col gap-8" style={{ maxWidth: '768px', paddingBottom: '2rem' }}>
+                    {activeSections.map((section, idx) => {
+                        const titleStr = getLocalizedValue(section.title);
+                        const contentStr = getLocalizedValue(section.content);
+                        const mediaList = sectionMedia[section.key] || [];
+
+                        return (
+                            <AccordionSection key={section.key} title={titleStr} defaultOpen={true}>
+                                <div className="font-normal text-gray-700 leading-relaxed" style={{ fontSize: '1rem', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                    {renderTextBlocks(contentStr)}
+                                </div>
+                                {renderMediaGrid(mediaList)}
+                            </AccordionSection>
+                        );
+                    })}
                 </div>
             </div>
+
 
             <ImageCarousel
                 items={allMedia}
@@ -285,6 +303,6 @@ export default function ProjectDetail({
                 onClose={() => setCarouselOpen(false)}
                 title={title}
             />
-        </div>
+        </div >
     );
 }

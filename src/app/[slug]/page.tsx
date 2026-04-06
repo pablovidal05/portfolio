@@ -39,16 +39,7 @@ export default async function ProjectPage({ params }: PageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-black">
-            <div className="page-layout py-8" style={{ paddingTop: '8rem' }}>
-                <Link
-                    href="/"
-                    className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-2 mb-8"
-                    style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace", fontSize: '0.75rem' }}
-                >
-                    ← VOLVER
-                </Link>
-            </div>
+        <div className="min-h-screen bg-white">
             <ProjectDetail project={project} />
         </div>
     );
