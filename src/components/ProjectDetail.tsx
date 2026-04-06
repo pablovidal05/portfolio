@@ -239,7 +239,7 @@ export default function ProjectDetail({
                         )}
                     </div>
 
-                    <h1 className="font-bold text-black leading-tight mb-6" style={{ fontSize: '2.5rem', md: { fontSize: '3rem' }, fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                    <h1 className="font-bold text-black leading-tight mb-6 text-[2.5rem] md:text-[3rem]" style={{ fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
                         {title}
                     </h1>
 
