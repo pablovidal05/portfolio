@@ -310,8 +310,8 @@ export const allProjects: Project[] = ([
     id: "10",
     slug: "buk-design-system-escalamiento",
     title: {
-      es: "Buk Design System: Escalamiento y Developer Experience",
-      en: "Buk Design System: Scaling and Developer Experience"
+      es: "Hacer crecer el sistema de diseño de Buk sin romper lo que ya estaba funcionando",
+      en: "Growing Buk's design system without breaking what was already working"
     },
     role: {
       es: "Product Designer",
@@ -319,54 +319,54 @@ export const allProjects: Project[] = ([
     },
     year: "2024",
     category: "product-design",
-    tags: ["Design System", "Product Design", "Developer Experience", "DesignOps", "UX/UI"],
+    tags: ["Design System", "Product Design", "DesignOps", "UX/UI", "Componentes", "Handoff"],
     shortDescription: {
-      es: "Cómo integré componentes de alta complejidad en un SaaS para optimizar el ciclo de desarrollo de producto.",
-      en: "Integrating high-complexity components in a mature SaaS to optimize the product development cycle."
+      es: "Cualquier cambio podía romper la experiencia que ya estaba online para miles de usuarios.",
+      en: "Any change could break the experience already online for thousands of users."
     },
     fullDescription: {
-      es: "**Me integré al sistema de diseño de Buk para hacerlo crecer con criterio.**",
-      en: "**I joined the Buk design system to help it grow thoughtfully.**"
+      es: "**Audité, prioricé y documenté el sistema de diseño de Buk para que el equipo pudiera crecer sin romper lo que ya funcionaba.**",
+      en: "**I audited, prioritized and documented Buk's design system so the team could grow without breaking what already worked.**"
     },
     sectionProblem: {
-      es: "¿Cómo hacer crecer un sistema de diseño sin romper lo que ya funciona en producción?",
-      en: "How to scale a design system without breaking what works in production?"
+      es: "El riesgo: cualquier cambio podía romper la experiencia que ya estaba online",
+      en: "The risk: any change could break the experience already live"
     },
     contentProblem: {
-      es: "Buk es la plataforma de gestión de personas más usada en LATAM. Con el crecimiento acelerado del producto, el sistema de diseño había acumulado componentes deprecados que seguían en uso activo, inconsistencias entre pantallas y un handoff que generaba fricción constante. El problema no era falta de componentes, era falta de criterio sobre cuáles usar y cuándo.",
-      en: "Buk is the most used people management platform in LATAM. With the accelerated growth of the product, the design system had accumulated deprecated components that were still in active use, inconsistencies between screens, and a handoff process that generated constant friction. The problem was not a lack of components, but a lack of criteria on which ones to use and when."
+      es: "Buk es la plataforma de gestión de personas más usada en LATAM. Con el crecimiento acelerado del producto, el sistema había acumulado componentes deprecados que seguían en uso activo. El problema no era falta de componentes, era que nadie sabía cuáles usar, cuáles evitar y por qué.",
+      en: "Buk is the most used people management platform in LATAM. With accelerated product growth, the system had accumulated deprecated components still in active use. The problem wasn't a lack of components — it was that nobody knew which to use, which to avoid, and why."
     },
     sectionContext: {
-      es: "Diseñar dentro de una arquitectura legacy: cómo agregar sin generar deuda",
-      en: "Designing within a legacy architecture: how to add without generating debt"
+      es: "Lo que quería el equipo: encontrar el componente correcto sin preguntar a nadie",
+      en: "What the team wanted: find the right component without asking anyone"
     },
     contentContext: {
-      es: "Los usuarios eran product designers y UX engineers que necesitaban integrar componentes nuevos de forma simple, sin adivinar cuál era el correcto, sin romper lo que ya existía en producción y sin depender de alguien más para entender cómo funcionaba cada pieza.",
-      en: "The users were product designers and UX engineers who needed to integrate new components simply, without guessing which one was correct, without breaking what already existed in production, and without depending on someone else to understand how each piece worked."
+      es: "Los product designers y UX engineers necesitaban integrar componentes nuevos de forma simple, sin adivinar cuál era el correcto, sin romper lo que ya existía en producción y sin depender de la memoria de alguien para entender cómo funcionaba cada pieza.",
+      en: "Product designers and UX engineers needed to integrate new components simply, without guessing which was correct, without breaking what existed in production, and without depending on someone's memory to understand how each piece worked."
     },
     sectionAction: {
-      es: "De la auditoría de componentes deprecados a la documentación que el equipo realmente usa",
-      en: "From auditing deprecated components to documentation the team actually uses"
+      es: "Lo que hice: de la auditoría al componente que el equipo puede usar mañana",
+      en: "What I did: from audit to a component the team can use tomorrow"
     },
     contentAction: {
-      es: "Me reuní con los UX Engineers y devs del equipo para entender el sistema existente. Ellos me señalaron qué componentes estaban deprecados pero en uso activo.",
-      en: "I met with the UX Engineers and devs on the team to understand the existing system. They pointed out which components were deprecated but in active use."
+      es: "Me reuní con los UX Engineers y devs para entender el sistema existente. Ellos me señalaron qué componentes estaban deprecados pero en uso activo. A partir de eso hice una auditoría completa, identifiqué cada caso y documenté cada pieza con sus estados críticos, reglas de uso y referencias directas al código en GitHub.",
+      en: "I met with UX Engineers and devs to understand the existing system. They pointed out which components were deprecated but still in active use. From there I ran a full audit, identified each case, and documented every piece with critical states, usage rules, and direct references to the code in GitHub."
     },
     sectionDecision: {
-      es: "¿Por qué criterio técnico sobre libertad visual?",
-      en: "Why technical criteria over visual freedom?"
+      es: "¿Por qué compatibilidad sobre exploración visual?",
+      en: "Why compatibility over visual exploration?"
     },
     contentDecision: {
-      es: "A partir de eso hice una auditoría del sistema, identifiqué cada caso y definí el sucesor correcto para cada componente deprecado. Documenté cada pieza con sus estados críticos, reglas de uso y referencias directas al código en GitHub. Lo visualmente más atractivo quedó descartado si no encajaba con la arquitectura modular existente.",
-      en: "Based on that, I audited the system, identified each case, and defined the correct successor for each deprecated component. I documented each piece with its critical states, usage rules, and direct references to the code in GitHub. What was visually most attractive was discarded if it didn't fit with the existing modular architecture."
+      es: "Lo visualmente más atractivo quedó descartado si no encajaba con la arquitectura modular existente. Definí el sucesor correcto para cada componente deprecado priorizando que el equipo pudiera implementarlo sin detener lo que ya estaba funcionando en producción.",
+      en: "What was visually most attractive was discarded if it didn't fit the existing modular architecture. I defined the correct successor for each deprecated component, prioritizing that the team could implement it without stopping what was already working in production."
     },
     sectionResult: {
       es: "El equipo pasó de buscar el componente correcto a encontrarlo",
       en: "The team went from searching for the right component to finding it"
     },
     contentResult: {
-      es: "Los deprecados tenían sucesor claro. El handoff dejó de depender de la memoria de alguien. En un producto que gestiona personas a escala, la consistencia del sistema no es un detalle de diseño, es lo que permite que el producto siga creciendo sin romperse.",
-      en: "The deprecated ones had a clear successor. The handoff stopped depending on someone's memory. In a product that manages people at scale, the consistency of the system is not a design detail, it's what allows the product to keep growing without breaking."
+      es: "Los componentes deprecados tenían sucesor claro. El handoff dejó de depender de la memoria de alguien. En un producto que gestiona personas a escala, la consistencia no es un detalle de diseño, es lo que permite que el producto siga creciendo sin romperse.",
+      en: "Deprecated components had a clear successor. Handoff stopped depending on someone's memory. In a product that manages people at scale, consistency is not a design detail — it's what allows the product to keep growing without breaking."
     },
     images: [
       "/images/buk/buk-1.png",
@@ -383,8 +383,8 @@ export const allProjects: Project[] = ([
     id: "11",
     slug: "latam-airlines-recap",
     title: {
-      es: "LATAM Airlines — Corporate Partner Recap Platform",
-      en: "LATAM Airlines — Corporate Partner Recap Platform"
+      es: "Cómo ayudé a LATAM a demostrarle valor a 1.600 empresas en el momento exacto que importaba",
+      en: "How I helped LATAM demonstrate value to 1,600 companies at the exact moment it mattered"
     },
     role: {
       es: "Product Designer",
@@ -392,46 +392,46 @@ export const allProjects: Project[] = ([
     },
     year: "2025",
     category: "product-design",
-    tags: ["Product Design", "Data Visualization", "B2B", "Salesforce"],
+    tags: ["Product Design", "Data Visualization", "B2B", "Salesforce", "Design System"],
     shortDescription: {
-      es: "Transformando datos complejos de ahorro y viajes en una experiencia digital dinámica para +1,600 empresas globales.",
-      en: "Transforming complex savings and travel data into a dynamic digital experience for +1,600 global companies."
+      es: "El valor del contrato se perdía en un correo ilegible. 1.600 gerentes necesitaban verlo claro justo cuando decidían renovar.",
+      en: "Contract value was getting lost in an unreadable email. 1,600 managers needed to see it clearly right when they decided to renew."
     },
     fullDescription: {
-      es: "**Cómo demostrarle valor a 1.600 empresas en el momento exacto que importaba.**",
-      en: "**How to demonstrate value to 1,600 companies at the exact moment it mattered.**"
+      es: "**Cada año LATAM renueva contratos con 1.600 empresas. Diseñé el sistema que hacía que ese momento fuera una decisión fácil.**",
+      en: "**Every year LATAM renews contracts with 1,600 companies. I designed the system that made that moment an easy decision.**"
     },
     sectionProblem: {
-      es: "¿Cómo mostrarle a 1.600 gerentes el valor de su contrato cuando deciden renovarlo?",
-      en: "How to show 1,600 managers the value of their contract when they decide to renew?"
+      es: "El riesgo: el valor real del servicio se perdía en el formato",
+      en: "The risk: the real value of the service was getting lost in the format"
     },
     contentProblem: {
-      es: "Cada año LATAM necesita renovar convenios con sus clientes corporativos. Los gerentes no siempre tienen claro el beneficio obtenido, lo que hace más laborioso el convencimiento y la negociación. La solución que tenían era enviar toda la información por correo, pero la cantidad de datos era tal que iba a quedar como una imagen gigante, estática e imposible de navegar. El valor real del servicio se perdía en el formato.",
-      en: "Every year LATAM needs to renew agreements with its corporate clients. Managers do not always clearly see the obtained benefit, making convincing and negotiating more difficult. The solution they had was to send all the information by email, but the amount of data was such that it would end up as a giant, static image, impossible to navigate. The real value of the service was getting lost in the format."
+      es: "Cada año LATAM necesita renovar convenios con sus clientes corporativos. Los gerentes no siempre tienen claro el beneficio obtenido, lo que hace más laborioso el convencimiento y la negociación. La solución que tenían era enviar toda la información por correo, pero la cantidad de datos era tal que iba a quedar como una imagen gigante, estática e imposible de navegar.",
+      en: "Every year LATAM needs to renew agreements with its corporate clients. Managers don't always clearly see the benefit obtained, making convincing and negotiating harder. The solution they had was to send all the information by email, but the amount of data was such that it would end up as a giant, static image impossible to navigate."
     },
     sectionContext: {
-      es: "Diseñar dentro de Salesforce: cómo crear un sistema dinámico sin perder claridad ejecutiva",
-      en: "Designing within Salesforce: how to create a dynamic system without losing executive clarity"
+      es: "Lo que quería el gerente: ver el valor de su contrato sin tener que pedirle reportes a nadie",
+      en: "What the manager wanted: see the value of their contract without asking anyone for reports"
     },
     contentContext: {
-      es: "Como Product Designer, fui responsable de estructurar y jerarquizar la información para que fuera legible, consistente y escalable tanto en diseño como en desarrollo, desde Figma hasta Salesforce.",
-      en: "As a Product Designer, I was responsible for structuring and organizing the information hierarchy so it would be legible, consistent, and scalable in both design and development, from Figma to Salesforce."
+      es: "El usuario era un gerente corporativo que tenía que responder una pregunta ante su propia jefatura: ¿valió la pena tener a LATAM como proveedor de viajes este año? Para eso necesitaba ver ahorros, beneficios y comportamiento de viaje de forma clara, rápida y desde cualquier dispositivo.",
+      en: "The user was a corporate manager who had to answer a question to their own leadership: was it worth having LATAM as a travel provider this year? For that, they needed to see savings, benefits, and travel behavior clearly, quickly, and from any device."
     },
     sectionAction: {
       es: "De las reuniones con data y desarrollo al sistema atómico en Figma",
       en: "From meetings with data and development to the atomic system in Figma"
     },
     contentAction: {
-      es: "Me reuní con el PO, el equipo de data y desarrollo para entender qué información era crítica para el negocio y acordar que la solución sería una landing en Salesforce.",
-      en: "I met with the PO, the data team, and development to understand what information was critical for the business and agreed that the solution would be a landing page on Salesforce."
+      es: "Me reuní con el PO, el equipo de data y desarrollo para entender qué información era crítica para el negocio. Definí la jerarquía de contenidos junto al PO: primero el ahorro e impacto, luego los beneficios clave, luego el detalle. Diseñé un sistema atómico de componentes modulares y reutilizables en Figma, asegurando que cada variable del diseño correspondiera a las variables reales en Salesforce. Participé en dailies ajustando decisiones de diseño según las restricciones técnicas de la plataforma.",
+      en: "I met with the PO, data team, and development to understand what information was critical for the business. I defined the content hierarchy with the PO: first savings and impact, then key benefits, then the details. I designed an atomic system of modular, reusable components in Figma, ensuring each design variable corresponded to real Salesforce variables. I participated in dailies adjusting design decisions based on the platform's technical constraints."
     },
     sectionDecision: {
       es: "¿Por qué una landing y no un correo?",
       en: "Why a landing page and not an email?"
     },
     contentDecision: {
-      es: "Definí la jerarquía de contenidos junto al PO: primero el ahorro e impacto, luego los beneficios clave, luego el detalle. Diseñé un sistema atómico de componentes modulares y reutilizables en Figma, asegurando que cada variable del diseño correspondiera a las variables reales en Salesforce. Participé en dailies con el PO y desarrollo para ajustar decisiones de diseño según las restricciones técnicas de la plataforma.",
-      en: "I defined the content hierarchy together with the PO: first savings and impact, then key benefits, then the details. I designed an atomic system of modular and reusable components in Figma, ensuring that each design variable corresponded to the real variables in Salesforce. I participated in dailies with the PO and development to adjust design decisions according to the technical constraints of the platform."
+      es: "Un correo con toda esa información iba a quedar como una imagen gigante, estática e ilegible. Una landing personalizada por cliente permitía navegar, filtrar y encontrar el dato que importaba en segundos. La restricción era Salesforce Marketing Cloud, que limitaba lo que se podía hacer dinámicamente. Trabajamos dentro de eso sin perder claridad ejecutiva.",
+      en: "An email with all that information would end up as a giant, static, unreadable image. A client-personalized landing page allowed navigating, filtering, and finding the relevant data in seconds. The constraint was Salesforce Marketing Cloud, which limited what could be done dynamically. We worked within that without losing executive clarity."
     },
     sectionResult: {
       es: "1.600 empresas, un solo sistema, sin intervención manual",
@@ -439,7 +439,7 @@ export const allProjects: Project[] = ([
     },
     contentResult: {
       es: "Los gerentes pasaron de recibir un correo ilegible a acceder a su propia información en vivo, con jerarquía clara y desde cualquier dispositivo, en el momento exacto en que debían decidir si renovar su convenio. El equipo técnico pudo reutilizar el sistema para las 1.600 empresas gracias a la alineación de variables y componentes.",
-      en: "Managers went from receiving an unreadable email to accessing their own live information, with clear hierarchy and from any device, at the exact moment they had to decide whether to renew their agreement. The technical team was able to reuse the system for the 1,600 companies thanks to the alignment of variables and components."
+      en: "Managers went from receiving an unreadable email to accessing their own live information, with clear hierarchy and from any device, at the exact moment they had to decide whether to renew. The technical team reused the system for all 1,600 companies thanks to the alignment of variables and components."
     },
     images: [
       "/images/latam/latam-1.png",
