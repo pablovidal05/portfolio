@@ -317,7 +317,7 @@ export const allProjects: Project[] = ([
       es: "Product Designer",
       en: "Product Designer"
     },
-    year: "2024",
+    year: "2025",
     category: "product-design",
     tags: ["Design System", "Product Design", "DesignOps", "UX/UI", "Componentes", "Handoff"],
     shortDescription: {
