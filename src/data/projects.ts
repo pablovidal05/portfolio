@@ -233,8 +233,8 @@ export const allProjects: Project[] = ([
     id: "9",
     slug: "explora-app-ui-kit",
     title: {
-      es: "Explora App UI Kit",
-      en: "Explora App UI Kit"
+      es: "Cómo le dimos a Explora un sistema que permite lanzar features sin empezar desde cero",
+      en: "How we gave Explora a system that lets them launch features without starting from scratch"
     },
     role: {
       es: "Product Designer",
@@ -244,52 +244,52 @@ export const allProjects: Project[] = ([
     category: "product-design",
     tags: ["UI Kit", "Product Design", "Design Tokens", "DesignOps", "UX/UI"],
     shortDescription: {
-      es: "UI Kit para la app Explora que unificó lenguaje entre diseño y desarrollo, redujo la deuda visual y funcional y aceleró la entrega de nuevas funcionalidades mediante componentes reutilizables y design tokens alineados al código.",
-      en: "UI Kit for the Explora app that unified language between design and engineering, reduced visual and functional debt, and accelerated feature delivery through reusable components and code-aligned design tokens."
+      es: "Cada pantalla nueva se construía desde cero. Eso frenaba al equipo y el viajero lo sentía.",
+      en: "Every new screen was built from scratch. That slowed the team down and the traveler felt it."
     },
     fullDescription: {
-      es: "**Cómo diseñé el sistema que le permitió a Explora hacer el check-in antes de que el viajero llegara al hotel.**",
-      en: "**How I designed the system that allowed Explora to do check-in before the traveler arrived at the hotel.**"
+      es: "**Cómo diseñé el sistema que le permitió a Explora lanzar features más rápido y hacer el check-in antes de que el viajero llegara al hotel.**",
+      en: "**How I designed the system that allowed Explora to launch features faster and do check-in before the traveler arrived at the hotel.**"
     },
     sectionProblem: {
-      es: "¿Cómo hacer que el viajero llegue al hotel con su proceso ya resuelto?",
-      en: "How to get the traveler to arrive at the hotel with their process already resolved?"
+      es: "El problema: sin sistema común, cada pantalla nueva era deuda nueva",
+      en: "The problem: without a common system, every new screen was new debt"
     },
     contentProblem: {
       es: "Explora gestionaba el check-in de sus viajeros en el momento de llegada al hotel. El proceso era lento, propenso a errores y dependía de que el equipo capturara los datos en ese momento. Sin un sistema común entre diseño y desarrollo, cada nueva pantalla se construía desde cero, acumulando inconsistencias que el viajero terminaba sintiendo.",
       en: "Explora managed the check-in of its travelers at the moment of arrival at the hotel. The process was slow, prone to errors, and depended on the team capturing data at that exact moment. Without a common system between design and development, each new screen was built from scratch, accumulating inconsistencies that the traveler ended up feeling."
     },
     sectionContext: {
-      es: "Diseñar dentro del framework existente: cómo crear consistencia sin refactorizar todo",
-      en: "Designing within the existing framework: how to build consistency without refactoring everything"
+      es: "Dos usuarios, un mismo problema: nada estaba estandarizado",
+      en: "Two users, one problem: nothing was standardized"
     },
     contentContext: {
-      es: "Dos usuarios con necesidades distintas: el viajero que quería llegar al hotel con su proceso ya resuelto, y el equipo de desarrollo que necesitaba componentes con la nomenclatura de su propio framework para no tener que interpretar cada diseño.",
-      en: "Two users with different needs: the traveler who wanted to arrive at the hotel with their process already resolved, and the development team who needed components with the nomenclature of their own framework so they wouldn't have to interpret each design."
+      es: "El viajero quería llegar al hotel con su proceso ya resuelto. El equipo de desarrollo necesitaba componentes con la nomenclatura de su propio framework para no tener que interpretar cada diseño. Los dos sufrían lo mismo: falta de estándar.",
+      en: "The traveler wanted to arrive at the hotel with their process already resolved. The development team needed components with the nomenclature of their own framework so they wouldn't have to interpret each design. Both suffered the same thing: lack of standard."
     },
     sectionAction: {
-      es: "De los painpoints del equipo al sistema que habla el lenguaje del developer",
-      en: "From team pain points to a system that speaks the developer's language"
+      es: "Lo que hice: componentes con el lenguaje del equipo, listos para usar sin reuniones",
+      en: "What I did: components in the team's language, ready to use without meetings"
     },
     contentAction: {
-      es: "Trabajé directamente con el PO y los devs del equipo.",
-      en: "I worked directly with the PO and the devs on the team."
+      es: "Trabajé directamente con el PO y los devs para entender cómo construían. Documenté cada componente con la nomenclatura exacta de su framework para que pudieran implementarlo sin tener que interpretar el diseño. Prioricé los datos críticos del viajero y dejé fuera lo que estaba fuera del backlog aunque hubiera querido incluirlo.",
+      en: "I worked directly with the PO and devs to understand how they built. I documented each component with the exact nomenclature of their framework so they could implement it without having to interpret the design. I prioritized the traveler's critical data and left out what was outside the backlog even if I wanted to include it."
     },
     sectionDecision: {
-      es: "¿Por qué un UI Kit atómico y no seguir diseñando pantalla por pantalla?",
-      en: "Why an atomic UI Kit and not continue designing screen by screen?"
+      es: "¿Por qué un sistema de componentes y no seguir diseñando pantalla por pantalla?",
+      en: "Why a component system and not continue designing screen by screen?"
     },
     contentDecision: {
-      es: "La decisión más difícil fue mía: saber qué mostrar y qué ocultar en cada paso del flujo. Lo resolví entendiendo con el equipo qué necesitaba realmente el viajero en cada momento, priorizando los datos críticos y dejando fuera lo que estaba fuera del backlog aunque hubiera querido incluirlo. Para los devs, documenté todo con la nomenclatura de su framework, hablando su lenguaje desde el diseño.",
-      en: "The most difficult decision was mine: knowing what to show and what to hide at each step of the flow. I solved it by understanding with the team what the traveler really needed at each moment, prioritizing critical data, and leaving out whatever was outside the backlog even if I wanted to include it. For the devs, I documented everything with the nomenclature of their framework, speaking their language starting from the design."
+      es: "Diseñar pantalla por pantalla funcionaba para una feature. No funcionaba para un producto que necesitaba crecer. Cada pantalla nueva sin sistema era deuda nueva: inconsistencias visuales, interpretaciones distintas entre diseño y desarrollo, y tiempo perdido en reuniones de aclaración. Un sistema de componentes resuelve eso una vez y escala para siempre.",
+      en: "Designing screen by screen worked for one feature. It didn't work for a product that needed to grow. Every new screen without a system was new debt: visual inconsistencies, different interpretations between design and development, and time lost in clarification meetings. A component system solves that once and scales forever."
     },
     sectionResult: {
-      es: "Lo que antes sucedía con fricción en la recepción, ahora sucede antes de salir de casa",
-      en: "What used to happen with friction at reception now happens before leaving home"
+      es: "40% menos tiempo de maquetación. Features que tardaban semanas, ahora en días.",
+      en: "40% less layout time. Features that took weeks, now in days."
     },
     contentResult: {
-      es: "El viajero llega al hotel con su proceso completado. El equipo integra componentes sin reuniones de aclaración.\n\n👉 https://testing-viajero.pgo-explora.com/#/profile",
-      en: "The traveler arrives at the hotel with their process completed. The team integrates components without clarification meetings.\n\n👉 https://testing-viajero.pgo-explora.com/#/profile"
+      es: "El equipo dejó de construir pantallas desde cero. Con componentes reutilizables y tokens alineados al código, el tiempo de maquetación se redujo un 40%. El viajero llega al hotel con su proceso completado antes de salir de casa.\n\n👉 https://testing-viajero.pgo-explora.com/#/profile",
+      en: "The team stopped building screens from scratch. With reusable components and code-aligned tokens, layout time was reduced by 40%. The traveler arrives at the hotel with their process completed before leaving home.\n\n👉 https://testing-viajero.pgo-explora.com/#/profile"
     },
     images: [
       "/images/explora/explora-1.png",
@@ -333,40 +333,40 @@ export const allProjects: Project[] = ([
       en: "The risk: any change could break the experience already live"
     },
     contentProblem: {
-      es: "Buk es la plataforma de gestión de personas más usada en LATAM. Con el crecimiento acelerado del producto, el sistema había acumulado componentes deprecados que seguían en uso activo. El problema no era falta de componentes, era que nadie sabía cuáles usar, cuáles evitar y por qué.",
-      en: "Buk is the most used people management platform in LATAM. With accelerated product growth, the system had accumulated deprecated components still in active use. The problem wasn't a lack of components — it was that nobody knew which to use, which to avoid, and why."
+      es: "Buk es la plataforma de gestión de personas más usada en LATAM. El equipo necesitaba un sistema de diseño autónomo: saber exactamente qué componentes estaban en uso, cuáles no, y cuáles necesitaban actualizarse. Sin eso, cada nuevo componente sumaba ruido en vez de velocidad.",
+      en: "Buk is the most used people management platform in LATAM. The team needed an autonomous design system: knowing exactly which components were in use, which weren't, and which needed updating. Without that, every new component added noise instead of speed."
     },
     sectionContext: {
-      es: "Lo que quería el equipo: encontrar el componente correcto sin preguntar a nadie",
-      en: "What the team wanted: find the right component without asking anyone"
+      es: "Lo que quería el equipo: componentes claros, sin tener que preguntar a nadie",
+      en: "What the team wanted: clear components, without having to ask anyone"
     },
     contentContext: {
       es: "Los product designers y UX engineers necesitaban integrar componentes nuevos de forma simple, sin adivinar cuál era el correcto, sin romper lo que ya existía en producción y sin depender de la memoria de alguien para entender cómo funcionaba cada pieza.",
       en: "Product designers and UX engineers needed to integrate new components simply, without guessing which was correct, without breaking what existed in production, and without depending on someone's memory to understand how each piece worked."
     },
     sectionAction: {
-      es: "Lo que hice: de la auditoría al componente que el equipo puede usar mañana",
-      en: "What I did: from audit to a component the team can use tomorrow"
+      es: "Lo que hice: componentes listos, actualizados y reconocibles para todo el equipo",
+      en: "What I did: components ready, updated and recognizable for the whole team"
     },
     contentAction: {
       es: "Me reuní con los UX Engineers y devs para entender el sistema existente. Ellos me señalaron qué componentes estaban deprecados pero en uso activo. A partir de eso hice una auditoría completa, identifiqué cada caso y documenté cada pieza con sus estados críticos, reglas de uso y referencias directas al código en GitHub.",
       en: "I met with UX Engineers and devs to understand the existing system. They pointed out which components were deprecated but still in active use. From there I ran a full audit, identified each case, and documented every piece with critical states, usage rules, and direct references to the code in GitHub."
     },
     sectionDecision: {
-      es: "¿Por qué compatibilidad sobre exploración visual?",
-      en: "Why compatibility over visual exploration?"
+      es: "¿Por qué limpiar antes de agregar?",
+      en: "Why clean up before adding?"
     },
     contentDecision: {
-      es: "Lo visualmente más atractivo quedó descartado si no encajaba con la arquitectura modular existente. Definí el sucesor correcto para cada componente deprecado priorizando que el equipo pudiera implementarlo sin detener lo que ya estaba funcionando en producción.",
-      en: "What was visually most attractive was discarded if it didn't fit the existing modular architecture. I defined the correct successor for each deprecated component, prioritizing that the team could implement it without stopping what was already working in production."
+      es: "El sistema tenía componentes activos que nadie sabía si debía usar o no. Antes de agregar nuevos, mapeamos cuáles seguían vigentes, cuáles estaban obsoletos y cuáles necesitaban sucesor. Sin eso, cualquier componente nuevo solo sumaba ruido. Definimos el sucesor correcto para cada caso y lo dejamos documentado para que cualquier designer o engineer pudiera tomarlo sin preguntar.",
+      en: "The system had active components that nobody knew whether to use or not. Before adding new ones, we mapped which were still valid, which were obsolete, and which needed a successor. Without that, any new component only added noise. We defined the correct successor for each case and documented it so any designer or engineer could use it without asking."
     },
     sectionResult: {
-      es: "El equipo pasó de buscar el componente correcto a encontrarlo",
-      en: "The team went from searching for the right component to finding it"
+      es: "20% menos tiempo eligiendo el componente correcto. 15% menos componentes en el sistema.",
+      en: "20% less time choosing the right component. 15% fewer components in the system."
     },
     contentResult: {
-      es: "Los componentes deprecados tenían sucesor claro. El handoff dejó de depender de la memoria de alguien. En un producto que gestiona personas a escala, la consistencia no es un detalle de diseño, es lo que permite que el producto siga creciendo sin romperse.",
-      en: "Deprecated components had a clear successor. Handoff stopped depending on someone's memory. In a product that manages people at scale, consistency is not a design detail — it's what allows the product to keep growing without breaking."
+      es: "Diseños listos más rápido, en producción antes. Un sistema más limpio significa menos reuniones para aclarar qué usar, menos errores en el handoff y más velocidad para el equipo de ingeniería. En un producto que gestiona personas a escala, cada día que se gana en producción tiene impacto real.",
+      en: "Designs ready faster, in production sooner. A cleaner system means fewer meetings to clarify what to use, fewer handoff errors, and more speed for the engineering team. In a product that manages people at scale, every day gained in production has real impact."
     },
     images: [
       "/images/buk/buk-1.png",
@@ -418,12 +418,12 @@ export const allProjects: Project[] = ([
       en: "The user was a corporate manager who had to answer a question to their own leadership: was it worth having LATAM as a travel provider this year? For that, they needed to see savings, benefits, and travel behavior clearly, quickly, and from any device."
     },
     sectionAction: {
-      es: "De las reuniones con data y desarrollo al sistema atómico en Figma",
-      en: "From meetings with data and development to the atomic system in Figma"
+      es: "Lo que hice: jerarquía clara, componentes listos para 1.600 empresas distintas",
+      en: "What I did: clear hierarchy, components ready for 1,600 different companies"
     },
     contentAction: {
-      es: "Me reuní con el PO, el equipo de data y desarrollo para entender qué información era crítica para el negocio. Definí la jerarquía de contenidos junto al PO: primero el ahorro e impacto, luego los beneficios clave, luego el detalle. Diseñé un sistema atómico de componentes modulares y reutilizables en Figma, asegurando que cada variable del diseño correspondiera a las variables reales en Salesforce. Participé en dailies ajustando decisiones de diseño según las restricciones técnicas de la plataforma.",
-      en: "I met with the PO, data team, and development to understand what information was critical for the business. I defined the content hierarchy with the PO: first savings and impact, then key benefits, then the details. I designed an atomic system of modular, reusable components in Figma, ensuring each design variable corresponded to real Salesforce variables. I participated in dailies adjusting design decisions based on the platform's technical constraints."
+      es: "Me reuní con el PO, el equipo de data y desarrollo para entender qué información era crítica para el negocio. Definí la jerarquía de contenidos junto al PO: primero el ahorro e impacto, luego los beneficios clave, luego el detalle. Diseñé componentes modulares y reutilizables en Figma, asegurando que cada variable del diseño correspondiera a las variables reales en Salesforce. Participé en dailies ajustando decisiones de diseño según las restricciones técnicas de la plataforma.",
+      en: "I met with the PO, data team, and development to understand what information was critical for the business. I defined the content hierarchy with the PO: first savings and impact, then key benefits, then the details. I designed modular, reusable components in Figma, ensuring each design variable corresponded to real Salesforce variables. I participated in dailies adjusting design decisions based on the platform's technical constraints."
     },
     sectionDecision: {
       es: "¿Por qué una landing y no un correo?",
@@ -434,12 +434,12 @@ export const allProjects: Project[] = ([
       en: "An email with all that information would end up as a giant, static, unreadable image. A client-personalized landing page allowed navigating, filtering, and finding the relevant data in seconds. The constraint was Salesforce Marketing Cloud, which limited what could be done dynamically. We worked within that without losing executive clarity."
     },
     sectionResult: {
-      es: "1.600 empresas, un solo sistema, sin intervención manual",
-      en: "1,600 companies, a single system, no manual intervention"
+      es: "1.600 reportes personalizados entregados sin intervención manual. Cero trabajo repetido.",
+      en: "1,600 personalized reports delivered without manual intervention. Zero repeated work."
     },
     contentResult: {
-      es: "Los gerentes pasaron de recibir un correo ilegible a acceder a su propia información en vivo, con jerarquía clara y desde cualquier dispositivo, en el momento exacto en que debían decidir si renovar su convenio. El equipo técnico pudo reutilizar el sistema para las 1.600 empresas gracias a la alineación de variables y componentes.",
-      en: "Managers went from receiving an unreadable email to accessing their own live information, with clear hierarchy and from any device, at the exact moment they had to decide whether to renew. The technical team reused the system for all 1,600 companies thanks to the alignment of variables and components."
+      es: "Cada gerente accedió a su propio reporte en vivo, desde cualquier dispositivo, justo cuando tenía que decidir si renovar. El equipo técnico no tuvo que tocar nada manualmente para ninguna de las 1.600 empresas.",
+      en: "Each manager accessed their own live report, from any device, right when they had to decide whether to renew. The technical team didn't have to manually touch anything for any of the 1,600 companies."
     },
     images: [
       "/images/latam/latam-1.png",
@@ -458,8 +458,8 @@ export const allProjects: Project[] = ([
     id: "12",
     slug: "vertice",
     title: {
-      es: "Vértice",
-      en: "Vértice"
+      es: "En Torres del Paine no hay margen de error. Cómo le dimos al equipo de Vértice visibilidad total de cada viajero en el circuito.",
+      en: "In Torres del Paine there is no margin for error. How we gave the Vértice team total visibility of every traveler on the circuit."
     },
     role: {
       es: "Product Designer",
@@ -470,52 +470,52 @@ export const allProjects: Project[] = ([
     tags: ["UX/UI", "Web Check-in", "Product Design", "Torres del Paine"],
     hidden: true,
     shortDescription: {
-      es: "Cómo le dimos al equipo de Vértice visibilidad total de cada viajero en el circuito de Torres del Paine",
-      en: "How we gave the Vértice team total visibility of each traveler on the Torres del Paine circuit"
+      es: "El 33% del circuito quedaba sin datos registrados. Un accidente lo dejó en evidencia.",
+      en: "33% of the circuit had no registered data. An accident made it evident."
     },
     fullDescription: {
-      es: "En Torres del Paine no hay margen de error. **Cómo le dimos al equipo de Vértice visibilidad total de cada viajero en el circuito.**",
-      en: "In Torres del Paine there is no margin for error. **How we gave the Vértice team total visibility of each traveler on the circuit.**"
+      es: "**En Torres del Paine no hay margen de error. Cómo le dimos al equipo de Vértice visibilidad total de cada viajero en el circuito.**",
+      en: "**In Torres del Paine there is no margin for error. How we gave the Vértice team total visibility of every traveler on the circuit.**"
     },
     sectionProblem: {
-      es: "¿Cómo garantizar que ningún viajero sea un desconocido en ruta?",
-      en: "How to ensure no traveler is a stranger on the route?"
+      es: "El riesgo: el 33% del circuito sin datos y una obligación legal sin cumplir",
+      en: "The risk: 33% of the circuit without data and a legal obligation unmet"
     },
     contentProblem: {
       es: "Los operadores turísticos en Torres del Paine tienen una obligación legal: conocer en todo momento quién está en el circuito, en qué estado y qué necesita. El sistema anterior tenía 6 puntos de registro en el recorrido pero solo 4 se completaban, dejando un 33% del circuito sin datos mapeados. La información se pedía a mano en cada sector, se repetía y nadie la completaba. Cuando ocurrió un accidente, el equipo no pudo responder legalmente porque les faltaba información.",
       en: "Tour operators in Torres del Paine have a legal obligation: to know at all times who is on the circuit, in what condition, and what they need. The previous system had 6 registration points along the route, but only 4 were completed, leaving 33% of the circuit without mapped data. Information was requested by hand in each sector, repeated, and no one completed it. When an accident occurred, the team could not respond legally because they lacked information."
     },
     sectionContext: {
-      es: "Diseñar dentro de una plataforma limitante: cómo priorizar datos críticos sin perder usabilidad",
-      en: "Designing within a limiting platform: how to prioritize critical data without losing usability"
+      es: "Lo que necesitaba el operador: saber quién está en el circuito, en qué estado, antes de salir",
+      en: "What the operator needed: know who is on the circuit, in what condition, before leaving"
     },
     contentContext: {
-      es: "Diseñar un web check-in que centralizara todos los datos críticos de los viajeros, priorizando los campos de seguridad y emergencia, para que el operador saliera al circuito con certeza de que tenía todo lo que la ley exige.",
-      en: "Design a web check-in that centralizes all critical traveler data, prioritizing safety and emergency fields, so that the operator goes out to the circuit with certainty of having everything required by law."
+      es: "El operador necesitaba salir al circuito con certeza. El viajero necesitaba saber que alguien tenía su información si algo salía mal. Los dos dependían de que los datos llegaran completos antes de comenzar.",
+      en: "The operator needed to leave for the circuit with certainty. The traveler needed to know that someone had their information if something went wrong. Both depended on data arriving complete before starting."
     },
     sectionAction: {
-      es: "De las conversaciones con la PO al flujo que no deja vacíos de seguridad",
-      en: "From conversations with the PO to a flow leaving no security gaps"
+      es: "Lo que hice: datos críticos obligatorios, flujo que no avanza sin ellos",
+      en: "What I did: mandatory critical data, a flow that doesn't advance without them"
     },
     contentAction: {
-      es: "Trabajé de la mano con la PO en conversaciones directas para entender el contexto del accidente, qué datos faltaron y por qué eso fue crítico.",
-      en: "I worked hand-in-hand with the PO in direct conversations to understand the context of the accident, what data was missing, and why it was critical."
+      es: "Trabajé con la PO para entender qué datos faltaron en el accidente y por qué. Clasifiqué los campos en críticos, como alergias, medicamentos y contactos de emergencia, y secundarios. Diseñé el flujo en Figma asegurando que los datos críticos no pudieran omitirse. El sistema no avanza sin ellos. Coordiné con desarrollo para alinear la nomenclatura del diseño con la del framework desde el inicio.",
+      en: "I worked with the PO to understand what data was missing during the accident and why. I classified fields into critical, such as allergies, medications, and emergency contacts, and secondary. I designed the flow in Figma ensuring critical data could not be omitted. The system doesn't advance without them. I coordinated with development to align design nomenclature with the framework from the start."
     },
     sectionDecision: {
       es: "¿Por qué un web check-in previo y no el registro en terreno?",
       en: "Why a prior web check-in and not on-site registration?"
     },
     contentDecision: {
-      es: "Clasifiqué los campos en críticos para seguridad y operación, como alergias, medicamentos y contactos de emergencia, y secundarios. Diseñé el flujo de 6 pasos en Figma asegurando que los datos críticos no pudieran omitirse, el sistema no avanza sin ellos. Coordiné con el equipo de desarrollo para alinear la nomenclatura del diseño con la del framework desde el inicio.",
-      en: "I classified the fields into critical for safety and operations, such as allergies, medications, and emergency contacts, and secondary ones. I designed the 6-step flow in Figma ensuring that critical data could not be omitted; the system doesn't advance without them. I coordinated with the development team to align the design nomenclature with the framework from the start."
+      es: "El registro en terreno dependía de que alguien lo pidiera, de que el viajero lo completara y de que el sistema lo guardara. Tres puntos de falla. Un web check-in previo elimina los tres: el viajero completa su información antes de llegar, con tiempo, sin presión y desde cualquier dispositivo. El operador sale al circuito con todo ya resuelto.",
+      en: "On-site registration depended on someone requesting it, the traveler completing it, and the system saving it. Three failure points. A prior web check-in eliminates all three: the traveler completes their information before arriving, with time, without pressure, and from any device. The operator leaves for the circuit with everything already resolved."
     },
     sectionResult: {
-      es: "33% del circuito sin datos → cobertura total antes de salir",
-      en: "33% of the circuit without data → total coverage before leaving"
+      es: "De 4 de 6 puntos registrados a cobertura total. Nadie sale al circuito sin sus datos completos.",
+      en: "From 4 out of 6 registered points to total coverage. No one leaves for the circuit without complete data."
     },
     contentResult: {
-      es: "El proceso anterior completaba solo 4 de 6 puntos de registro, dejando un 33% del circuito sin datos mapeados. Con el web check-in, los datos críticos se recopilan antes de llegar, garantizando cobertura total desde el inicio. Nadie entra al circuito sin la información de seguridad obligatoria completa.",
-      en: "The previous process completed only 4 out of 6 registration points, leaving 33% of the circuit without mapped data. With the web check-in, critical data is collected before arrival, ensuring total coverage from the start. No one enters the circuit without complete mandatory safety information."
+      es: "El proceso anterior completaba solo 4 de 6 puntos de registro, dejando un 33% del circuito sin datos mapeados. Con el web check-in, los datos críticos se recopilan antes de llegar, garantizando cobertura total desde el inicio. Nadie entra al circuito sin la información de seguridad obligatoria completa. El sistema está en desarrollo para la primera temporada.",
+      en: "The previous process completed only 4 out of 6 registration points, leaving 33% of the circuit without mapped data. With the web check-in, critical data is collected before arrival, ensuring total coverage from the start. No one enters the circuit without complete mandatory safety information. The system is in development for the first season."
     },
     images: []
   }
