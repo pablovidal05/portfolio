@@ -24,7 +24,7 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
   const allMedia: Array<{ type: 'video' | 'image'; src: string }> = [];
   videos.forEach(video => allMedia.push({ type: 'video', src: video }));
   project.images.forEach(image => allMedia.push({ type: 'image', src: image }));
-  const displayItems = allMedia.slice(0, 3);
+  const displayItems = allMedia.slice(0, 2);
 
   const handleMediaClick = (index: number, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -39,24 +39,81 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
 
   return (
     <>
-      <div className="bg-black border-t border-[#333333] pt-8 pb-8 relative">
+      <div
+        className="bg-black border-t border-[#333333] relative"
+        style={{ paddingTop: "24px", paddingBottom: "80px", marginBottom: "20px" }}
+      >
         {/* Enlace superpuesto en mobile para hacer toda la card clickeable hacia el detalle */}
         <Link
           href={`/${project.slug}`}
           className="absolute inset-0 z-10 block md:hidden cursor-pointer"
           aria-label={`Ver detalle de ${title}`}
         />
-        {/* Grid: 1 columna < 850px (solo primera visible), 3 columnas >= 850px */}
+        {/* Structure: 1 column < 850px, 3 columns >= 850px */}
         <div
-          className="grid grid-cols-1 min-[850px]:grid-cols-3 gap-4 mb-12"
-          style={{ marginTop: "16px" }}
+          className="grid grid-cols-1 min-[850px]:grid-cols-3"
+          style={{ columnGap: "04px", rowGap: "0px", marginTop: "04px" }}
         >
+
+          {/* Column 1: Content */}
+          <div className="flex flex-col h-full order-2 min-[850px]:order-1">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                {categoryLabel && (
+                  <span
+                    className="inline-flex items-center rounded text-white/100"
+                    style={{ fontSize: "0.75rem", fontWeight: 500, color: "#c2c2c2", paddingBottom: "7.5px" }}
+                  >
+                    {categoryLabel}
+                  </span>
+                )}
+              </div>
+              <div className="text-white mb-6" style={{ fontSize: "0.75rem", color: "#c2c2c2ff" }}>
+                {project.year}
+              </div>
+              <h2 className="text-white font-bold mb-1" style={{ fontSize: "1.5rem", paddingTop: "10px", paddingBottom: "10px" }}>
+                {title}
+              </h2>
+
+              {/*project.kpiSubtitle && (
+                 <div className="font-medium mb-4 rounded inline-block" style={{ fontSize: "0.85rem", color: "#10B981", backgroundColor: "rgba(16, 185, 129, 0.1)", padding: "6px 10px", border: "1px solid rgba(16, 185, 129, 0.2)" }}>
+                    {project.kpiSubtitle[locale]}
+                 </div>
+              )*/}
+
+
+              <p
+                className="text-white leading-relaxed opacity-90 font-normal"
+                style={{ fontSize: "0.85rem" }}
+              >
+                {description}
+              </p>
+            </div>
+
+            <div className="mt-8 min-[850px]:mt-auto pt-0 min-[850px]:pt-8">
+              <Link
+                href={`/${project.slug}`}
+                className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal self-start relative z-20"
+                style={{
+                  fontSize: "0.85rem",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                  letterSpacing: "0.05em",
+                  paddingTop: "24px"
+                }}
+              >
+                {t("project.readMore")} →
+              </Link>
+            </div>
+          </div>
+
+          {/* Columns 2 & 3: Images */}
           {displayItems.map((item, index) => (
             <Link
               key={item.type === "video" ? `video-${project.id}-${index}` : `image-${index}`}
               href={`/${project.slug}`}
               className={`
-                aspect-video bg-[#1A1A1A] block relative overflow-hidden cursor-pointer w-full
+                aspect-video min-[850px]:aspect-[4/3] bg-[#1A1A1A] block relative overflow-hidden transition-opacity w-full relative z-20 order-1 min-[850px]:order-2
                 ${index >= 1 ? "hidden min-[850px]:block" : ""}
               `}
             >
@@ -67,66 +124,20 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
                   muted
                   loop
                   playsInline
-                  className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-80"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
               ) : (
                 <Image
                   src={item.src}
                   alt={`${title} - ${index + 1}`}
                   fill
-                  className="object-cover transition-opacity duration-300 hover:opacity-80"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 849px) 100vw, 33vw"
                   unoptimized
                 />
               )}
             </Link>
           ))}
-        </div>
-
-        {/* Layout: Título + chip disciplina | Descripción */}
-        <div className="grid grid-cols-1 min-[850px]:grid-cols-3 gap-y-8 min-[850px]:gap-x-8" style={{ marginTop: "24px", marginBottom: "96px" }}>
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              {categoryLabel && (
-                <span
-                  className="inline-flex items-center rounded text-white/100"
-                  style={{ fontSize: "0.75rem", fontWeight: 500, color: "#c2c2c2", paddingBottom: "7.5px" }}
-                >
-                  {categoryLabel}
-                </span>
-              )}
-            </div>
-            <h3 className="text-white font-bold" style={{ fontSize: "1rem" }}>
-              {title}
-            </h3>
-            <div className="text-white" style={{ fontSize: "0.75rem", color: "#c2c2c2" }}>
-              {project.year}
-            </div>
-          </div>
-
-          <div className="flex flex-col">
-            <p
-              className="text-white leading-relaxed opacity-90 font-normal"
-              style={{ fontSize: "0.85rem" }}
-            >
-              {description}
-            </p>
-            <Link
-              href={`/${project.slug}`}
-              className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer font-normal mt-8 self-start"
-              style={{
-                paddingTop: "1.5rem",
-                fontSize: "0.85rem",
-                textTransform: "uppercase",
-                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                letterSpacing: "0.05em"
-              }}
-            >
-              {t("project.readMore")} →
-            </Link>
-          </div>
-
-          <div className="hidden min-[850px]:block"></div>
         </div>
       </div>
 

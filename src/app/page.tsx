@@ -86,7 +86,7 @@ function HomeContent() {
         {/* <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} /> */}
 
         <div className="page-layout">
-          <div className="space-y-24 md:space-y-32" style={{ paddingTop: '2rem' }}>
+          <div className="space-y-48 md:space-y-64" style={{ paddingTop: '2rem' }}>
             {filteredProjects.map((project) => (
               <ProjectCard
                 key={project.id}

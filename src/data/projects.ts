@@ -29,6 +29,10 @@ export interface Project {
     es: string;
     en: string;
   };
+  kpiSubtitle?: {
+    es: string;
+    en: string;
+  };
   sectionProblem?: { es: string; en: string };
   contentProblem?: { es: string; en: string };
   sectionContext?: { es: string; en: string };
@@ -310,8 +314,8 @@ export const allProjects: Project[] = ([
     id: "10",
     slug: "buk-design-system-escalamiento",
     title: {
-      es: "Hacer crecer el sistema de diseño de Buk sin romper lo que ya estaba funcionando",
-      en: "Growing Buk's design system without breaking what was already working"
+      es: "Cómo unifiqué el módulo de formularios de Buk antes de que el parche se volviera estándar",
+      en: "How I unified Buk's forms module before the patch became the standard"
     },
     role: {
       es: "Product Designer",
@@ -320,53 +324,57 @@ export const allProjects: Project[] = ([
     year: "2025",
     category: "product-design",
     tags: ["Design System", "Product Design", "DesignOps", "UX/UI", "Componentes", "Handoff"],
+    kpiSubtitle: {
+      es: "72 vistas impactadas · De 8 interpretaciones a 1 sistema · ~9 hrs/semana recuperadas por el equipo",
+      en: "72 impacted views · From 8 interpretations to 1 system · ~9 hrs/week recovered by the team"
+    },
     shortDescription: {
-      es: "Cualquier cambio podía romper la experiencia que ya estaba online para miles de usuarios.",
-      en: "Any change could break the experience already online for thousands of users."
+      es: "El formulario era el componente padre en Buk. Sin reglas claras, cada UX Engineer parcheaba con lo que creía correcto, creando un riesgo para 72 vistas en producción.",
+      en: "The form was the parent component in Buk. Without clear rules, each UX Engineer patched it with what they thought was right, creating a risk for 72 live views."
     },
     fullDescription: {
-      es: "**Audité, prioricé y documenté el sistema de diseño de Buk para que el equipo pudiera crecer sin romper lo que ya funcionaba.**",
-      en: "**I audited, prioritized and documented Buk's design system so the team could grow without breaking what already worked.**"
+      es: "",
+      en: ""
     },
     sectionProblem: {
-      es: "El riesgo: cualquier cambio podía romper la experiencia que ya estaba online",
-      en: "The risk: any change could break the experience already live"
+      es: "El Riesgo",
+      en: "The Risk"
     },
     contentProblem: {
-      es: "Buk es la plataforma de gestión de personas más usada en LATAM. El equipo necesitaba un sistema de diseño autónomo: saber exactamente qué componentes estaban en uso, cuáles no, y cuáles necesitaban actualizarse. Sin eso, cada nuevo componente sumaba ruido en vez de velocidad.",
-      en: "Buk is the most used people management platform in LATAM. The team needed an autonomous design system: knowing exactly which components were in use, which weren't, and which needed updating. Without that, every new component added noise instead of speed."
+      es: "Cualquier cambio podía romper 72 vistas en producción.\n\nEl formulario era el componente padre — sin reglas claras, cada UX Engineer parcheaba con lo que creía correcto.",
+      en: "Any change could break 72 live views in production.\n\nThe form was the parent component — without clear rules, each UX Engineer patched it with what they thought was right."
     },
     sectionContext: {
-      es: "Lo que quería el equipo: componentes claros, sin tener que preguntar a nadie",
-      en: "What the team wanted: clear components, without having to ask anyone"
+      es: "El Problema",
+      en: "The Problem"
     },
     contentContext: {
-      es: "Los product designers y UX engineers necesitaban integrar componentes nuevos de forma simple, sin adivinar cuál era el correcto, sin romper lo que ya existía en producción y sin depender de la memoria de alguien para entender cómo funcionaba cada pieza.",
-      en: "Product designers and UX engineers needed to integrate new components simply, without guessing which was correct, without breaking what existed in production, and without depending on someone's memory to understand how each piece worked."
+      es: "Nadie estaba haciendo algo mal a propósito.\n\nEl equipo usaba componentes similares indistintamente porque no existía un criterio documentado de cuándo usar cada uno — y el resultado fueron 8 versiones distintas del mismo patrón conviviendo en producción.\n\nLos 3 componentes afectados vivían todos dentro del mismo formulario padre:\n\n• File Upload\n• Añadir Participantes\n• Opciones Avanzadas",
+      en: "Nobody was doing anything wrong on purpose.\n\nThe team used similar components interchangeably because there was no documented criteria on when to use each — resulting in 8 different versions of the same pattern coexisting in production.\n\nThe 3 affected components all lived inside the same parent form:\n\n• File Upload\n• Add Participants\n• Advanced Options"
     },
     sectionAction: {
-      es: "Lo que hice: componentes listos, actualizados y reconocibles para todo el equipo",
-      en: "What I did: components ready, updated and recognizable for the whole team"
+      es: "Las Decisiones",
+      en: "The Decisions"
     },
     contentAction: {
-      es: "Me reuní con los UX Engineers y devs para entender el sistema existente. Ellos me señalaron qué componentes estaban deprecados pero en uso activo. A partir de eso hice una auditoría completa, identifiqué cada caso y documenté cada pieza con sus estados críticos, reglas de uso y referencias directas al código en GitHub.",
-      en: "I met with UX Engineers and devs to understand the existing system. They pointed out which components were deprecated but still in active use. From there I ran a full audit, identified each case, and documented every piece with critical states, usage rules, and direct references to the code in GitHub."
+      es: "El desafío no era rediseñar — era documentar qué hace cada componente, cuándo usarlo y qué está permitido dentro de él.\n\nOpciones Avanzadas se incrustaba con cualquier HTML sin límites — normar su contenido y definir que solo vive en formularios completos (nunca modales) fue la decisión clave.\n\nAñadir Participantes y Select2 se veían igual pero tenían lógica distinta: uno filtra por scope y detecta al usuario actual, el otro no. El equipo los usaba indistintamente sin saberlo.\n\nFile Upload no tenía criterio de uso — cada implementación era una interpretación diferente.",
+      en: "The challenge was not to redesign — it was to document what each component does, when to use it, and what is allowed inside it.\n\nAdvanced Options was embedded with any HTML without limits — regulating its content and defining that it only lives in complete forms (never modals) was the key decision.\n\nAdd Participants and Select2 looked the same but had different logic: one filters by scope and detects the current user, the other does not. The team used them interchangeably without knowing.\n\nFile Upload had no usage criteria — each implementation was a different interpretation."
     },
     sectionDecision: {
-      es: "¿Por qué limpiar antes de agregar?",
-      en: "Why clean up before adding?"
+      es: "El Sistema Resultante",
+      en: "The Resulting System"
     },
     contentDecision: {
-      es: "El sistema tenía componentes activos que nadie sabía si debía usar o no. Antes de agregar nuevos, mapeamos cuáles seguían vigentes, cuáles estaban obsoletos y cuáles necesitaban sucesor. Sin eso, cualquier componente nuevo solo sumaba ruido. Definimos el sucesor correcto para cada caso y lo dejamos documentado para que cualquier designer o engineer pudiera tomarlo sin preguntar.",
-      en: "The system had active components that nobody knew whether to use or not. Before adding new ones, we mapped which were still valid, which were obsolete, and which needed a successor. Without that, any new component only added noise. We defined the correct successor for each case and documented it so any designer or engineer could use it without asking."
+      es: "El entregable no fueron 3 componentes rediseñados.\n\nFue un contrato: qué hace cada uno, cuándo usarlo, qué está permitido dentro y qué no.\n\nAhora el equipo no adivina — busca y encuentra.",
+      en: "The deliverable wasn't 3 redesigned components.\n\nIt was a contract: what each does, when to use it, what is allowed inside, and what is not.\n\nNow the team doesn't guess — they search and find."
     },
     sectionResult: {
-      es: "20% menos tiempo eligiendo el componente correcto. 15% menos componentes en el sistema.",
-      en: "20% less time choosing the right component. 15% fewer components in the system."
+      es: "Resultado",
+      en: "Result"
     },
     contentResult: {
-      es: "Diseños listos más rápido, en producción antes. Un sistema más limpio significa menos reuniones para aclarar qué usar, menos errores en el handoff y más velocidad para el equipo de ingeniería. En un producto que gestiona personas a escala, cada día que se gana en producción tiene impacto real.",
-      en: "Designs ready faster, in production sooner. A cleaner system means fewer meetings to clarify what to use, fewer handoff errors, and more speed for the engineering team. In a product that manages people at scale, every day gained in production has real impact."
+      es: "72 vistas con criterio unificado\nDe 8 interpretaciones a 1 sistema documentado\n~9 hrs/semana que el equipo deja de perder adivinando\n\n ",
+      en: "72 views with unified criteria\nFrom 8 interpretations to 1 documented system\n~9 hrs/week the team stops losing by guessing\n\nView documentation in Figma →"
     },
     images: [
       "/images/buk/buk-1.png",
@@ -377,6 +385,9 @@ export const allProjects: Project[] = ([
       "/images/buk/buk-6.png",
       "/images/buk/buk-7.png",
       "/images/buk/buk-8.png"
+    ],
+    videos: [
+      "/images/buk/buk-1.mp4"
     ]
   },
   {

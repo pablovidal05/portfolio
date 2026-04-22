@@ -7,10 +7,10 @@ import { Project, CATEGORY_LABELS } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ImageCarousel from "./ImageCarousel";
 
-const AccordionSection = ({ title, children, defaultOpen = true }: { title: string, children: React.ReactNode, defaultOpen?: boolean }) => {
+const AccordionSection = ({ title, children, defaultOpen = true, id }: { title: string, children: React.ReactNode, defaultOpen?: boolean, id?: string }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     return (
-        <div className="bg-[#F8F9FA] rounded-[20px] mb-6 overflow-hidden">
+        <div id={id} className="bg-[#F8F9FA] rounded-[20px] mb-6 overflow-hidden scroll-mt-24">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center text-left transition-opacity hover:opacity-70 focus:outline-none"
@@ -37,6 +37,32 @@ const AccordionSection = ({ title, children, defaultOpen = true }: { title: stri
                 </div>
             )}
         </div>
+    );
+};
+
+const ShareButton = () => {
+    const [copied, setCopied] = useState(false);
+    return (
+        <button
+            onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            }}
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors text-sm bg-white w-[200px]"
+        >
+            {copied ? (
+                <>
+                    <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <span>¡Enlace copiado!</span>
+                </>
+            ) : (
+                <>
+                    <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    <span>Copiar enlace</span>
+                </>
+            )}
+        </button>
     );
 };
 
@@ -202,8 +228,8 @@ export default function ProjectDetail({
     };
 
     return (
-        <div className="bg-white text-black min-h-screen pb-24 flex flex-col items-center" style={{ paddingTop: '6rem' }}>
-            {/* The single unified width container */}
+        <div className="bg-white text-black min-h-screen pb-24 flex flex-col items-center w-full" style={{ paddingTop: '6rem' }}>
+            {/* Header & Hero container - Centered */}
             <div className="w-full max-w-[800px] px-5 sm:px-8">
 
                 {/* Header Centrado a lo Zapier */}
@@ -243,6 +269,12 @@ export default function ProjectDetail({
                         {title}
                     </h1>
 
+                    {project.kpiSubtitle && (
+                        <div className="font-medium mb-8 rounded-lg inline-block" style={{ fontSize: "1.1rem", color: "#059669", backgroundColor: "rgba(16, 185, 129, 0.1)", padding: "12px 20px", border: "1px solid rgba(16, 185, 129, 0.2)" }}>
+                            {project.kpiSubtitle[locale]}
+                        </div>
+                    )}
+
                     <div className="text-gray-500 flex items-center justify-center gap-2" style={{ fontSize: '1rem', fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
                         <span>Role: <strong className="text-gray-700">{role}</strong></span>
                         <span className="text-gray-300 mx-1">•</span>
@@ -251,9 +283,9 @@ export default function ProjectDetail({
 
                 </div>
 
-                {/* Hero Image / Video debajo del título */}
+                {/* Hero Image / Video debajo del título (MOBILE ONLY) */}
                 {allMedia.length > 0 && (
-                    <div className="mb-16 w-full relative aspect-video bg-[#1A1A1A] rounded-2xl overflow-hidden cursor-pointer shadow-sm" onClick={(e) => handleMediaClick(0, e)} style={{ marginBottom: "2rem" }}>
+                    <div className="block lg:hidden mb-12 w-full relative aspect-video bg-[#1A1A1A] rounded-2xl overflow-hidden cursor-pointer shadow-sm" onClick={(e) => handleMediaClick(0, e)}>
                         {allMedia[0].type === 'video' ? (
                             <video
                                 src={allMedia[0].src}
@@ -275,24 +307,87 @@ export default function ProjectDetail({
                         )}
                     </div>
                 )}
+            </div>
 
-                {/* Contenido en un layout de 1 columna con Accordions */}
-                <div className="mx-auto flex flex-col gap-8" style={{ maxWidth: '768px', paddingBottom: '2rem' }}>
-                    {activeSections.map((section, idx) => {
-                        const titleStr = getLocalizedValue(section.title);
-                        const contentStr = getLocalizedValue(section.content);
-                        const mediaList = sectionMedia[section.key] || [];
+            {/* 3-Column Layout for TOC (Left Aligned) and Content (Centered) */}
+            <div className="w-full page-layout mt-8 sm:mt-12 flex flex-col lg:flex-row xl:justify-between gap-8 lg:gap-12 xl:gap-0 items-start">
 
-                        return (
-                            <AccordionSection key={section.key} title={titleStr} defaultOpen={true}>
-                                <div className="font-normal text-gray-700 leading-relaxed" style={{ fontSize: '1rem', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                    {renderTextBlocks(contentStr)}
-                                </div>
-                                {renderMediaGrid(mediaList)}
-                            </AccordionSection>
-                        );
-                    })}
+                {/* Left Column: Table of Contents (Sticky) */}
+                {activeSections.length > 0 && (
+                    <div className="w-full lg:w-[280px] flex-shrink-0 lg:sticky lg:top-24 mb-12 lg:mb-0">
+                        {/* TOC Box */}
+                        <div className="border border-gray-200 rounded-xl bg-white mb-12" style={{ padding: '16px' }}>
+                            <h3 className="font-bold text-black text-xl mb-4">Table of contents</h3>
+                            <ul className="space-y-4" style={{ paddingTop: '8px' }}>
+                                {activeSections.map(section => (
+                                    <li key={section.key} className="flex items-start">
+                                        {/* <span className="text-gray-400 mr-3 mt-[1px] font-mono font-light select-none" style={{ fontSize: '1.1rem', lineHeight: '1.2', paddingTop: '8px' }}>└</span> */}
+                                        <a href={`#${section.key}`} className="text-[#3b82f6] hover:underline transition-colors text-[1.05rem] leading-snug" style={{ paddingTop: '8px' }}>
+                                            {getLocalizedValue(section.title)}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Share Section */}
+                        <div className="px-2">
+                            <h3 className="font-bold text-gray-800 text-lg mb-4" style={{ paddingTop: '24px', paddingBottom: '8px' }}>Share</h3>
+                            <div className="flex flex-col gap-4">
+                                <ShareButton />
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Center Column: Contenido con Accordions */}
+                <div className="flex-1 w-full max-w-[768px] mx-auto lg:mx-0 xl:mx-auto pb-8">
+
+                    {/* Hero Image / Video debajo del título (DESKTOP ONLY) */}
+                    {allMedia.length > 0 && (
+                        <div className="hidden lg:block mb-12 w-full relative aspect-video bg-[#1A1A1A] rounded-2xl overflow-hidden cursor-pointer shadow-sm" onClick={(e) => handleMediaClick(0, e)}>
+                            {allMedia[0].type === 'video' ? (
+                                <video
+                                    src={allMedia[0].src}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <Image
+                                    src={allMedia[0].src}
+                                    alt={`${title} - Hero`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="100vw"
+                                    unoptimized
+                                />
+                            )}
+                        </div>
+                    )}
+
+                    <div className="flex flex-col gap-8">
+                        {activeSections.map((section, idx) => {
+                            const titleStr = getLocalizedValue(section.title);
+                            const contentStr = getLocalizedValue(section.content);
+                            const mediaList = sectionMedia[section.key] || [];
+
+                            return (
+                                <AccordionSection key={section.key} id={section.key} title={titleStr} defaultOpen={true}>
+                                    <div className="font-normal text-gray-700 leading-relaxed" style={{ fontSize: '1rem', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                        {renderTextBlocks(contentStr)}
+                                    </div>
+                                    {renderMediaGrid(mediaList)}
+                                </AccordionSection>
+                            );
+                        })}
+                    </div>
                 </div>
+
+                {/* Right Column: Dummy para centrar perfectamente el contenido central en desktop grande */}
+                <div className="hidden xl:block w-[280px] flex-shrink-0" />
             </div>
 
 
