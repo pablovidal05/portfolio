@@ -99,6 +99,16 @@ export default function ProjectDetail({
         allMedia.push({ type: 'image', src: image });
     });
 
+    if (project.customSectionMedia) {
+        Object.values(project.customSectionMedia).forEach(mediaList => {
+            mediaList.forEach(media => {
+                if (!allMedia.some(m => m.src === media.src)) {
+                    allMedia.push(media);
+                }
+            });
+        });
+    }
+
     const handleMediaClick = (index: number, e: React.MouseEvent) => {
         e.stopPropagation();
         setCarouselInitialIndex(index);
@@ -117,10 +127,34 @@ export default function ProjectDetail({
     const sectionMedia: Record<string, typeof allMedia> = {};
     activeSections.forEach(s => sectionMedia[s.key] = []);
 
-    remainingMedia.forEach((media, idx) => {
-        const sectionKey = activeSections[idx % activeSections.length].key;
-        sectionMedia[sectionKey].push(media);
+    const mediaToDistribute = project.customSectionMedia 
+        ? remainingMedia.filter(m => {
+            let isCustom = false;
+            Object.values(project.customSectionMedia!).forEach(list => {
+                if (list.some(cm => cm.src === m.src)) isCustom = true;
+            });
+            return !isCustom;
+        })
+        : remainingMedia;
+
+    const sectionsForDistribution = project.customSectionMedia 
+        ? activeSections.filter(s => !project.customSectionMedia![s.key])
+        : activeSections;
+
+    mediaToDistribute.forEach((media, idx) => {
+        if (sectionsForDistribution.length > 0) {
+            const sectionKey = sectionsForDistribution[idx % sectionsForDistribution.length].key;
+            sectionMedia[sectionKey].push(media);
+        }
     });
+
+    if (project.customSectionMedia) {
+        Object.entries(project.customSectionMedia).forEach(([key, list]) => {
+            if (sectionMedia[key] !== undefined) {
+                sectionMedia[key] = [...list];
+            }
+        });
+    }
 
     const renderTextBlocks = (text: string) => {
         if (!text) return null;
@@ -209,6 +243,11 @@ export default function ProjectDetail({
                                     loop
                                     playsInline
                                     className="w-full h-full object-cover"
+                                    onCanPlay={(e) => {
+                                        if (item.src.includes('buk-2.webm')) {
+                                            e.currentTarget.playbackRate = 1.5;
+                                        }
+                                    }}
                                 />
                             ) : (
                                 <Image

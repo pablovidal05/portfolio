@@ -125,6 +125,11 @@ export default function ImageCarousel({
               loop
               playsInline
               className="max-w-full max-h-full object-contain"
+              onCanPlay={(e) => {
+                  if (currentItem.src.includes('buk-2.webm')) {
+                      e.currentTarget.playbackRate = 1.5;
+                  }
+              }}
             />
           ) : (
             <Image

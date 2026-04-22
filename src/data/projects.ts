@@ -48,6 +48,7 @@ export interface Project {
   videos?: string[];
   learnMoreUrl?: string;
   hidden?: boolean;
+  customSectionMedia?: Record<string, { type: 'video' | 'image'; src: string }[]>;
 }
 
 export const allProjects: Project[] = ([
@@ -377,8 +378,6 @@ export const allProjects: Project[] = ([
       en: "72 views with unified criteria\nFrom 8 interpretations to 1 documented system\n~9 hrs/week the team stops losing by guessing\n\nView documentation in Figma →"
     },
     images: [
-      "/images/buk/buk-1.png",
-      "/images/buk/buk-2.png",
       "/images/buk/buk-3.png",
       "/images/buk/buk-4.png",
       "/images/buk/buk-5.png",
@@ -388,7 +387,28 @@ export const allProjects: Project[] = ([
     ],
     videos: [
       "/images/buk/buk-1.mp4"
-    ]
+    ],
+    customSectionMedia: {
+      problem: [
+        { type: 'video', src: '/images/buk/buk-2.webm' },
+        { type: 'image', src: '/images/buk/buk-5.png' }
+      ],
+      context: [
+        { type: 'image', src: '/images/buk/buk-6.png' },
+        { type: 'video', src: '/images/buk/buk-3.webm' }
+      ],
+      action: [
+        { type: 'image', src: '/images/buk/buk-3.png' },
+        { type: 'image', src: '/images/buk/buk-7.png' }
+      ],
+      decision: [
+        { type: 'image', src: '/images/buk/buk-4.png' },
+        { type: 'image', src: '/images/buk/buk-8.png' }
+      ],
+      result: [
+        { type: 'video', src: '/images/buk/buk-8.webm' }
+      ]
+    }
   },
   {
     id: "11",
