@@ -424,53 +424,57 @@ export const allProjects: Project[] = ([
     year: "2026",
     category: "product-design",
     tags: ["Product Design", "Data Visualization", "B2B", "Salesforce", "Design System"],
+    kpiSubtitle: {
+      es: "1.600 reportes personalizados sin intervención manual · 3.200 hrs de trabajo eliminadas · 0 trabajo repetido",
+      en: "1,600 personalized reports without manual intervention · 3,200 hrs of work eliminated · 0 repeated work"
+    },
     shortDescription: {
-      es: "El valor del contrato se perdía en un correo ilegible. 1.600 gerentes necesitaban verlo claro justo cuando decidían renovar.",
-      en: "Contract value was getting lost in an unreadable email. 1,600 managers needed to see it clearly right when they decided to renew."
+      es: "Había un correo estático que nadie leía → diseñé una arquitectura modular que se multiplicó sola por 1.600 clientes.",
+      en: "There was a static email that nobody read → I designed a modular architecture that multiplied itself for 1,600 clients."
     },
     fullDescription: {
-      es: "**Cada año LATAM renueva contratos con 1.600 empresas. Diseñé el sistema que hacía que ese momento fuera una decisión fácil.**",
-      en: "**Every year LATAM renews contracts with 1,600 companies. I designed the system that made that moment an easy decision.**"
+      es: "",
+      en: ""
     },
     sectionProblem: {
-      es: "El riesgo: el valor real del servicio se perdía en el formato",
-      en: "The risk: the real value of the service was getting lost in the format"
+      es: "El Riesgo",
+      en: "The Risk"
     },
     contentProblem: {
-      es: "Cada año LATAM necesita renovar convenios con sus clientes corporativos. Los gerentes no siempre tienen claro el beneficio obtenido, lo que hace más laborioso el convencimiento y la negociación. La solución que tenían era enviar toda la información por correo, pero la cantidad de datos era tal que iba a quedar como una imagen gigante, estática e imposible de navegar.",
-      en: "Every year LATAM needs to renew agreements with its corporate clients. Managers don't always clearly see the benefit obtained, making convincing and negotiating harder. The solution they had was to send all the information by email, but the amount of data was such that it would end up as a giant, static image impossible to navigate."
+      es: "El valor real del servicio se perdía en el formato.\n\nCada año LATAM renueva convenios con 1.600 clientes corporativos.\nLa solución que tenían era enviar todo por correo — pero la cantidad de datos era tal que iba a quedar como una imagen gigante, estática e imposible de navegar.",
+      en: "The real value of the service was lost in the format.\n\nEvery year LATAM renews agreements with 1,600 corporate clients.\nThe solution they had was to send everything by email — but the amount of data was such that it would end up as a giant, static, and impossible-to-navigate image."
     },
     sectionContext: {
-      es: "Lo que quería el gerente: ver el valor de su contrato sin tener que pedirle reportes a nadie",
-      en: "What the manager wanted: see the value of their contract without asking anyone for reports"
+      es: "Lo que quería el gerente",
+      en: "What the manager wanted"
     },
     contentContext: {
-      es: "El usuario era un gerente corporativo que tenía que responder una pregunta ante su propia jefatura: ¿valió la pena tener a LATAM como proveedor de viajes este año? Para eso necesitaba ver ahorros, beneficios y comportamiento de viaje de forma clara, rápida y desde cualquier dispositivo.",
-      en: "The user was a corporate manager who had to answer a question to their own leadership: was it worth having LATAM as a travel provider this year? For that, they needed to see savings, benefits, and travel behavior clearly, quickly, and from any device."
+      es: "Responder una sola pregunta ante su propia jefatura:\n¿valió la pena tener a LATAM como proveedor este año?\n\nPara eso necesitaba ver ahorros, beneficios y comportamiento de viaje de forma clara, rápida y desde cualquier dispositivo.\nSin pedirle reportes a nadie.",
+      en: "Answer a single question to their own leadership:\nwas it worth having LATAM as a provider this year?\n\nFor that, they needed to see savings, benefits, and travel behavior clearly, quickly, and from any device.\nWithout asking anyone for reports."
     },
     sectionAction: {
-      es: "Lo que hice: jerarquía clara, componentes listos para 1.600 empresas distintas",
-      en: "What I did: clear hierarchy, components ready for 1,600 different companies"
+      es: "Lo que hice",
+      en: "What I did"
     },
     contentAction: {
-      es: "Me reuní con el PO, el equipo de data y desarrollo para entender qué información era crítica para el negocio. Definí la jerarquía de contenidos junto al PO: primero el ahorro e impacto, luego los beneficios clave, luego el detalle. Diseñé componentes modulares y reutilizables en Figma, asegurando que cada variable del diseño correspondiera a las variables reales en Salesforce. Participé en dailies ajustando decisiones de diseño según las restricciones técnicas de la plataforma.",
-      en: "I met with the PO, data team, and development to understand what information was critical for the business. I defined the content hierarchy with the PO: first savings and impact, then key benefits, then the details. I designed modular, reusable components in Figma, ensuring each design variable corresponded to real Salesforce variables. I participated in dailies adjusting design decisions based on the platform's technical constraints."
+      es: "Definí la jerarquía de contenidos junto al PO: primero el ahorro e impacto, luego los beneficios, luego el detalle.\n\nDiseñé componentes modulares en Figma donde cada variable de diseño correspondía a una variable real en Salesforce — para que los 1.600 reportes se generaran solos, sin que nadie tocara nada manualmente.\n\nParticipé en dailies ajustando decisiones de diseño según las restricciones técnicas de la plataforma.",
+      en: "I defined the content hierarchy with the PO: first savings and impact, then benefits, then details.\n\nI designed modular components in Figma where each design variable corresponded to a real variable in Salesforce — so that the 1,600 reports would generate themselves, without anyone manually touching anything.\n\nI participated in dailies adjusting design decisions based on the technical constraints of the platform."
     },
     sectionDecision: {
       es: "¿Por qué una landing y no un correo?",
       en: "Why a landing page and not an email?"
     },
     contentDecision: {
-      es: "Un correo con toda esa información iba a quedar como una imagen gigante, estática e ilegible. Una landing personalizada por cliente permitía navegar, filtrar y encontrar el dato que importaba en segundos. La restricción era Salesforce Marketing Cloud, que limitaba lo que se podía hacer dinámicamente. Trabajamos dentro de eso sin perder claridad ejecutiva.",
-      en: "An email with all that information would end up as a giant, static, unreadable image. A client-personalized landing page allowed navigating, filtering, and finding the relevant data in seconds. The constraint was Salesforce Marketing Cloud, which limited what could be done dynamically. We worked within that without losing executive clarity."
+      es: "Un correo con toda esa información iba a quedar como una imagen gigante, estática e ilegible.\n\nUna landing personalizada por cliente permitía navegar, filtrar y encontrar el dato que importaba en segundos.\n\nLa restricción era Salesforce Marketing Cloud — trabajamos dentro de eso sin perder claridad ejecutiva.",
+      en: "An email with all that information would end up as a giant, static, and unreadable image.\n\nA client-personalized landing page allowed navigating, filtering, and finding the relevant data in seconds.\n\nThe constraint was Salesforce Marketing Cloud — we worked within that without losing executive clarity."
     },
     sectionResult: {
-      es: "1.600 reportes personalizados entregados sin intervención manual. Cero trabajo repetido.",
-      en: "1,600 personalized reports delivered without manual intervention. Zero repeated work."
+      es: "El Sistema Resultante",
+      en: "The Resulting System"
     },
     contentResult: {
-      es: "Cada gerente accedió a su propio reporte en vivo, desde cualquier dispositivo, justo cuando tenía que decidir si renovar. El equipo técnico no tuvo que tocar nada manualmente para ninguna de las 1.600 empresas.",
-      en: "Each manager accessed their own live report, from any device, right when they had to decide whether to renew. The technical team didn't have to manually touch anything for any of the 1,600 companies."
+      es: "El entregable no fue un diseño — fue una arquitectura que se multiplicó sola por 1.600.\nCada gerente accedió a su propio reporte en vivo, desde cualquier dispositivo, justo cuando tenía que decidir si renovar.\n\n**Resultado:**\n• 1.600 reportes personalizados entregados sin intervención manual\n• 3.200 horas de trabajo manual eliminadas en un solo ciclo\n• 0 trabajo repetido por el equipo técnico",
+      en: "The deliverable was not a design — it was an architecture that multiplied itself for 1,600.\nEach manager accessed their own live report, from any device, right when they had to decide whether to renew.\n\n**Result:**\n• 1,600 personalized reports delivered without manual intervention\n• 3,200 hours of manual work eliminated in a single cycle\n• 0 repeated work by the technical team"
     },
     images: [
       "/images/latam/latam-1.png",
@@ -483,7 +487,27 @@ export const allProjects: Project[] = ([
       "/images/latam/latam-8.png",
       "/images/latam/latam-9.png",
       "/images/latam/latam-10.png"
-    ]
+    ],
+    videos: [
+      "/images/latam/latam-1.webm"
+    ],
+    customSectionMedia: {
+      problem: [
+        { type: 'video', src: '/images/latam/latam-2.webm' }
+      ],
+      context: [
+        { type: 'image', src: '/images/latam/latam-10.png' }
+      ],
+      decision: [
+        { type: 'image', src: '/images/latam/latam-4.png' }
+      ],
+      action: [
+        { type: 'video', src: '/images/latam/latam-3.webm' }
+      ],
+      result: [
+        { type: 'video', src: '/images/latam/latam-4.webm' }
+      ]
+    }
   },
   {
     id: "12",
