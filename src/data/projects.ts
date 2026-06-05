@@ -509,74 +509,204 @@ export const allProjects: Project[] = ([
       ]
     }
   },
-  {
-    id: "12",
-    slug: "vertice",
+  /*{
+   /* id: "12",
+    slug: "vertice-web-checkin",
     title: {
-      es: "En Torres del Paine no hay margen de error. Cómo le dimos al equipo de Vértice visibilidad total de cada viajero en el circuito.",
-      en: "In Torres del Paine there is no margin for error. How we gave the Vértice team total visibility of every traveler on the circuit."
+      es: "Finanzas no debería depender de que nadie se equivoque. Cómo automatizamos cobros y facturación para el operador turístico de Torres del Paine.",
+      en: "Finance shouldn't depend on nobody making a mistake. How we automated billing and invoicing for Torres del Paine's leading tour operator."
     },
     role: {
       es: "Product Designer",
       en: "Product Designer"
     },
-    year: "2024",
+    year: "2026",
     category: "product-design",
-    tags: ["UX/UI", "Web Check-in", "Product Design", "Torres del Paine"],
-    hidden: true,
+    tags: ["Product Design", "Fintech", "Automatización", "B2B SaaS", "Diseño de Sistemas"],
+    kpiSubtitle: {
+      es: "0 cobros con datos inválidos en FNS · detección de fallos: de días a horas · 10–20 hrs/mes recuperadas en finanzas · 100% de reglas de facturación cubiertas por el sistema",
+      en: "0 invalid charges created in FNS · fault detection: from days to hours · 10–20 hrs/month recovered in finance · 100% of invoicing rules covered by the system"
+    },
     shortDescription: {
-      es: "El 33% del circuito quedaba sin datos registrados. Un accidente lo dejó en evidencia.",
-      en: "33% of the circuit had no registered data. An accident made it evident."
+      es: "Finanzas procesaba cobros con planillas manuales. Cualquier error frenaba todo — y nadie sabía qué había fallado ni por qué. Diseñé el sistema que lo hace imposible.",
+      en: "Finance processed charges with manual spreadsheets. Any error stopped everything — and nobody knew what had failed or why. I designed the system that makes that impossible."
     },
     fullDescription: {
-      es: "**En Torres del Paine no hay margen de error. Cómo le dimos al equipo de Vértice visibilidad total de cada viajero en el circuito.**",
-      en: "**In Torres del Paine there is no margin for error. How we gave the Vértice team total visibility of every traveler on the circuit.**"
+      es: "",
+      en: ""
     },
     sectionProblem: {
-      es: "El riesgo: el 33% del circuito sin datos y una obligación legal sin cumplir",
-      en: "The risk: 33% of the circuit without data and a legal obligation unmet"
+      es: "El Problema Real",
+      en: "The Real Problem"
     },
     contentProblem: {
-      es: "Los operadores turísticos en Torres del Paine tienen una obligación legal: conocer en todo momento quién está en el circuito, en qué estado y qué necesita. El sistema anterior tenía 6 puntos de registro en el recorrido pero solo 4 se completaban, dejando un 33% del circuito sin datos mapeados. La información se pedía a mano en cada sector, se repetía y nadie la completaba. Cuando ocurrió un accidente, el equipo no pudo responder legalmente porque les faltaba información.",
-      en: "Tour operators in Torres del Paine have a legal obligation: to know at all times who is on the circuit, in what condition, and what they need. The previous system had 6 registration points along the route, but only 4 were completed, leaving 33% of the circuit without mapped data. Information was requested by hand in each sector, repeated, and no one completed it. When an accident occurred, the team could not respond legally because they lacked information."
+      es: "El equipo de finanzas de Vértice subía planillas con cobros manualmente a FNS — el sistema externo de pagos. Si había un error en cualquier fila, el proceso completo se frenaba.\n\nPero el problema más profundo era la invisibilidad: cuando un cobro fallaba en FNS, nadie sabía qué había salido mal, cuándo ni por qué. El equipo dependía de otra persona para entender su propio flujo.\n\nY la facturación era aún más frágil — las reglas de quién se puede facturar, en qué moneda, si es cliente a crédito, si el canal es facturable — vivían en la cabeza de las personas, no en el sistema. Eso hacía que cada decisión de facturación fuera manual, inconsistente y no escalable.",
+      en: "Vértice's finance team manually uploaded charge spreadsheets to FNS — the external payment system. If there was an error in any row, the entire process stopped.\n\nBut the deeper problem was invisibility: when a charge failed in FNS, nobody knew what went wrong, when, or why. The team depended on someone else to understand their own workflow.\n\nInvoicing was even more fragile — the rules about who can be invoiced, in which currency, whether a client has credit terms, whether a channel is billable — lived in people's heads, not in the system. That made every invoicing decision manual, inconsistent, and unscalable."
     },
     sectionContext: {
-      es: "Lo que necesitaba el operador: saber quién está en el circuito, en qué estado, antes de salir",
-      en: "What the operator needed: know who is on the circuit, in what condition, before leaving"
+      es: "Tres problemas, tres tipos distintos",
+      en: "Three problems, three different types"
     },
     contentContext: {
-      es: "El operador necesitaba salir al circuito con certeza. El viajero necesitaba saber que alguien tenía su información si algo salía mal. Los dos dependían de que los datos llegaran completos antes de comenzar.",
-      en: "The operator needed to leave for the circuit with certainty. The traveler needed to know that someone had their information if something went wrong. Both depended on data arriving complete before starting."
+      es: "No todos los problemas de finanzas eran del mismo tipo — y eso determinó cómo los abordé.\n\nLos cobros manuales eran un incendio: un proceso que bloqueaba al equipo en tiempo real, todos los días. La prioridad era automatizar y dar visibilidad de fallos.\n\nLa facturación era una apuesta estratégica: no había un error recurrente visible, pero sin modelar las reglas de negocio antes de construir, escalar el sistema iba a romper el área entera.\n\nEl reporte de estado era un insight: el equipo no tenía forma de saber qué estaba pasando con sus cobros sin preguntarle a alguien. La señal venía del comportamiento, no de un ticket.",
+      en: "Not all finance problems were the same type — and that determined how I approached each.\n\nManual charges were a fire: a process that blocked the team in real time, every day. The priority was to automate and surface failure visibility.\n\nInvoicing was a strategic bet: there was no visible recurring error, but without modeling the business rules before building, scaling the system would break the entire area.\n\nStatus reporting was an insight: the team had no way to know what was happening with their charges without asking someone. The signal came from behavior, not from a ticket."
     },
     sectionAction: {
-      es: "Lo que hice: datos críticos obligatorios, flujo que no avanza sin ellos",
-      en: "What I did: mandatory critical data, a flow that doesn't advance without them"
+      es: "Lo que diseñé",
+      en: "What I designed"
     },
     contentAction: {
-      es: "Trabajé con la PO para entender qué datos faltaron en el accidente y por qué. Clasifiqué los campos en críticos, como alergias, medicamentos y contactos de emergencia, y secundarios. Diseñé el flujo en Figma asegurando que los datos críticos no pudieran omitirse. El sistema no avanza sin ellos. Coordiné con desarrollo para alinear la nomenclatura del diseño con la del framework desde el inicio.",
-      en: "I worked with the PO to understand what data was missing during the accident and why. I classified fields into critical, such as allergies, medications, and emergency contacts, and secondary. I designed the flow in Figma ensuring critical data could not be omitted. The system doesn't advance without them. I coordinated with development to align design nomenclature with the framework from the start."
+      es: "Para los cobros, diseñé un flujo de validación completa antes de guardar: si cualquier fila tiene un error, el sistema lo intercepta y lo muestra con fila y columna exacta — nada llega a FNS con datos inválidos. Si un cobro falla en el proceso nocturno, el sistema reintenta automáticamente. Después del segundo fallo, lo marca como fallido y reporta por correo: qué cobro, cuándo, por qué.\n\nPara la facturación, primero modelé las reglas de negocio antes de tocar ninguna pantalla: quién se puede facturar, en qué condiciones, con qué tipo de documento. Solo después diseñé el flujo que las ejecuta — un proceso que corre por fecha, clasifica cada caso y genera el documento correcto sin intervención manual.\n\nEn ambos casos, el criterio de diseño fue el mismo: el sistema no debería depender de que nadie se equivoque.",
+      en: "For charges, I designed a full validation flow before saving: if any row has an error, the system intercepts it and shows the exact row and column — nothing reaches FNS with invalid data. If a charge fails in the overnight process, the system retries automatically. After the second failure, it marks it as failed and reports by email: which charge, when, why.\n\nFor invoicing, I first modeled the business rules before touching any screen: who can be invoiced, under what conditions, with what document type. Only then did I design the flow that executes them — a process that runs by date, classifies each case, and generates the correct document without manual intervention.\n\nIn both cases, the design criterion was the same: the system shouldn't depend on nobody making a mistake."
     },
     sectionDecision: {
-      es: "¿Por qué un web check-in previo y no el registro en terreno?",
-      en: "Why a prior web check-in and not on-site registration?"
+      es: "¿Por qué modelar las reglas antes de diseñar la pantalla?",
+      en: "Why model the rules before designing the screen?"
     },
     contentDecision: {
-      es: "El registro en terreno dependía de que alguien lo pidiera, de que el viajero lo completara y de que el sistema lo guardara. Tres puntos de falla. Un web check-in previo elimina los tres: el viajero completa su información antes de llegar, con tiempo, sin presión y desde cualquier dispositivo. El operador sale al circuito con todo ya resuelto.",
-      en: "On-site registration depended on someone requesting it, the traveler completing it, and the system saving it. Three failure points. A prior web check-in eliminates all three: the traveler completes their information before arriving, with time, without pressure, and from any device. The operator leaves for the circuit with everything already resolved."
+      es: "La tentación en un proyecto así es empezar por la UI — el formulario de carga, la tabla de cobros, el botón de facturar.\n\nPero el problema no era visual. Era que las reglas de negocio no existían en ningún lugar formal. Si diseñaba la pantalla primero, estaba construyendo una interfaz sobre un modelo mental que podía cambiar mañana.\n\nEmpezar por las reglas — quién puede facturarse, en qué moneda, bajo qué condiciones — permitió que la UI fuera una consecuencia del modelo, no al revés. Eso es lo que hace que el sistema sea escalable: las reglas están en el código, no en la memoria de alguien.",
+      en: "The temptation in a project like this is to start with the UI — the upload form, the charges table, the invoice button.\n\nBut the problem wasn't visual. It was that the business rules didn't exist anywhere formal. If I designed the screen first, I was building an interface on top of a mental model that could change tomorrow.\n\nStarting with the rules — who can be invoiced, in which currency, under what conditions — meant the UI became a consequence of the model, not the other way around. That's what makes the system scalable: the rules are in the code, not in someone's memory."
     },
     sectionResult: {
-      es: "De 4 de 6 puntos registrados a cobertura total. Nadie sale al circuito sin sus datos completos.",
-      en: "From 4 out of 6 registered points to total coverage. No one leaves for the circuit without complete data."
+      es: "El Sistema Resultante",
+      en: "The Resulting System"
     },
     contentResult: {
-      es: "El proceso anterior completaba solo 4 de 6 puntos de registro, dejando un 33% del circuito sin datos mapeados. Con el web check-in, los datos críticos se recopilan antes de llegar, garantizando cobertura total desde el inicio. Nadie entra al circuito sin la información de seguridad obligatoria completa. El sistema está en desarrollo para la primera temporada.",
-      en: "The previous process completed only 4 out of 6 registration points, leaving 33% of the circuit without mapped data. With the web check-in, critical data is collected before arrival, ensuring total coverage from the start. No one enters the circuit without complete mandatory safety information. The system is in development for the first season."
+      es: "El entregable no fue un formulario de carga ni una tabla de cobros — fue un sistema que hace imposible una categoría completa de errores.\n\nNingún cobro con datos inválidos llega a FNS. Cualquier fallo nocturno se reporta automáticamente antes de que alguien lo tenga que buscar. Las reglas de facturación están en el sistema, no en la cabeza de nadie.\n\n**Esperamos:** 10–20 hrs/mes recuperadas en finanzas · 0 cobros con datos inválidos en FNS · tiempo de detección de fallos de días a horas · 100% de reglas de facturación cubiertas por el sistema, sin depender de conocimiento tácito.",
+      en: "The deliverable wasn't an upload form or a charges table — it was a system that makes an entire category of errors impossible.\n\nNo charge with invalid data reaches FNS. Any overnight failure is reported automatically before anyone has to go looking for it. The invoicing rules are in the system, not in anyone's head.\n\n**We expect:** 10–20 hrs/month recovered in finance · 0 invalid charges created in FNS · fault detection time from days to hours · 100% of invoicing rules covered by the system, without depending on tacit knowledge."
     },
-    images: []
-  }
-] as Project[]).sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
+    images: [
+      "/images/vertice/vertice-1.png",
+      "/images/vertice/vertice-2.png"
+    ],
+    videos: [
+      "/images/vertice/vertice-1.mp4",
+      "/images/vertice/vertice-2.mp4",
+      "/images/vertice/vertice-3.mp4",
+      "/images/vertice/vertice-4.mp4"
+    ],
+    customSectionMedia: {
+      problem: [
+        { type: 'video', src: '/images/vertice/vertice-1.mp4' }
+      ],
+      context: [
+        { type: 'image', src: '/images/vertice/vertice-1.png' }
+      ],
+      action: [
+        { type: 'video', src: '/images/vertice/vertice-2.mp4' }
+      ],
+      decision: [
+        { type: 'video', src: '/images/vertice/vertice-3.mp4' }
+      ],
+      result: [
+        { type: 'video', src: '/images/vertice/vertice-4.mp4' }
+      ]
+    }
+  )},
+  {
+    id: "13",
+    slug: "consorcio-mi-inversion",
+    title: {
+      es: "¿Cuántas inversiones no ocurrieron porque el flujo no entendía al usuario?",
+      en: "How many investments didn't happen because the flow didn't understand the user?"
+    },
+    role: {
+      es: "Product Designer — Prototipo y propuesta de criterio conductual",
+      en: "Product Designer — Prototype and behavioral design proposal"
+    },
+    year: "2026",
+    category: "product-design",
+    tags: ["Product Design", "Behavioral Design", "Fintech", "Inversiones", "Prototipado"],
+    kpiSubtitle: {
+      es: "2 pasos eliminados del flujo · 3 palancas de retención sin activar · 1 principio que lo explica todo",
+      en: "2 steps removed from the flow · 3 unactivated retention levers · 1 principle that explains everything"
+    },
+    shortDescription: {
+      es: "Consorcio tenía el producto. El flujo estaba perdiendo usuarios antes de que invirtieran. Prototipé la propuesta de lo que el sistema todavía no entendía sobre su usuario.",
+      en: "Consorcio had the product. The flow was losing users before they invested. I prototyped the proposal of what the system still didn't understand about its user."
+    },
+    fullDescription: {
+      es: "",
+      en: ""
+    },
+    sectionProblem: {
+      es: "El Riesgo",
+      en: "The Risk"
+    },
+    contentProblem: {
+      es: "El mayor riesgo de un producto financiero no es que el usuario no entienda la interfaz — es que el sistema no entienda al usuario.\n\nMi Inversión permitía comprar acciones desde el celular. El problema no era técnico: era que el flujo de compra pedía al usuario tomar decisiones conceptuales que nunca le había explicado. Monto o cantidad. Precio de mercado o precio límite. Sin contexto, sin jerarquía, sin modelo mental.\n\nCada vez que un usuario abandonaba el flujo, era una inversión que no ocurrió — y un usuario menos comprometido con la plataforma.",
+      en: "The greatest risk of a financial product is not that the user doesn't understand the interface — it's that the system doesn't understand the user.\n\nMi Inversión allowed buying stocks from a mobile device. The problem wasn't technical: the purchase flow asked users to make conceptual decisions it had never explained to them. Amount or quantity. Market price or limit price. No context, no hierarchy, no mental model.\n\nEvery time a user abandoned the flow, it was an investment that didn't happen — and one less user committed to the platform."
+    },
+    sectionContext: {
+      es: "El Usuario",
+      en: "The User"
+    },
+    contentContext: {
+      es: "El usuario de Mi Inversión no es un trader. Es alguien que quiere invertir sus ahorros sin necesitar un corredor de bolsa.\n\nEse usuario llega al flujo con una intención simple: 'quiero poner $50.000 en FALABELLA'. Lo que encuentra es un formulario que le pregunta simultáneamente por monto, cantidad, tipo de orden y precio — cuatro variables que para él son una sola decisión.\n\nEl flujo no estaba mal construido técnicamente. Estaba mal ordenado conductualmente: le pedía al usuario datos antes de resolver su modelo mental.",
+      en: "The Mi Inversión user is not a trader. They're someone who wants to invest their savings without needing a stockbroker.\n\nThis user arrives at the flow with a simple intent: 'I want to put $50,000 into FALABELLA'. What they find is a form simultaneously asking about amount, quantity, order type, and price — four variables that for them are a single decision.\n\nThe flow wasn't poorly built technically. It was poorly ordered behaviorally: it asked the user for data before resolving their mental model."
+    },
+    sectionAction: {
+      es: "Lo que prototipé",
+      en: "What I prototyped"
+    },
+    contentAction: {
+      es: "Construí un prototipo de propuesta para Consorcio aplicando tres principios de diseño conductual como criterio estructural — no como decoración.\n\nChunking: dividí la entrada de la orden según cómo el usuario piensa su inversión. Primero elige si quiere invertir por monto o por cantidad. Después ingresa solo ese dato. El sistema traduce automáticamente al otro modo en el resumen. Dos pasos menos, cero funcionalidad perdida.\n\nLoss aversion: el rojo que señalaba variaciones de precio activaba señal de pérdida sin contexto. La propuesta reemplaza el color como alerta indiscriminada por color como información contextualizada — con una línea de explicación que le dice al usuario qué significa ese número para su decisión.\n\nEndowed progress: el historial de transacciones listaba operaciones sin conectarlas a ningún objetivo. La propuesta agrega una capa de progreso visible: 'llevas 3 compras hacia tu meta de ahorro'. Eso no es decoración — es la diferencia entre un usuario que siente que avanza y uno que siente que recién empieza.",
+      en: "I built a proposal prototype for Consorcio applying three behavioral design principles as structural criteria — not decoration.\n\nChunking: I split the order entry based on how the user thinks about their investment. First they choose whether to invest by amount or by quantity. Then they enter just that one piece of data. The system automatically translates to the other mode in the summary. Two fewer steps, zero lost functionality.\n\nLoss aversion: the red used to signal price variations activated a loss signal without context. The proposal replaces color as an indiscriminate alert with color as contextualized information — with an explanatory line telling the user what that number means for their decision.\n\nEndowed progress: the transaction history listed operations without connecting them to any goal. The proposal adds a visible progress layer: 'you've made 3 purchases toward your savings goal'. That's not decoration — it's the difference between a user who feels they're moving forward and one who feels they're just starting."
+    },
+    sectionDecision: {
+      es: "¿Por qué esto y no un rediseño visual?",
+      en: "Why this and not a visual redesign?"
+    },
+    contentDecision: {
+      es: "Porque el problema no era de interfaz — era de secuencia.\n\nUn rediseño visual hubiera cambiado cómo se veía el flujo. Lo que propuse cambia cuándo el usuario toma cada decisión — y eso es lo que determina si completa la orden o abandona.\n\nLa pantalla de confirmación es el ejemplo más claro: cerraba la transacción correctamente pero no construía relación con el usuario después de ella. Un mensaje como 'tu orden fue procesada — te avisamos cuando el precio llegue a tu rango objetivo' convierte el cierre en un gancho de retorno. No es más diseño — es diseño en el momento correcto.\n\nLas tres oportunidades que identifiqué — goal framing en el dashboard, endowed progress en el historial, next best action en la confirmación — no requieren rediseño completo. Requieren criterio sobre qué hace el sistema en cada momento de decisión del usuario.",
+      en: "Because the problem wasn't about interface — it was about sequence.\n\nA visual redesign would have changed how the flow looked. What I proposed changes when the user makes each decision — and that's what determines whether they complete the order or abandon it.\n\nThe confirmation screen is the clearest example: it correctly closed the transaction but didn't build a relationship with the user afterward. A message like 'your order was processed — we'll notify you when the price reaches your target range' converts the close into a return hook. It's not more design — it's design at the right moment.\n\nThe three opportunities I identified — goal framing in the dashboard, endowed progress in the history, next best action in the confirmation — don't require a complete redesign. They require criteria about what the system does at each user decision moment."
+    },
+    sectionResult: {
+      es: "La Propuesta",
+      en: "The Proposal"
+    },
+    contentResult: {
+      es: "El entregable no fue un rediseño — fue un diagnóstico con prototipo.\nUna propuesta de qué reglas debería seguir el sistema para entender a su usuario.\n\n**Lo que cambia con la propuesta:**\n• 2 pasos eliminados del flujo de compra sin reducir funcionalidad bursátil\n• Loss aversion neutralizada con contexto — el rojo informa, no asusta\n• 3 palancas de retención activadas: goal framing, endowed progress, next best action\n\n**La lectura de negocio:**\nCada usuario que completa su primera orden tiene un LTV significativamente mayor que uno que abandona. Reducir el abandono en la primera operación es la intervención con mayor retorno por esfuerzo en una plataforma de inversiones retail.",
+      en: "The deliverable was not a redesign — it was a diagnosis with prototype.\nA proposal of what rules the system should follow to understand its user.\n\n**What changes with the proposal:**\n• 2 steps removed from the purchase flow without reducing stock market functionality\n• Loss aversion neutralized with context — the red informs, doesn't scare\n• 3 retention levers activated: goal framing, endowed progress, next best action\n\n**The business read:**\nEvery user who completes their first order has a significantly higher LTV than one who abandons. Reducing abandonment in the first operation is the highest-return intervention per effort in a retail investment platform."
+    },
+    images: [
+      "/images/mi-inversion/mi-inversion-1.png",
+      "/images/mi-inversion/mi-inversion-2.png",
+      "/images/mi-inversion/mi-inversion-3.png",
+      "/images/mi-inversion/mi-inversion-4.png",
+      "/images/mi-inversion/mi-inversion-5.png"
+    ],
+    videos: [
+      "/images/mi-inversion/mi-inversion-hero.mp4"
+    ],
+    customSectionMedia: {
+      problem: [
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-1.png' }
+      ],
+      context: [
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-2.png' }
+      ],
+      action: [
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-3.png' },
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-4.png' }
+      ],
+      decision: [
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-5.png' }
+      ],
+      result: [
+        { type: 'video', src: '/images/mi-inversion/mi-inversion-hero.mp4' }
+      ]
+    }
+  } */
+]);
 
-export const projects: Project[] = allProjects.filter(p => !p.hidden);
+export const projects = allProjects
+  .filter((project) => !project.hidden)
+  .sort((a, b) => {
+    const yearA = parseInt(a.year) || 0;
+    const yearB = parseInt(b.year) || 0;
+    return yearB - yearA;
+  });
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return allProjects.find((project) => project.slug === slug);
@@ -585,3 +715,4 @@ export function getProjectBySlug(slug: string): Project | undefined {
 export function getAllProjectSlugs(): string[] {
   return allProjects.map((project) => project.slug);
 }
+

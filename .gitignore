@@ -45,3 +45,6 @@ mcp-servers/*.log
 # API keys (backup)
 *.key
 *.pem
+
+.vercel
+.env*.local

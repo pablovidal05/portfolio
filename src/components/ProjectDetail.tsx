@@ -7,12 +7,15 @@ import { Project, CATEGORY_LABELS } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ImageCarousel from "./ImageCarousel";
 
-const AccordionSection = ({ title, children, defaultOpen = true, id }: { title: string, children: React.ReactNode, defaultOpen?: boolean, id?: string }) => {
+const AccordionSection = ({ title, children, defaultOpen = true, id, className, onOpen }: { title: string, children: React.ReactNode, defaultOpen?: boolean, id?: string, className?: string, onOpen?: () => void }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     return (
-        <div id={id} className="bg-[#F8F9FA] rounded-[20px] mb-6 overflow-hidden scroll-mt-24">
+        <div id={id} className={`bg-[#F8F9FA] rounded-[20px] mb-6 overflow-hidden scroll-mt-24 ${className || ''}`}>
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => {
+                    setIsOpen(!isOpen);
+                    if (!isOpen && onOpen) onOpen();
+                }}
                 className="w-full flex items-center text-left transition-opacity hover:opacity-70 focus:outline-none"
                 style={{ padding: '20px' }}
             >
@@ -82,6 +85,16 @@ export default function ProjectDetail({
     const [carouselOpen, setCarouselOpen] = useState(false);
     const [carouselInitialIndex, setCarouselInitialIndex] = useState(0);
 
+    const activeSections = [
+        { key: 'problem', title: project.sectionProblem, content: project.contentProblem },
+        { key: 'context', title: project.sectionContext, content: project.contentContext },
+        { key: 'action', title: project.sectionAction, content: project.contentAction },
+        { key: 'decision', title: project.sectionDecision, content: project.contentDecision },
+        { key: 'result', title: project.sectionResult, content: project.contentResult },
+    ].filter(s => s.title && s.content);
+
+    const [activeSectionKey, setActiveSectionKey] = useState<string>(activeSections[0]?.key || '');
+
     const getLocalizedValue = (val: string | { es: string; en: string } | undefined): string => {
         if (!val) return "";
         return typeof val === "string" ? val : val[locale];
@@ -114,14 +127,6 @@ export default function ProjectDetail({
         setCarouselInitialIndex(index);
         setCarouselOpen(true);
     };
-
-    const activeSections = [
-        { key: 'problem', title: project.sectionProblem, content: project.contentProblem },
-        { key: 'context', title: project.sectionContext, content: project.contentContext },
-        { key: 'action', title: project.sectionAction, content: project.contentAction },
-        { key: 'decision', title: project.sectionDecision, content: project.contentDecision },
-        { key: 'result', title: project.sectionResult, content: project.contentResult },
-    ].filter(s => s.title && s.content);
 
     const remainingMedia = allMedia.slice(1);
     const sectionMedia: Record<string, typeof allMedia> = {};
@@ -304,7 +309,7 @@ export default function ProjectDetail({
                         )}
                     </div>
 
-                    <h1 className="font-bold text-black leading-tight mb-6 text-[2.5rem] md:text-[3rem]" style={{ fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                    <h1 className="font-bold text-black leading-tight mb-6 text-[2.5rem] md:text-[3rem] lg:text-[2.8rem]" style={{ fontFamily: "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
                         {title}
                     </h1>
 
@@ -349,19 +354,26 @@ export default function ProjectDetail({
             </div>
 
             {/* 3-Column Layout for TOC (Left Aligned) and Content (Centered) */}
-            <div className="w-full page-layout mt-8 sm:mt-12 flex flex-col lg:flex-row xl:justify-between gap-8 lg:gap-12 xl:gap-0 items-start">
+            <div className="w-full page-layout mt-8 sm:mt-12 flex flex-col lg:flex-row xl:justify-between gap-8 lg:gap-28 xl:gap-28 items-start">
 
                 {/* Left Column: Table of Contents (Sticky) */}
                 {activeSections.length > 0 && (
-                    <div className="w-full lg:w-[280px] flex-shrink-0 lg:sticky lg:top-24 mb-12 lg:mb-0">
+                    <div className="w-full lg:w-[280px] flex-shrink-0 lg:sticky lg:top-24 mb-12 lg:mb-0 pr-6 border-r border-gray-200">
                         {/* TOC Box */}
-                        <div className="border border-gray-200 rounded-xl bg-white mb-12" style={{ padding: '16px' }}>
-                            <h3 className="font-bold text-black text-xl mb-4">Table of contents</h3>
+                        <div className="mb-12">
+                            {/* <h3 className="font-bold text-black text-xl mb-4">Table of contents</h3> */}
                             <ul className="space-y-4" style={{ paddingTop: '8px' }}>
                                 {activeSections.map(section => (
                                     <li key={section.key} className="flex items-start">
                                         {/* <span className="text-gray-400 mr-3 mt-[1px] font-mono font-light select-none" style={{ fontSize: '1.1rem', lineHeight: '1.2', paddingTop: '8px' }}>└</span> */}
-                                        <a href={`#${section.key}`} className="text-[#3b82f6] hover:underline transition-colors text-[1.05rem] leading-snug" style={{ paddingTop: '8px' }}>
+                                        <a
+                                            href={`#${section.key}`}
+                                            className={`transition-colors text-[1.05rem] leading-snug ${activeSectionKey === section.key ? 'text-[#3b82f6]' : 'text-gray-400'}`}
+                                            style={{ paddingTop: '8px' }}
+                                            onClick={(e) => {
+                                                setActiveSectionKey(section.key);
+                                            }}
+                                        >
                                             {getLocalizedValue(section.title)}
                                         </a>
                                     </li>
@@ -407,15 +419,15 @@ export default function ProjectDetail({
                         </div>
                     )}
 
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-8" style={{ paddingTop: '48px' }}>
                         {activeSections.map((section, idx) => {
                             const titleStr = getLocalizedValue(section.title);
                             const contentStr = getLocalizedValue(section.content);
                             const mediaList = sectionMedia[section.key] || [];
 
                             return (
-                                <AccordionSection key={section.key} id={section.key} title={titleStr} defaultOpen={true}>
-                                    <div className="font-normal text-gray-700 leading-relaxed" style={{ fontSize: '1rem', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <AccordionSection key={section.key} id={section.key} title={titleStr} defaultOpen={idx === 0} onOpen={() => setActiveSectionKey(section.key)}>
+                                    <div className="font-normal text-gray-700 leading-relaxed text-base lg:text-[0.9rem]" style={{ fontSize: '1rem', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                         {renderTextBlocks(contentStr)}
                                     </div>
                                     {renderMediaGrid(mediaList)}
