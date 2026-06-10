@@ -24,9 +24,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         };
     }
 
+    const firstImage = project.images?.[0];
+
     return {
-        title: `${project.title.es} | Portfolio`,
+        title: `${project.title.es} — Caso de estudio`,
         description: project.shortDescription.es,
+        alternates: {
+            canonical: `/${project.slug}`,
+        },
+        openGraph: {
+            type: "article",
+            title: `${project.title.es} — Caso de estudio de Product Design`,
+            description: project.shortDescription.es,
+            ...(firstImage ? { images: [{ url: firstImage }] } : {}),
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${project.title.es} — Caso de estudio`,
+            description: project.shortDescription.es,
+        },
     };
 }
 

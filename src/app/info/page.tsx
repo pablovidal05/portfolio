@@ -8,9 +8,9 @@ export default function InfoPage() {
   const { locale } = useLocale();
   const bio = profile.bio[locale];
   
-  const titles = locale === "es" 
-    ? ["Diseñador Digital", "Product Designer", "Diseñador Web"]
-    : ["Digital Designer", "Product Designer", "Web Designer"];
+  const titles = locale === "es"
+    ? ["Product Designer", "Diseñador Digital", "Diseñador Web"]
+    : ["Product Designer", "Digital Designer", "Web Designer"];
   
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -29,7 +29,7 @@ export default function InfoPage() {
 
   // Reemplazar "Diseñador Digital" o "Digital Designer" con la versión animada
   const renderAnimatedBio = () => {
-    const searchText = locale === "es" ? "Diseñador Digital" : "Digital Designer";
+    const searchText = "Product Designer";
     const parts = bio.split(searchText);
     
     if (parts.length === 2) {
@@ -65,7 +65,7 @@ export default function InfoPage() {
                   {locale === "es" ? "Hola, soy un" : "Hello, I'm a"}
                 </span>
                 <br />
-                {locale === "es" ? "Product Design chileno!" : "Chilean Product Designer!"}
+                {locale === "es" ? "Product Designer chileno!" : "Chilean Product Designer!"}
               </h1>
             </div>
           </div>

@@ -33,7 +33,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "nav.info": "Info",
     "nav.projects": "Projects",
     "hero.selected": "Scalable design solutions",
-    "hero.works": "Transformo sistemas complejos en experiencias claras y confiables.",
+    "hero.works": "I turn complex financial systems into simple, trustworthy experiences.",
     "hero.shortDescription": "Designer specialized in B2B conversion optimization and systemic scalability. Design aligned with business goals and engineering technical language.",
     "project.readMore": "Read More",
     "project.watch": "Watch",

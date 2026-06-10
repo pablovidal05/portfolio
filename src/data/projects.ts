@@ -509,8 +509,8 @@ export const allProjects: Project[] = ([
       ]
     }
   },
-  /*{
-   /* id: "12",
+  {
+    id: "12",
     slug: "vertice-web-checkin",
     title: {
       es: "Finanzas no debería depender de que nadie se equivoque. Cómo automatizamos cobros y facturación para el operador turístico de Torres del Paine.",
@@ -575,10 +575,7 @@ export const allProjects: Project[] = ([
       es: "El entregable no fue un formulario de carga ni una tabla de cobros — fue un sistema que hace imposible una categoría completa de errores.\n\nNingún cobro con datos inválidos llega a FNS. Cualquier fallo nocturno se reporta automáticamente antes de que alguien lo tenga que buscar. Las reglas de facturación están en el sistema, no en la cabeza de nadie.\n\n**Esperamos:** 10–20 hrs/mes recuperadas en finanzas · 0 cobros con datos inválidos en FNS · tiempo de detección de fallos de días a horas · 100% de reglas de facturación cubiertas por el sistema, sin depender de conocimiento tácito.",
       en: "The deliverable wasn't an upload form or a charges table — it was a system that makes an entire category of errors impossible.\n\nNo charge with invalid data reaches FNS. Any overnight failure is reported automatically before anyone has to go looking for it. The invoicing rules are in the system, not in anyone's head.\n\n**We expect:** 10–20 hrs/month recovered in finance · 0 invalid charges created in FNS · fault detection time from days to hours · 100% of invoicing rules covered by the system, without depending on tacit knowledge."
     },
-    images: [
-      "/images/vertice/vertice-1.png",
-      "/images/vertice/vertice-2.png"
-    ],
+    images: [],
     videos: [
       "/images/vertice/vertice-1.mp4",
       "/images/vertice/vertice-2.mp4",
@@ -588,9 +585,6 @@ export const allProjects: Project[] = ([
     customSectionMedia: {
       problem: [
         { type: 'video', src: '/images/vertice/vertice-1.mp4' }
-      ],
-      context: [
-        { type: 'image', src: '/images/vertice/vertice-1.png' }
       ],
       action: [
         { type: 'video', src: '/images/vertice/vertice-2.mp4' }
@@ -602,7 +596,7 @@ export const allProjects: Project[] = ([
         { type: 'video', src: '/images/vertice/vertice-4.mp4' }
       ]
     }
-  )},
+  },
   {
     id: "13",
     slug: "consorcio-mi-inversion",
@@ -611,11 +605,12 @@ export const allProjects: Project[] = ([
       en: "How many investments didn't happen because the flow didn't understand the user?"
     },
     role: {
-      es: "Product Designer — Prototipo y propuesta de criterio conductual",
-      en: "Product Designer — Prototype and behavioral design proposal"
+      es: "Product Designer — Caso concepto: prototipo y propuesta de criterio conductual (proyecto no solicitado, sin afiliación con Consorcio)",
+      en: "Product Designer — Concept case: prototype and behavioral design proposal (unsolicited project, not affiliated with Consorcio)"
     },
     year: "2026",
     category: "product-design",
+    hidden: true,
     tags: ["Product Design", "Behavioral Design", "Fintech", "Inversiones", "Prototipado"],
     kpiSubtitle: {
       es: "2 pasos eliminados del flujo · 3 palancas de retención sin activar · 1 principio que lo explica todo",
@@ -697,7 +692,7 @@ export const allProjects: Project[] = ([
         { type: 'video', src: '/images/mi-inversion/mi-inversion-hero.mp4' }
       ]
     }
-  } */
+  }
 ]);
 
 export const projects = allProjects
@@ -709,10 +704,10 @@ export const projects = allProjects
   });
 
 export function getProjectBySlug(slug: string): Project | undefined {
-  return allProjects.find((project) => project.slug === slug);
+  return projects.find((project) => project.slug === slug);
 }
 
 export function getAllProjectSlugs(): string[] {
-  return allProjects.map((project) => project.slug);
+  return projects.map((project) => project.slug);
 }
 

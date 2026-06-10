@@ -33,8 +33,8 @@ export const profile: Profile = {
     en: "Pablo Vidal"
   },
   bio: {
-    es: "Soy Diseñador Digital con base UX/UI y más de 5 años de experiencia en agencias y empresas tecnológicas. Estoy especializado en growth design para web, e-commerce y email marketing, creando sistemas visuales claros, escalables y orientados a conversión. Manejo el ciclo completo: ideación, diseño, implementación y testeo, entregando piezas listas para producción en WordPress, Shopify y Webflow. Trabajo con enfoque en performance (CRO), usabilidad y mejoras continuas basadas en datos.",
-    en: "I'm a Digital Designer with a UX/UI foundation and over 5 years of experience in agencies and tech companies. I specialize in growth design for web, e-commerce, and email marketing, creating clear, scalable, conversion-oriented visual systems. I handle the complete cycle: ideation, design, implementation, and testing, delivering production-ready pieces in WordPress, Shopify, and Webflow. I work with a focus on performance (CRO), usability, and continuous data-driven improvements."
+    es: "Soy Product Designer con más de 5 años de experiencia en agencias y empresas tecnológicas. Me especializo en design systems, flujos transaccionales y optimización de conversión en productos B2B y e-commerce: he escalado design systems en SaaS, rediseñado experiencias de compra de alto volumen y diseñado interfaces para plataformas de datos. Manejo el ciclo completo —ideación, diseño, implementación y testeo— en colaboración directa con ingeniería, con foco en performance, usabilidad y decisiones basadas en datos. Hoy mi foco está en productos financieros: convertir sistemas complejos en experiencias simples y confiables.",
+    en: "I'm a Product Designer with over 5 years of experience in agencies and tech companies. I specialize in design systems, transactional flows, and conversion optimization for B2B and e-commerce products: I've scaled design systems in SaaS, redesigned high-volume purchase experiences, and designed interfaces for data platforms. I handle the complete cycle —ideation, design, implementation, and testing— working directly with engineering, focused on performance, usability, and data-driven decisions. Today my focus is financial products: turning complex systems into simple, trustworthy experiences."
   },
   email: "p.vidal005@gmail.com",
   experience: [
@@ -82,18 +82,18 @@ export const profile: Profile = {
     }
   ],
   skills: [
-    "UX/UI Design",
-    "Growth Design",
-    "E-commerce Design",
-    "Email Marketing",
-    "WordPress",
-    "Shopify",
-    "Webflow",
-    "CRO",
+    "Product Design",
     "Design Systems",
-    "Prototyping",
+    "UX/UI Design",
     "User Research",
-    "A/B Testing"
+    "Prototyping",
+    "A/B Testing",
+    "CRO",
+    "Growth Design",
+    "AI Workflows (Claude Code)",
+    "E-commerce Design",
+    "Shopify",
+    "Webflow"
   ]
 };
 
