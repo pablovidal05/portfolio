@@ -74,6 +74,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "QFcWoS_gd_VsNzvZSgFaV9b2L0KQ95BtrbXudiBcS-g",
+  },
   other: {
     "google-fonts":
       "https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap",

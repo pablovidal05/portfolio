@@ -6,6 +6,7 @@ import { projects, ProjectCategory } from "@/data/projects";
 import { useLocale } from "@/contexts/LocaleContext";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectTabs from "@/components/ProjectTabs";
+import FAQSection from "@/components/FAQSection";
 import { Project } from "@/data/projects";
 
 const VALID_CATEGORIES: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
@@ -95,6 +96,8 @@ function HomeContent() {
             ))}
           </div>
         </div>
+
+        <FAQSection />
       </div>
     </>
   );
