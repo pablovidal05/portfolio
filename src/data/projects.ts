@@ -21,6 +21,7 @@ export interface Project {
   year: string;
   category: ProjectCategory;
   tags: string[];
+  topics?: string[];
   shortDescription: {
     es: string;
     en: string;
@@ -237,6 +238,7 @@ export const allProjects: Project[] = ([
   {
     id: "9",
     slug: "explora-app-ui-kit",
+    topics: ["#designsystem", "#uikit", "#turismo", "#mobile"],
     title: {
       es: "Cómo le dimos a Explora un sistema que permite lanzar features sin empezar desde cero",
       en: "How we gave Explora a system that lets them launch features without starting from scratch"
@@ -314,6 +316,7 @@ export const allProjects: Project[] = ([
   {
     id: "10",
     slug: "buk-design-system-escalamiento",
+    topics: ["#designsystem", "#dashboard", "#b2b", "#formularios"],
     title: {
       es: "Cómo unifiqué el módulo de formularios de Buk antes de que el parche se volviera estándar",
       en: "How I unified Buk's forms module before the patch became the standard"
@@ -413,6 +416,7 @@ export const allProjects: Project[] = ([
   {
     id: "11",
     slug: "latam-airlines-recap",
+    topics: ["#branding", "#dataviz", "#b2b", "#aerolínea"],
     title: {
       es: "Cómo ayudé a LATAM a demostrarle valor a 1.600 empresas en el momento exacto que importaba",
       en: "How I helped LATAM demonstrate value to 1,600 companies at the exact moment it mattered"
@@ -512,6 +516,7 @@ export const allProjects: Project[] = ([
   {
     id: "12",
     slug: "vertice-web-checkin",
+    topics: ["#fintech", "#turismo", "#automatización", "#facturación"],
     title: {
       es: "Finanzas no debería depender de que nadie se equivoque. Cómo automatizamos cobros y facturación para el operador turístico de Torres del Paine.",
       en: "Finance shouldn't depend on nobody making a mistake. How we automated billing and invoicing for Torres del Paine's leading tour operator."
@@ -600,96 +605,185 @@ export const allProjects: Project[] = ([
   {
     id: "13",
     slug: "consorcio-mi-inversion",
+    topics: ["#inversiones", "#fintech", "#behavioral", "#dashboard"],
     title: {
       es: "¿Cuántas inversiones no ocurrieron porque el flujo no entendía al usuario?",
       en: "How many investments didn't happen because the flow didn't understand the user?"
     },
     role: {
-      es: "Product Designer — Caso concepto: prototipo y propuesta de criterio conductual (proyecto no solicitado, sin afiliación con Consorcio)",
-      en: "Product Designer — Concept case: prototype and behavioral design proposal (unsolicited project, not affiliated with Consorcio)"
+      es: "Product Designer — Caso concepto, no solicitado. Soy usuario de Mi Inversión: esto es lo que me hubiera gustado diseñar en la app (sin afiliación con Consorcio)",
+      en: "Product Designer — Unsolicited concept case. I'm a Mi Inversión user: this is what I would have loved to design in the app (not affiliated with Consorcio)"
     },
     year: "2026",
     category: "product-design",
-    hidden: true,
-    tags: ["Product Design", "Behavioral Design", "Fintech", "Inversiones", "Prototipado"],
+    hidden: false,
+    tags: ["Product Design", "Discovery", "UX Research", "Behavioral Design", "Fintech", "Inversiones", "Prototipado"],
     kpiSubtitle: {
-      es: "2 pasos eliminados del flujo · 3 palancas de retención sin activar · 1 principio que lo explica todo",
-      en: "2 steps removed from the flow · 3 unactivated retention levers · 1 principle that explains everything"
+      es: "2 pasos que eliminaría del flujo · 3 palancas de retención que activaría · 1 principio que lo explica todo",
+      en: "2 steps I'd remove from the flow · 3 retention levers I'd activate · 1 principle that explains it all"
     },
     shortDescription: {
-      es: "Consorcio tenía el producto. El flujo estaba perdiendo usuarios antes de que invirtieran. Prototipé la propuesta de lo que el sistema todavía no entendía sobre su usuario.",
-      en: "Consorcio had the product. The flow was losing users before they invested. I prototyped the proposal of what the system still didn't understand about its user."
+      es: "Uso Mi Inversión. Cada vez que llegaba a la pantalla de compra pensaba: 'esto me hubiera gustado diseñarlo distinto'. Así que lo hice — un prototipo de lo que el sistema todavía no entiende sobre su usuario, tratado como criterio de diseño, no como queja.",
+      en: "I use Mi Inversión. Every time I hit the purchase screen I thought: 'I'd have loved to design this differently'. So I did — a prototype of what the system still doesn't understand about its user, treated as a design exercise, not a complaint."
     },
     fullDescription: {
-      es: "",
-      en: ""
+      es: "Caso concepto no solicitado: lo que me hubiera gustado diseñar en la app de inversiones de Consorcio, aplicando diseño conductual (chunking, loss aversion, endowed progress) como criterio estructural sobre un flujo de compra de acciones.",
+      en: "Unsolicited concept case: what I would have loved to design in Consorcio's investment app, applying behavioral design (chunking, loss aversion, endowed progress) as structural criteria over a stock purchase flow."
     },
     sectionProblem: {
       es: "El Riesgo",
       en: "The Risk"
     },
     contentProblem: {
-      es: "El mayor riesgo de un producto financiero no es que el usuario no entienda la interfaz — es que el sistema no entienda al usuario.\n\nMi Inversión permitía comprar acciones desde el celular. El problema no era técnico: era que el flujo de compra pedía al usuario tomar decisiones conceptuales que nunca le había explicado. Monto o cantidad. Precio de mercado o precio límite. Sin contexto, sin jerarquía, sin modelo mental.\n\nCada vez que un usuario abandonaba el flujo, era una inversión que no ocurrió — y un usuario menos comprometido con la plataforma.",
-      en: "The greatest risk of a financial product is not that the user doesn't understand the interface — it's that the system doesn't understand the user.\n\nMi Inversión allowed buying stocks from a mobile device. The problem wasn't technical: the purchase flow asked users to make conceptual decisions it had never explained to them. Amount or quantity. Market price or limit price. No context, no hierarchy, no mental model.\n\nEvery time a user abandoned the flow, it was an investment that didn't happen — and one less user committed to the platform."
+      es: "El mayor riesgo de un producto financiero no es que el usuario no entienda la interfaz — es que el sistema no entienda al usuario.\n\nMi Inversión deja comprar acciones desde el celular. Como usuario, el roce no lo sentí en lo técnico: el flujo de compra me pedía tomar decisiones conceptuales que nunca me había explicado. Monto o cantidad. Precio de mercado o precio límite. Sin contexto, sin jerarquía, sin modelo mental.\n\nNo tengo las métricas de Consorcio — pero conozco el patrón: cada vez que un flujo así te hace dudar, la duda es una inversión que no ocurre y un usuario menos enganchado con la plataforma. Ese es el riesgo que me hubiera gustado atacar.",
+      en: "The greatest risk of a financial product is not that the user doesn't understand the interface — it's that the system doesn't understand the user.\n\nMi Inversión lets you buy stocks from your phone. As a user, the friction wasn't technical: the purchase flow asked me to make conceptual decisions it had never explained to me. Amount or quantity. Market price or limit price. No context, no hierarchy, no mental model.\n\nI don't have Consorcio's metrics — but I know the pattern: every time a flow like this makes you hesitate, that hesitation is an investment that doesn't happen and one less user hooked on the platform. That's the risk I would have loved to tackle."
     },
     sectionContext: {
       es: "El Usuario",
       en: "The User"
     },
     contentContext: {
-      es: "El usuario de Mi Inversión no es un trader. Es alguien que quiere invertir sus ahorros sin necesitar un corredor de bolsa.\n\nEse usuario llega al flujo con una intención simple: 'quiero poner $50.000 en FALABELLA'. Lo que encuentra es un formulario que le pregunta simultáneamente por monto, cantidad, tipo de orden y precio — cuatro variables que para él son una sola decisión.\n\nEl flujo no estaba mal construido técnicamente. Estaba mal ordenado conductualmente: le pedía al usuario datos antes de resolver su modelo mental.",
-      en: "The Mi Inversión user is not a trader. They're someone who wants to invest their savings without needing a stockbroker.\n\nThis user arrives at the flow with a simple intent: 'I want to put $50,000 into FALABELLA'. What they find is a form simultaneously asking about amount, quantity, order type, and price — four variables that for them are a single decision.\n\nThe flow wasn't poorly built technically. It was poorly ordered behaviorally: it asked the user for data before resolving their mental model."
+      es: "El usuario de Mi Inversión no es un trader. Es alguien que quiere invertir sus ahorros sin necesitar un corredor de bolsa. Soy exactamente ese usuario.\n\nLlego al flujo con una intención simple: 'quiero poner $50.000 en FALABELLA'. Lo que encuentro es un formulario que me pregunta a la vez por monto, cantidad, tipo de orden y precio — cuatro variables que para mí son una sola decisión.\n\nPara no diseñar a ciegas, miré cómo resuelven este mismo paso otras apps de inversión retail en Chile (Fintual, Racional) y benchmarks fintech afuera: casi todas ordenan la decisión antes de pedir el dato. Eso confirmó que no era preferencia mía — era una brecha de patrón.\n\nEl flujo no está mal construido técnicamente. Está mal ordenado conductualmente: me pide datos antes de resolver mi modelo mental. Eso es lo que me hizo querer rediseñarlo.",
+      en: "The Mi Inversión user is not a trader. They're someone who wants to invest their savings without needing a stockbroker. I'm exactly that user.\n\nI arrive at the flow with a simple intent: 'I want to put $50,000 into FALABELLA'. What I find is a form simultaneously asking me about amount, quantity, order type, and price — four variables that for me are a single decision.\n\nTo avoid designing blind, I looked at how other retail investment apps in Chile (Fintual, Racional) and fintech benchmarks abroad solve this same step: almost all of them order the decision before asking for the data. That confirmed it wasn't my personal preference — it was a pattern gap.\n\nThe flow isn't poorly built technically. It's poorly ordered behaviorally: it asks me for data before resolving my mental model. That's what made me want to redesign it."
     },
     sectionAction: {
-      es: "Lo que prototipé",
-      en: "What I prototyped"
+      es: "Lo que haría",
+      en: "What I would do"
     },
     contentAction: {
-      es: "Construí un prototipo de propuesta para Consorcio aplicando tres principios de diseño conductual como criterio estructural — no como decoración.\n\nChunking: dividí la entrada de la orden según cómo el usuario piensa su inversión. Primero elige si quiere invertir por monto o por cantidad. Después ingresa solo ese dato. El sistema traduce automáticamente al otro modo en el resumen. Dos pasos menos, cero funcionalidad perdida.\n\nLoss aversion: el rojo que señalaba variaciones de precio activaba señal de pérdida sin contexto. La propuesta reemplaza el color como alerta indiscriminada por color como información contextualizada — con una línea de explicación que le dice al usuario qué significa ese número para su decisión.\n\nEndowed progress: el historial de transacciones listaba operaciones sin conectarlas a ningún objetivo. La propuesta agrega una capa de progreso visible: 'llevas 3 compras hacia tu meta de ahorro'. Eso no es decoración — es la diferencia entre un usuario que siente que avanza y uno que siente que recién empieza.",
-      en: "I built a proposal prototype for Consorcio applying three behavioral design principles as structural criteria — not decoration.\n\nChunking: I split the order entry based on how the user thinks about their investment. First they choose whether to invest by amount or by quantity. Then they enter just that one piece of data. The system automatically translates to the other mode in the summary. Two fewer steps, zero lost functionality.\n\nLoss aversion: the red used to signal price variations activated a loss signal without context. The proposal replaces color as an indiscriminate alert with color as contextualized information — with an explanatory line telling the user what that number means for their decision.\n\nEndowed progress: the transaction history listed operations without connecting them to any goal. The proposal adds a visible progress layer: 'you've made 3 purchases toward your savings goal'. That's not decoration — it's the difference between a user who feels they're moving forward and one who feels they're just starting."
+      es: "Prototipé la propuesta aplicando tres principios de diseño conductual como criterio estructural — no como decoración.\n\nChunking: dividiría la entrada de la orden según cómo el usuario piensa su inversión. Primero elige si quiere invertir por monto o por cantidad. Después ingresa solo ese dato. El sistema traduce automáticamente al otro modo en el resumen. Dos pasos menos, cero funcionalidad perdida.\n\nLoss aversion: hoy el rojo que señala variaciones de precio activa señal de pérdida sin contexto. Reemplazaría el color como alerta indiscriminada por color como información contextualizada — con una línea de explicación que le dice al usuario qué significa ese número para su decisión.\n\nEndowed progress: el historial de transacciones lista operaciones sin conectarlas a ningún objetivo. Agregaría una capa de progreso visible: 'llevas 3 compras hacia tu meta de ahorro'. Eso no es decoración — es la diferencia entre un usuario que siente que avanza y uno que siente que recién empieza.",
+      en: "I prototyped the proposal applying three behavioral design principles as structural criteria — not decoration.\n\nChunking: I'd split the order entry based on how the user thinks about their investment. First they choose whether to invest by amount or by quantity. Then they enter just that one piece of data. The system automatically translates to the other mode in the summary. Two fewer steps, zero lost functionality.\n\nLoss aversion: today the red that signals price variations fires a loss signal without context. I'd replace color as an indiscriminate alert with color as contextualized information — with an explanatory line telling the user what that number means for their decision.\n\nEndowed progress: the transaction history lists operations without connecting them to any goal. I'd add a visible progress layer: 'you've made 3 purchases toward your savings goal'. That's not decoration — it's the difference between a user who feels they're moving forward and one who feels they're just starting."
     },
     sectionDecision: {
       es: "¿Por qué esto y no un rediseño visual?",
       en: "Why this and not a visual redesign?"
     },
     contentDecision: {
-      es: "Porque el problema no era de interfaz — era de secuencia.\n\nUn rediseño visual hubiera cambiado cómo se veía el flujo. Lo que propuse cambia cuándo el usuario toma cada decisión — y eso es lo que determina si completa la orden o abandona.\n\nLa pantalla de confirmación es el ejemplo más claro: cerraba la transacción correctamente pero no construía relación con el usuario después de ella. Un mensaje como 'tu orden fue procesada — te avisamos cuando el precio llegue a tu rango objetivo' convierte el cierre en un gancho de retorno. No es más diseño — es diseño en el momento correcto.\n\nLas tres oportunidades que identifiqué — goal framing en el dashboard, endowed progress en el historial, next best action en la confirmación — no requieren rediseño completo. Requieren criterio sobre qué hace el sistema en cada momento de decisión del usuario.",
-      en: "Because the problem wasn't about interface — it was about sequence.\n\nA visual redesign would have changed how the flow looked. What I proposed changes when the user makes each decision — and that's what determines whether they complete the order or abandon it.\n\nThe confirmation screen is the clearest example: it correctly closed the transaction but didn't build a relationship with the user afterward. A message like 'your order was processed — we'll notify you when the price reaches your target range' converts the close into a return hook. It's not more design — it's design at the right moment.\n\nThe three opportunities I identified — goal framing in the dashboard, endowed progress in the history, next best action in the confirmation — don't require a complete redesign. They require criteria about what the system does at each user decision moment."
+      es: "Porque el problema no es de interfaz — es de secuencia.\n\nUn rediseño visual cambiaría cómo se ve el flujo. Lo que propongo cambia cuándo el usuario toma cada decisión — y eso es lo que determina si completa la orden o abandona.\n\nLa pantalla de confirmación es el ejemplo más claro: cierra la transacción correctamente pero no construye relación con el usuario después de ella. Un mensaje como 'tu orden fue procesada — te avisamos cuando el precio llegue a tu rango objetivo' convertiría el cierre en un gancho de retorno. No es más diseño — es diseño en el momento correcto.\n\nLas tres oportunidades que identifiqué — goal framing en el dashboard, endowed progress en el historial, next best action en la confirmación — no requieren rediseño completo. Requieren criterio sobre qué hace el sistema en cada momento de decisión del usuario.\n\nY no termina en Figma: lo propuse así justamente porque es implementable sobre el front actual. El chunking reordena campos que ya existen; el copy de loss aversion y el gancho de retorno son texto y un trigger de notificación. Antes de comprometerlo, lo sentaría con desarrollo para validar restricciones — qué datos expone la API de órdenes, qué cuesta el trigger de precio objetivo — y ajustar el alcance a lo que el equipo puede sostener.",
+      en: "Because the problem isn't about interface — it's about sequence.\n\nA visual redesign would change how the flow looks. What I propose changes when the user makes each decision — and that's what determines whether they complete the order or abandon it.\n\nThe confirmation screen is the clearest example: it correctly closes the transaction but doesn't build a relationship with the user afterward. A message like 'your order was processed — we'll notify you when the price reaches your target range' would turn the close into a return hook. It's not more design — it's design at the right moment.\n\nThe three opportunities I identified — goal framing in the dashboard, endowed progress in the history, next best action in the confirmation — don't require a complete redesign. They require criteria about what the system does at each user decision moment.\n\nAnd it doesn't end in Figma: I proposed it this way precisely because it's implementable on the current front end. Chunking reorders fields that already exist; the loss-aversion copy and the return hook are text and a notification trigger. Before committing to it, I'd sit down with development to validate constraints — what the orders API exposes, what the target-price trigger costs — and scope it to what the team can sustain."
     },
     sectionResult: {
       es: "La Propuesta",
       en: "The Proposal"
     },
     contentResult: {
-      es: "El entregable no fue un rediseño — fue un diagnóstico con prototipo.\nUna propuesta de qué reglas debería seguir el sistema para entender a su usuario.\n\n**Lo que cambia con la propuesta:**\n• 2 pasos eliminados del flujo de compra sin reducir funcionalidad bursátil\n• Loss aversion neutralizada con contexto — el rojo informa, no asusta\n• 3 palancas de retención activadas: goal framing, endowed progress, next best action\n\n**La lectura de negocio:**\nCada usuario que completa su primera orden tiene un LTV significativamente mayor que uno que abandona. Reducir el abandono en la primera operación es la intervención con mayor retorno por esfuerzo en una plataforma de inversiones retail.",
-      en: "The deliverable was not a redesign — it was a diagnosis with prototype.\nA proposal of what rules the system should follow to understand its user.\n\n**What changes with the proposal:**\n• 2 steps removed from the purchase flow without reducing stock market functionality\n• Loss aversion neutralized with context — the red informs, doesn't scare\n• 3 retention levers activated: goal framing, endowed progress, next best action\n\n**The business read:**\nEvery user who completes their first order has a significantly higher LTV than one who abandons. Reducing abandonment in the first operation is the highest-return intervention per effort in a retail investment platform."
+      es: "El entregable no es un rediseño — es un diagnóstico con prototipo.\nUna propuesta de qué reglas debería seguir el sistema para entender a su usuario.\n\n**Lo que cambiaría con la propuesta:**\n• 2 pasos menos en el flujo de compra sin reducir funcionalidad bursátil\n• Loss aversion neutralizada con contexto — el rojo informa, no asusta\n• 3 palancas de retención activadas: goal framing, endowed progress, next best action\n\n**La hipótesis de negocio (no medida, así la atacaría):**\nEn una plataforma de inversiones retail, el usuario que completa su primera orden suele valer mucho más que el que abandona. Por eso priorizaría reducir el abandono en la primera operación: es donde una intervención conductual chica tiende a tener el mayor retorno por esfuerzo.\n\n**Cómo lo mediría:**\nLa señal de éxito no es 'se ve mejor' — es tasa de completitud de la primera orden y drop-off por paso del flujo. Instrumentaría el funnel, correría la propuesta contra el flujo actual (A/B o release gradual) y miraría completitud, tiempo a primera orden y retención a 30 días. Con acceso a la data de Consorcio, validar este supuesto sería el paso cero, antes de construir.",
+      en: "The deliverable isn't a redesign — it's a diagnosis with a prototype.\nA proposal of what rules the system should follow to understand its user.\n\n**What would change with the proposal:**\n• 2 fewer steps in the purchase flow without reducing stock-market functionality\n• Loss aversion neutralized with context — the red informs, doesn't scare\n• 3 retention levers activated: goal framing, endowed progress, next best action\n\n**The business hypothesis (not measured — this is how I'd attack it):**\nIn a retail investment platform, the user who completes their first order tends to be worth far more than one who abandons. That's why I'd prioritize reducing first-order abandonment: it's where a small behavioral intervention tends to have the highest return per effort.\n\n**How I'd measure it:**\nThe success signal isn't 'it looks better' — it's first-order completion rate and drop-off per step of the flow. I'd instrument the funnel, run the proposal against the current flow (A/B or staged release) and watch completion, time-to-first-order and 30-day retention. With access to Consorcio's data, validating this assumption would be step zero, before building."
     },
     images: [
-      "/images/mi-inversion/mi-inversion-1.png",
-      "/images/mi-inversion/mi-inversion-2.png",
-      "/images/mi-inversion/mi-inversion-3.png",
-      "/images/mi-inversion/mi-inversion-4.png",
-      "/images/mi-inversion/mi-inversion-5.png"
+      "/images/mi-inversion/mi-inversion-antes.png",
+      "/images/mi-inversion/mi-inversion-despues-1.png",
+      "/images/mi-inversion/mi-inversion-despues-2.png",
+      "/images/mi-inversion/mi-inversion-despues-3.png"
     ],
     videos: [
-      "/images/mi-inversion/mi-inversion-hero.mp4"
+      "/images/mi-inversion/mi-inversion-antes-despues.mp4"
     ],
     customSectionMedia: {
       problem: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-1.png' }
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-antes.png' }
       ],
       context: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-2.png' }
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-1.png' }
       ],
       action: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-3.png' },
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-4.png' }
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-2.png' },
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-3.png' }
       ],
       decision: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-5.png' }
+        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-3.png' }
       ],
       result: [
-        { type: 'video', src: '/images/mi-inversion/mi-inversion-hero.mp4' }
+        { type: 'video', src: '/images/mi-inversion/mi-inversion-antes-despues.mp4' }
+      ]
+    }
+  },
+  {
+    id: "14",
+    slug: "copiloto-financiero-conversacional",
+    topics: ["#fintech", "#conversational", "#agentes", "#openfinance"],
+    title: {
+      es: "Conecté mi banco a una IA para que mis gastos me hablen, no me los muestre",
+      en: "I connected my bank to an AI so my spending talks to me, instead of just showing it"
+    },
+    role: {
+      es: "Conversational Designer & Builder — proyecto personal",
+      en: "Conversational Designer & Builder — personal project"
+    },
+    year: "2026",
+    category: "product-design",
+    tags: ["Conversational Design", "Fintech", "Fintoc", "Open Finance", "IA", "Product Design", "Data Viz"],
+    kpiSubtitle: {
+      es: "Banco real vía Fintoc (open finance / SFA) · Búsqueda en lenguaje natural · Copiloto proactivo con triggers diseñados sobre movimientos bancarios reales",
+      en: "Real bank via Fintoc (open finance / SFA) · Natural-language search · Proactive copilot with triggers designed on real bank movements"
+    },
+    shortDescription: {
+      es: "Proyecto personal: conecté mi banco real a través de Fintoc — la API de open finance de Chile — y convertí mis movimientos en una conversación. En vez de una planilla fría, le pregunto en qué se me va la plata y un copiloto me responde, detecta patrones y me avisa antes de que sea tarde. Todo diseñado sobre data bancaria real, no de juguete.",
+      en: "Personal project: I connected my real bank through Fintoc — Chile's open finance API — and turned my movements into a conversation. Instead of a cold spreadsheet, I ask where my money goes and a copilot answers, detects patterns, and warns me before it's too late. All designed on real bank data, not toy data."
+    },
+    fullDescription: { es: "", en: "" },
+    sectionProblem: { es: "El Problema", en: "The Problem" },
+    contentProblem: {
+      es: "Los dashboards financieros muestran datos, no entienden a la persona. Yo tenía mis movimientos reales, pero ninguna herramienta me decía en lenguaje humano en qué se me iba la plata. El dato existía — y no generaba ninguna acción. Una planilla fría que nadie mira no cambia un hábito de consumo.",
+      en: "Financial dashboards show data; they don't understand the person. I had my real movements, but no tool told me — in human language — where my money was going. The data existed and drove zero action. A cold spreadsheet nobody looks at doesn't change a spending habit."
+    },
+    sectionContext: { es: "El Usuario", en: "The User" },
+    contentContext: {
+      es: "El usuario de finanzas personales no es un analista: no quiere aprender categorías, filtros ni armar tablas dinámicas. Llega con una intención simple — \"¿cuánto gasté en el super este mes?\", \"¿en qué se me va la plata?\". En mi caso el contexto era exigente: ingreso variable de múltiples fuentes y meses en rojo. Necesitaba claridad rápida y accionable, no más gráficos.",
+      en: "The personal-finance user isn't an analyst: they don't want to learn categories, filters, or build pivot tables. They arrive with a simple intent — \"how much did I spend on groceries this month?\", \"where does my money go?\". In my case the context was demanding: variable income from multiple sources and months in the red. I needed fast, actionable clarity, not more charts."
+    },
+    sectionAction: { es: "Lo que hice", en: "What I did" },
+    contentAction: {
+      es: "**La base: open finance, no un Excel.**\nConecté mi banco real (Scotiabank) usando Fintoc, la API que en Chile opera dentro del SFA (Sistema de Finanzas Abiertas, el marco de la Ley Fintech regulado por la CMF). El flujo no es subir una planilla: el usuario autoriza el acceso en una pantalla de consentimiento con su RUT — las credenciales nunca pasan por mi servidor — y Fintoc devuelve los movimientos ya normalizados, cada uno con un ID único e idempotente, así que no se duplican entre sincronizaciones. Eso me dio lo que ningún dataset de juguete entrega: data bancaria real, sucia y desordenada, sobre la cual diseñar de verdad — categorías inconsistentes, comercios con nombres crípticos, transferencias sin glosa.\n\n**Sobre esa base construí un copiloto que convierte los datos en conversación:**\n- Búsqueda en lenguaje natural que filtra todo el panel (\"gastos en super en marzo\").\n- Panel de hábitos con insights empáticos generados desde la data (cero juzgar).\n- Copiloto proactivo: triggers que detectan patrones (cash-flow en rojo, suscripciones, gasto recurrente) y los comunican como lo haría una persona.\n- Chat con flujo de reparación: cuando no entiende, ofrece caminos en vez de un \"no entendí\".\n\nMotor híbrido: reglas (gratis, instantáneas) + IA opcional. Stack: Fintoc API + Node.js + Chart.js, construido con Claude Code como copiloto de desarrollo.",
+      en: "**The foundation: open finance, not a spreadsheet.**\nI connected my real bank (Scotiabank) using Fintoc, the API that in Chile operates inside the SFA (Sistema de Finanzas Abiertas — the Fintech Law framework regulated by the CMF). The flow isn't uploading a file: the user authorizes access on a consent screen with their RUT — credentials never touch my server — and Fintoc returns already-normalized movements, each with a unique, idempotent ID, so they don't duplicate between syncs. That gave me what no toy dataset does: real, messy, disordered bank data to actually design on — inconsistent categories, merchants with cryptic names, transfers with no description.\n\n**On that foundation I built a copilot that turns data into conversation:**\n- Natural-language search that filters the whole panel (\"groceries in March\").\n- A habits panel with empathetic insights generated from the data (zero judgment).\n- A proactive copilot: triggers that detect patterns (cash-flow in the red, subscriptions, recurring spend) and communicate them the way a person would.\n- A chat with a repair flow: when it doesn't understand, it offers paths instead of a dead-end \"I didn't get that\".\n\nHybrid engine: rules (free, instant) + optional AI. Stack: Fintoc API + Node.js + Chart.js, built with Claude Code as the development copilot."
+    },
+    sectionDecision: { es: "¿Por qué conversación y no otro dashboard?", en: "Why conversation and not another dashboard?" },
+    contentDecision: {
+      es: "Un dashboard más solo agrega gráficos que igual nadie lee. El trabajo de un Conversational Designer no es decorar datos — es diseñar la conversación: cuándo el sistema habla, con qué tono (empático, sin culpas) y cómo se recupera cuando el usuario pide algo que no entiende.\n\nLa decisión clave fue diseñar los triggers sobre MIS datos reales, no sobre plantillas. Descarté alertas genéricas tipo \"fin de semana de bares\" porque mis números decían otra cosa (mi gasto en salidas era marginal; el 47% era un solo flujo). Diseñar para los datos del usuario, no copiar el playbook de otro, es lo que hace que el copiloto se sienta propio.\n\nY hay una apuesta de fondo. El open finance es el riel sobre el que se va a construir la próxima década de productos financieros en Chile y LatAm — Fintoc ya mueve pagos cuenta a cuenta (A2A) como alternativa a la tarjeta, y el SFA obliga a la banca a abrir sus datos con consentimiento. Diseñar con fluidez sobre ese riel — entender qué entrega la API, cómo se pide el consentimiento, qué se puede gatillar a partir de un movimiento real — no es detalle técnico: es la diferencia entre un diseñador que maqueta pantallas y uno que diseña el producto que el negocio sí puede construir y conectar.",
+      en: "One more dashboard just adds charts nobody reads. A Conversational Designer's job isn't to decorate data — it's to design the conversation: when the system speaks, in what tone (empathetic, no blame), and how it recovers when the user asks for something it doesn't understand.\n\nThe key decision was designing the triggers on MY real data, not on templates. I discarded generic alerts like \"dangerous weekend out\" because my numbers said otherwise (my going-out spend was marginal; 47% was a single flow). Designing for the user's data, instead of copying someone else's playbook, is what makes the copilot feel like its own.\n\nAnd there's a deeper bet. Open finance is the rail the next decade of financial products in Chile and LatAm will be built on — Fintoc already moves account-to-account (A2A) payments as an alternative to cards, and the SFA forces banks to open their data with consent. Designing fluently on that rail — understanding what the API delivers, how consent is requested, what can be triggered from a real movement — isn't a technical detail: it's the difference between a designer who mocks up screens and one who designs the product the business can actually build and connect."
+    },
+    sectionResult: { es: "El Resultado", en: "The Result" },
+    contentResult: {
+      es: "El entregable no fue un dashboard — fue un copiloto que detecta patrones y los dice como los diría una persona.\n\nPasé de \"creo que gasto mucho\" a ver en segundos que el 47% de mis gastos venía de un solo flujo. El sistema responde preguntas en lenguaje natural, analiza hábitos, calcula cuánto me queda de aire (runway) y lanza alertas proactivas antes de que el problema crezca.\n\nClaridad real, diseñada como conversación. Esto es la v1.\n\nEs un proyecto personal — pero también mi prueba de que sé diseñar sobre los rieles reales de la fintech chilena de hoy: open finance vía Fintoc, data bancaria real con consentimiento, e IA aplicada a un problema concreto. No es una maqueta de cómo se vería; es cómo funcionaría conectado.",
+      en: "The deliverable wasn't a dashboard — it was a copilot that detects patterns and says them the way a person would.\n\nI went from \"I think I spend too much\" to seeing, in seconds, that 47% of my spending came from a single flow. The system answers natural-language questions, analyzes habits, calculates how much runway I have left, and fires proactive alerts before the problem grows.\n\nReal clarity, designed as a conversation. This is the v1.\n\nIt's a personal project — but also my proof that I can design on the real rails of today's Chilean fintech: open finance via Fintoc, real bank data with consent, and AI applied to a concrete problem. It's not a mockup of how it would look; it's how it would work, connected."
+    },
+    images: [
+      "/images/copiloto/copiloto-fintoc-consola.png",
+      "/images/copiloto/copiloto-fintoc-bancos.png",
+      "/images/copiloto/copiloto-fintoc-consentimiento.png",
+      "/images/copiloto/copiloto-pasarela-a2a.png",
+      "/images/copiloto/copiloto-codigo.png",
+      "/images/copiloto/copiloto-github.png",
+      "/images/copiloto/copiloto-dashboard.png",
+      "/images/copiloto/copiloto-insight.png",
+      "/images/copiloto/copiloto-proactivo.png",
+      "/images/copiloto/copiloto-chat.png"
+    ],
+    videos: [
+      "/images/copiloto/copiloto-walkthrough.mp4",
+      "/images/copiloto/copiloto-terminal.mp4"
+    ],
+    customSectionMedia: {
+      problem: [
+        { type: 'image', src: '/images/copiloto/copiloto-insight.png' }
+      ],
+      context: [
+        { type: 'image', src: '/images/copiloto/copiloto-chat.png' }
+      ],
+      action: [
+        { type: 'image', src: '/images/copiloto/copiloto-fintoc-consola.png' },
+        { type: 'image', src: '/images/copiloto/copiloto-fintoc-consentimiento.png' },
+        { type: 'image', src: '/images/copiloto/copiloto-codigo.png' },
+        { type: 'image', src: '/images/copiloto/copiloto-pasarela-a2a.png' }
+      ],
+      decision: [
+        { type: 'image', src: '/images/copiloto/copiloto-proactivo.png' },
+        { type: 'image', src: '/images/copiloto/copiloto-github.png' }
+      ],
+      result: [
+        { type: 'video', src: '/images/copiloto/copiloto-walkthrough.mp4' },
+        { type: 'video', src: '/images/copiloto/copiloto-terminal.mp4' },
+        { type: 'image', src: '/images/copiloto/copiloto-dashboard.png' }
       ]
     }
   }

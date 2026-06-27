@@ -88,6 +88,24 @@ export default function ProjectCard({ project, onReadMore }: ProjectCardProps) {
               >
                 {description}
               </p>
+
+              {project.topics && project.topics.length > 0 && (
+                <div className="flex flex-wrap gap-x-3 gap-y-1" style={{ marginTop: "16px" }}>
+                  {project.topics.map((topic) => (
+                    <span
+                      key={topic}
+                      style={{
+                        fontSize: "0.72rem",
+                        color: "#8a8a8a",
+                        fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                        letterSpacing: "0.02em",
+                      }}
+                    >
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="mt-8 min-[850px]:mt-auto pt-0 min-[850px]:pt-8">

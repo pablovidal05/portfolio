@@ -105,11 +105,11 @@ export default function FAQSection() {
           {heading}
         </h2>
 
-        <div className="border-t border-white/10">
+        <div className="border-t border-white/10 flex flex-col gap-4 pt-4">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={f.q} className="border-b border-white/10">
+              <div key={f.q} className="border-b border-white/10 pb-1">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-4 py-5 text-left group"
