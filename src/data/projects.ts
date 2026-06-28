@@ -671,27 +671,27 @@ export const allProjects: Project[] = ([
       en: "The deliverable isn't a redesign — it's a diagnosis with a prototype.\nA proposal of what rules the system should follow to understand its user.\n\n**What would change with the proposal:**\n• 2 fewer steps in the purchase flow without reducing stock-market functionality\n• Loss aversion neutralized with context — the red informs, doesn't scare\n• 3 retention levers activated: goal framing, endowed progress, next best action\n\n**The business hypothesis (not measured — this is how I'd attack it):**\nIn a retail investment platform, the user who completes their first order tends to be worth far more than one who abandons. That's why I'd prioritize reducing first-order abandonment: it's where a small behavioral intervention tends to have the highest return per effort.\n\n**How I'd measure it:**\nThe success signal isn't 'it looks better' — it's first-order completion rate and drop-off per step of the flow. I'd instrument the funnel, run the proposal against the current flow (A/B or staged release) and watch completion, time-to-first-order and 30-day retention. With access to Consorcio's data, validating this assumption would be step zero, before building."
     },
     images: [
-      "/images/mi-inversion/mi-inversion-antes.png",
-      "/images/mi-inversion/mi-inversion-despues-1.png",
-      "/images/mi-inversion/mi-inversion-despues-2.png",
-      "/images/mi-inversion/mi-inversion-despues-3.png"
+      "/images/mi-inversion/mi-inversion-antes.png"
     ],
     videos: [
-      "/images/mi-inversion/mi-inversion-antes-despues.mp4"
+      "/images/mi-inversion/mi-inversion-antes-despues.mp4",
+      "/images/mi-inversion/mi-inversion-anim-1.mp4?v=2",
+      "/images/mi-inversion/mi-inversion-anim-2.mp4?v=2",
+      "/images/mi-inversion/mi-inversion-anim-3.mp4?v=2"
     ],
     customSectionMedia: {
       problem: [
         { type: 'image', src: '/images/mi-inversion/mi-inversion-antes.png' }
       ],
       context: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-1.png' }
+        { type: 'video', src: '/images/mi-inversion/mi-inversion-anim-1.mp4?v=2' }
       ],
       action: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-2.png' },
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-3.png' }
+        { type: 'video', src: '/images/mi-inversion/mi-inversion-anim-2.mp4?v=2' },
+        { type: 'video', src: '/images/mi-inversion/mi-inversion-anim-3.mp4?v=2' }
       ],
       decision: [
-        { type: 'image', src: '/images/mi-inversion/mi-inversion-despues-3.png' }
+        { type: 'video', src: '/images/mi-inversion/mi-inversion-anim-3.mp4?v=2' }
       ],
       result: [
         { type: 'video', src: '/images/mi-inversion/mi-inversion-antes-despues.mp4' }
