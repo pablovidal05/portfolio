@@ -7,6 +7,7 @@ import { useLocale } from "@/contexts/LocaleContext";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectTabs from "@/components/ProjectTabs";
 import FAQSection from "@/components/FAQSection";
+import Waves from "@/components/Waves";
 import { Project } from "@/data/projects";
 
 const VALID_CATEGORIES: ProjectCategory[] = ["all", "product-design", "ecommerce-landings", "graphic-design"];
@@ -87,7 +88,14 @@ function HomeContent() {
           onCategoryChange={setActiveCategory}
         />
       </Suspense>
-      <div className="min-h-screen bg-black flex flex-col">
+      <div
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{ backgroundColor: "#000" }}
+        aria-hidden="true"
+      >
+        <Waves lineColor="rgba(255, 255, 255, 0.16)" backgroundColor="transparent" />
+      </div>
+      <div className="relative z-10 min-h-screen flex flex-col">
         <div className="page-layout">
           <div className="text-center" style={{ paddingTop: '5rem', paddingBottom: '7rem', justifyItems: "center" }}>
             <div className="max-w-4xl mx-auto px-4">
