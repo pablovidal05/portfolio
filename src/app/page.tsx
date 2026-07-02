@@ -7,6 +7,7 @@ import { projects, ProjectCategory } from "@/data/projects";
 import { blogPosts } from "@/data/blogPosts";
 import { useLocale } from "@/contexts/LocaleContext";
 import ProjectCard from "@/components/ProjectCard";
+import ProjectCardVertical from "@/components/ProjectCardVertical";
 import ProjectTabs from "@/components/ProjectTabs";
 import FAQSection from "@/components/FAQSection";
 import Waves from "@/components/Waves";
@@ -69,7 +70,10 @@ function HomeContent() {
     "latam-airlines-recap",
     "buk-design-system-escalamiento",
   ];
-  const VISIBLE_COUNT = 4;
+  // Grilla vertical de 3 columnas (img → título → resto). Volver al layout
+  // horizontal antiguo = poner esto en false.
+  const VERTICAL_GRID = true;
+  const VISIBLE_COUNT = VERTICAL_GRID ? 6 : 4;
 
   const filteredProjects = useMemo(() => {
     const pd = projects.filter((project) => project.category === "product-design");
@@ -146,14 +150,25 @@ function HomeContent() {
                 : "Product, fintech and design systems case studies."}
             </p>
           </div>
-          <div className="space-y-48 md:space-y-64" style={{ paddingTop: '2rem' }}>
-            {visibleProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-              />
-            ))}
-          </div>
+          {VERTICAL_GRID ? (
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
+              style={{ paddingTop: "2rem" }}
+            >
+              {visibleProjects.map((project, i) => (
+                <ProjectCardVertical key={project.id} project={project} index={i} />
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-48 md:space-y-64" style={{ paddingTop: '2rem' }}>
+              {visibleProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                />
+              ))}
+            </div>
+          )}
 
           {hasMore && !showAll && (
             <div className="flex justify-center" style={{ paddingTop: '4rem' }}>

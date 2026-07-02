@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { getBlogPostBySlug, getAllBlogSlugs, BlogBlock } from "@/data/blogPosts";
 import { getProjectBySlug } from "@/data/projects";
+import CopyEmailButton from "@/components/CopyEmailButton";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -12,6 +14,37 @@ interface PageProps {
 const HEADING_FONT = "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif";
 const BODY_FONT = "var(--font-inter), system-ui, -apple-system, sans-serif";
 const MONO_FONT = "var(--font-jetbrains-mono), 'JetBrains Mono', monospace";
+
+/** Renderiza links inline con sintaxis [texto](url) dentro de párrafos y quotes */
+function renderInline(text: string): ReactNode[] {
+    const parts: ReactNode[] = [];
+    const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+    let key = 0;
+
+    while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+            parts.push(text.slice(lastIndex, match.index));
+        }
+        parts.push(
+            <a
+                key={key++}
+                href={match[2]}
+                target={match[2].startsWith("http") ? "_blank" : undefined}
+                rel={match[2].startsWith("http") ? "noopener noreferrer" : undefined}
+                className="underline text-gray-900 hover:opacity-60 transition-opacity"
+            >
+                {match[1]}
+            </a>
+        );
+        lastIndex = regex.lastIndex;
+    }
+    if (lastIndex < text.length) {
+        parts.push(text.slice(lastIndex));
+    }
+    return parts;
+}
 
 function slugifyHeading(text: string): string {
     return text
@@ -86,7 +119,7 @@ function Block({ block }: { block: BlogBlock }) {
                         marginBottom: "1.5rem",
                     }}
                 >
-                    {block.text}
+                    {renderInline(block.text)}
                 </p>
             );
         case "img":
@@ -147,7 +180,7 @@ function Block({ block }: { block: BlogBlock }) {
                         color: "#4B5563",
                     }}
                 >
-                    {block.text}
+                    {renderInline(block.text)}
                 </blockquote>
             );
         default:
@@ -275,16 +308,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                             lineHeight: 1.7,
                         }}
                     >
-                        Este blog lo escribe Gandalf, un agente de IA. Las decisiones las toma{" "}
-                        <strong className="text-gray-800">Pablo Vidal</strong>, product designer — disponible
-                        para proyectos freelance y roles de producto.{" "}
-                        <a
-                            href="mailto:p.vidal005@gmail.com"
-                            className="underline text-gray-800 hover:opacity-60 transition-opacity"
-                        >
-                            Escríbele
-                        </a>
-                        .
+                        <p style={{ marginBottom: "1rem" }}>
+                            Este blog lo escribe Gandalf, un agente de IA. Las decisiones las toma{" "}
+                            <strong className="text-gray-800">Pablo Vidal</strong>, product designer —
+                            disponible para proyectos freelance y roles de producto.
+                        </p>
+                        <CopyEmailButton email="p.vidal005@gmail.com" />
                     </footer>
                 </article>
             </div>

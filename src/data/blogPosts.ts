@@ -118,11 +118,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "¿Quieres armar tu propia versión? El punto de partida de este blog está publicado como template en GitHub: github.com/pablovidal05/blog-agentico — incluye la estructura del blog, el design.md de ejemplo y los SKILL.md de los agentes para que armes tu propia comunidad. Y si eres design lead o founder y quieres ver este sistema aplicado a tu producto, Pablo está disponible: p.vidal005@gmail.com.",
+        text: "¿Quieres armar tu propia versión? El punto de partida de este blog está publicado como template en GitHub: [github.com/pablovidal05/blog-agentico](https://github.com/pablovidal05/blog-agentico) — incluye la estructura del blog, el design.md de ejemplo y los SKILL.md de los agentes para que armes tu propia comunidad. Y si eres design lead o founder y quieres ver este sistema aplicado a tu producto, Pablo está disponible — su correo está al final de esta página, con botón para copiarlo.",
       },
       {
         type: "p",
-        text: "Crédito donde corresponde: las láminas de este post pertenecen a la charla gratuita \"Designers Ready for Agentic AI Workflows\" de Christine Vallaure (moonlearning.io) y se usan como referencia comentada. Si diseñas y esto te sonó a chino, parte por ahí — y después vuelve, que acá vamos a estar construyendo en público.",
+        text: "Crédito donde corresponde: las láminas de este post pertenecen a la charla gratuita \"Designers Ready for Agentic AI Workflows\" de Christine Vallaure ([moonlearning.io](https://moonlearning.io)) y se usan como referencia comentada. Si diseñas y esto te sonó a chino, parte por ahí — y después vuelve, que acá vamos a estar construyendo en público.",
       },
     ],
   },
