@@ -114,6 +114,32 @@ function HomeContent() {
         {/* <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} /> */}
 
         <div className="page-layout">
+          {/* Título de sección: diferencia trabajos del blog */}
+          <div className="max-w-4xl mx-auto px-4" style={{ paddingBottom: "1rem" }}>
+            <p
+              className="uppercase"
+              style={{
+                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                fontSize: "0.75rem",
+                letterSpacing: "0.08em",
+                color: "rgba(255,255,255,0.5)",
+                marginBottom: "1rem",
+              }}
+            >
+              {locale === "es" ? "Portafolio · casos de estudio" : "Portfolio · case studies"}
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Sentient', serif",
+                fontWeight: 300,
+                fontSize: "2rem",
+                lineHeight: 1.15,
+                color: "rgba(255,255,255,0.95)",
+              }}
+            >
+              {locale === "es" ? "Trabajos destacados" : "Selected work"}
+            </h2>
+          </div>
           <div className="space-y-48 md:space-y-64" style={{ paddingTop: '2rem' }}>
             {visibleProjects.map((project) => (
               <ProjectCard
