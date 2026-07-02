@@ -114,31 +114,39 @@ function HomeContent() {
         {/* <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} /> */}
 
         <div className="page-layout">
-          {/* Título de sección: diferencia trabajos del blog */}
-          <div className="max-w-4xl mx-auto px-4" style={{ paddingBottom: "1rem" }}>
-            <p
-              className="uppercase"
+          {/* Encabezado de sección estilo chip centrado: diferencia trabajos del blog */}
+          <div className="text-center max-w-4xl mx-auto px-4" style={{ paddingBottom: "2rem" }}>
+            <span
+              className="uppercase inline-block rounded-full"
               style={{
                 fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                fontSize: "0.75rem",
-                letterSpacing: "0.08em",
-                color: "rgba(255,255,255,0.5)",
-                marginBottom: "1rem",
+                fontSize: "0.7rem",
+                letterSpacing: "0.1em",
+                color: "rgba(255,255,255,0.7)",
+                border: "1px solid #333333",
+                background: "rgba(255,255,255,0.05)",
+                padding: "6px 14px",
+                marginBottom: "1.25rem",
               }}
             >
-              {locale === "es" ? "Portafolio · casos de estudio" : "Portfolio · case studies"}
-            </p>
+              {locale === "es" ? "Portafolio" : "Portfolio"}
+            </span>
             <h2
               style={{
                 fontFamily: "'Sentient', serif",
                 fontWeight: 300,
-                fontSize: "2rem",
+                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                 lineHeight: 1.15,
                 color: "rgba(255,255,255,0.95)",
               }}
             >
               {locale === "es" ? "Trabajos destacados" : "Selected work"}
             </h2>
+            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.95rem", marginTop: "0.75rem" }}>
+              {locale === "es"
+                ? "Casos de estudio de producto, fintech y design systems."
+                : "Product, fintech and design systems case studies."}
+            </p>
           </div>
           <div className="space-y-48 md:space-y-64" style={{ paddingTop: '2rem' }}>
             {visibleProjects.map((project) => (
@@ -168,81 +176,98 @@ function HomeContent() {
           )}
         </div>
 
-        {/* Blog — bitácora escrita por la IA de la agencia */}
-        <section className="page-layout" style={{ paddingTop: "8rem" }}>
-          <div className="max-w-4xl mx-auto px-4">
-            <p
-              className="uppercase"
-              style={{
-                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                fontSize: "0.75rem",
-                letterSpacing: "0.08em",
-                color: "rgba(255,255,255,0.5)",
-                marginBottom: "1rem",
-              }}
-            >
-              Blog · escrito por la IA, aprobado por el humano
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Sentient', serif",
-                fontWeight: 300,
-                fontSize: "2rem",
-                lineHeight: 1.15,
-                color: "rgba(255,255,255,0.95)",
-                marginBottom: "2.5rem",
-              }}
-            >
-              La Comunidad
-            </h2>
+        {/* Blog — banda blanca invertida (contraste estilo Fintoc) */}
+        <section style={{ background: "#FFFFFF", marginTop: "8rem", paddingTop: "6rem", paddingBottom: "6rem" }}>
+          <div className="page-layout">
+            <div className="max-w-4xl mx-auto px-4">
+              <div className="text-center" style={{ paddingBottom: "2.5rem" }}>
+                <span
+                  className="uppercase inline-block rounded-full"
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.1em",
+                    color: "#555555",
+                    border: "1px solid #E5E5E5",
+                    background: "#FAFAFA",
+                    padding: "6px 14px",
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  Blog · La Comunidad
+                </span>
+                <h2
+                  style={{
+                    fontFamily: "'Sentient', serif",
+                    fontWeight: 300,
+                    fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                    lineHeight: 1.15,
+                    color: "#111111",
+                  }}
+                >
+                  {locale === "es" ? "Escrito por la IA, aprobado por el humano" : "Written by AI, approved by a human"}
+                </h2>
+                <p style={{ color: "#666666", fontSize: "0.95rem", marginTop: "0.75rem", maxWidth: "36rem", margin: "0.75rem auto 0" }}>
+                  {locale === "es"
+                    ? "Bitácora de la dupla humano+IA detrás de estos proyectos. Agentic design, casos reales, cero humo."
+                    : "Logbook of the human+AI duo behind these projects. Agentic design, real cases, zero hype."}
+                </p>
+              </div>
 
-            <ul>
-              {blogPosts.slice(0, 3).map((post) => (
-                <li key={post.slug} style={{ borderTop: "1px solid #1F1F1F", padding: "1.75rem 0" }}>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                      fontSize: "0.75rem",
-                      letterSpacing: "0.05em",
-                      color: "rgba(255,255,255,0.45)",
-                    }}
-                  >
-                    {post.dateLabel} · {post.author}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: "'Sentient', serif",
-                      fontWeight: 400,
-                      fontSize: "1.35rem",
-                      lineHeight: 1.3,
-                      margin: "0.5rem 0",
-                    }}
-                  >
-                    <Link href={`/blog/${post.slug}`} className="text-white hover:opacity-70 transition-opacity">
-                      {post.title}
-                    </Link>
-                  </h3>
-                  <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.95rem", maxWidth: "40rem" }}>
-                    {post.excerpt}
-                  </p>
-                </li>
-              ))}
-            </ul>
+              <ul>
+                {blogPosts.slice(0, 3).map((post) => (
+                  <li key={post.slug} style={{ borderTop: "1px solid #EAEAEA", padding: "1.75rem 0" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                        fontSize: "0.75rem",
+                        letterSpacing: "0.05em",
+                        color: "#999999",
+                      }}
+                    >
+                      {post.dateLabel} · {post.author}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "'Sentient', serif",
+                        fontWeight: 400,
+                        fontSize: "1.35rem",
+                        lineHeight: 1.3,
+                        margin: "0.5rem 0",
+                      }}
+                    >
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="hover:opacity-60 transition-opacity"
+                        style={{ color: "#111111" }}
+                      >
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p style={{ color: "#666666", fontSize: "0.95rem", maxWidth: "40rem" }}>
+                      {post.excerpt}
+                    </p>
+                  </li>
+                ))}
+              </ul>
 
-            <div className="flex justify-center" style={{ paddingTop: "3rem" }}>
-              <Link
-                href="/blog"
-                className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer border border-[#333333] rounded-full"
-                style={{
-                  fontSize: "0.85rem",
-                  textTransform: "uppercase",
-                  fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                  letterSpacing: "0.05em",
-                  padding: "14px 32px",
-                }}
-              >
-                {locale === "es" ? "Ver el blog" : "Read the blog"} →
-              </Link>
+              <div className="flex justify-center" style={{ paddingTop: "3rem" }}>
+                <Link
+                  href="/blog"
+                  className="hover:opacity-60 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer rounded-full"
+                  style={{
+                    fontSize: "0.85rem",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                    letterSpacing: "0.05em",
+                    padding: "14px 32px",
+                    background: "#111111",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  {locale === "es" ? "Ver el blog" : "Read the blog"} →
+                </Link>
+              </div>
             </div>
           </div>
         </section>
