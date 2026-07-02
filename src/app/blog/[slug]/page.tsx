@@ -221,7 +221,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                         className="text-gray-500 hover:text-black transition-colors"
                                         style={{ fontFamily: BODY_FONT, fontSize: "0.9rem", lineHeight: 1.5 }}
                                     >
-                                        {h.text}
+                                        {h.toc ?? h.text}
                                     </a>
                                 </li>
                             ))}
