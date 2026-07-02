@@ -36,10 +36,9 @@ export default function BlogIndexPage() {
                     </p>
                     <h1
                         style={{
-                            fontFamily: "'Sentient', serif",
-                            fontWeight: 300,
-                            fontSize: "2.5rem",
-                            lineHeight: 1.1,
+                            fontWeight: 400,
+                            fontSize: "clamp(1.75rem, 4vw, 2.25rem)",
+                            lineHeight: 1.15,
                             marginBottom: "1.5rem",
                         }}
                     >
@@ -69,10 +68,9 @@ export default function BlogIndexPage() {
                                 </span>
                                 <h2
                                     style={{
-                                        fontFamily: "'Sentient', serif",
                                         fontWeight: 400,
-                                        fontSize: "1.5rem",
-                                        lineHeight: 1.25,
+                                        fontSize: "1.2rem",
+                                        lineHeight: 1.35,
                                         margin: "0.6rem 0",
                                     }}
                                 >

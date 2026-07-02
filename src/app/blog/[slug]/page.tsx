@@ -47,10 +47,9 @@ function Block({ block }: { block: BlogBlock }) {
             return (
                 <h2
                     style={{
-                        fontFamily: "'Sentient', serif",
                         fontWeight: 400,
-                        fontSize: "1.6rem",
-                        lineHeight: 1.3,
+                        fontSize: "1.25rem",
+                        lineHeight: 1.35,
                         margin: "3rem 0 1.25rem",
                     }}
                 >
@@ -116,10 +115,10 @@ function Block({ block }: { block: BlogBlock }) {
                         borderLeft: "2px solid rgba(255,255,255,0.35)",
                         paddingLeft: "1.5rem",
                         margin: "2.5rem 0",
-                        fontFamily: "'Sentient', serif",
+                        fontStyle: "italic",
                         fontWeight: 300,
-                        fontSize: "1.25rem",
-                        lineHeight: 1.6,
+                        fontSize: "1.1rem",
+                        lineHeight: 1.7,
                         color: "rgba(255,255,255,0.9)",
                     }}
                 >
@@ -163,10 +162,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                     <h1
                         style={{
-                            fontFamily: "'Sentient', serif",
-                            fontWeight: 300,
-                            fontSize: "clamp(1.9rem, 4.5vw, 2.75rem)",
-                            lineHeight: 1.15,
+                            fontWeight: 400,
+                            fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
+                            lineHeight: 1.25,
                             margin: "1.5rem 0 1rem",
                         }}
                     >
@@ -208,7 +206,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                         <Link
                                             href={`/${project.slug}`}
                                             className="hover:opacity-70 transition-opacity"
-                                            style={{ fontFamily: "'Sentient', serif", fontSize: "1.2rem" }}
+                                            style={{ fontSize: "1.05rem" }}
                                         >
                                             {project.title.es} →
                                         </Link>

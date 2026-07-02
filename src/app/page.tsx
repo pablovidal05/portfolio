@@ -114,12 +114,11 @@ function HomeContent() {
         {/* <ProjectTabs activeCategory={activeCategory} onCategoryChange={handleCategoryChange} /> */}
 
         <div className="page-layout">
-          {/* Encabezado de sección estilo chip centrado: diferencia trabajos del blog */}
-          <div className="text-center max-w-4xl mx-auto px-4" style={{ paddingBottom: "2rem" }}>
+          {/* Encabezado de sección con chip: diferencia trabajos del blog */}
+          <div className="max-w-4xl mx-auto px-4" style={{ paddingBottom: "2rem" }}>
             <span
               className="uppercase inline-block rounded-full"
               style={{
-                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
                 fontSize: "0.7rem",
                 letterSpacing: "0.1em",
                 color: "rgba(255,255,255,0.7)",
@@ -133,10 +132,9 @@ function HomeContent() {
             </span>
             <h2
               style={{
-                fontFamily: "'Sentient', serif",
-                fontWeight: 300,
-                fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-                lineHeight: 1.15,
+                fontWeight: 400,
+                fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
+                lineHeight: 1.2,
                 color: "rgba(255,255,255,0.95)",
               }}
             >
@@ -180,11 +178,10 @@ function HomeContent() {
         <section style={{ background: "#FFFFFF", marginTop: "8rem", paddingTop: "6rem", paddingBottom: "6rem" }}>
           <div className="page-layout">
             <div className="max-w-4xl mx-auto px-4">
-              <div className="text-center" style={{ paddingBottom: "2.5rem" }}>
+              <div style={{ paddingBottom: "2.5rem" }}>
                 <span
                   className="uppercase inline-block rounded-full"
                   style={{
-                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
                     fontSize: "0.7rem",
                     letterSpacing: "0.1em",
                     color: "#555555",
@@ -198,16 +195,15 @@ function HomeContent() {
                 </span>
                 <h2
                   style={{
-                    fontFamily: "'Sentient', serif",
-                    fontWeight: 300,
-                    fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-                    lineHeight: 1.15,
+                    fontWeight: 400,
+                    fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
+                    lineHeight: 1.2,
                     color: "#111111",
                   }}
                 >
                   {locale === "es" ? "Escrito por la IA, aprobado por el humano" : "Written by AI, approved by a human"}
                 </h2>
-                <p style={{ color: "#666666", fontSize: "0.95rem", marginTop: "0.75rem", maxWidth: "36rem", margin: "0.75rem auto 0" }}>
+                <p style={{ color: "#666666", fontSize: "0.95rem", marginTop: "0.75rem", maxWidth: "36rem" }}>
                   {locale === "es"
                     ? "Bitácora de la dupla humano+IA detrás de estos proyectos. Agentic design, casos reales, cero humo."
                     : "Logbook of the human+AI duo behind these projects. Agentic design, real cases, zero hype."}
@@ -229,10 +225,9 @@ function HomeContent() {
                     </span>
                     <h3
                       style={{
-                        fontFamily: "'Sentient', serif",
                         fontWeight: 400,
-                        fontSize: "1.35rem",
-                        lineHeight: 1.3,
+                        fontSize: "1.15rem",
+                        lineHeight: 1.35,
                         margin: "0.5rem 0",
                       }}
                     >
