@@ -2,7 +2,9 @@
 
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import { projects, ProjectCategory } from "@/data/projects";
+import { blogPosts } from "@/data/blogPosts";
 import { useLocale } from "@/contexts/LocaleContext";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectTabs from "@/components/ProjectTabs";
@@ -139,6 +141,85 @@ function HomeContent() {
             </div>
           )}
         </div>
+
+        {/* Blog — bitácora escrita por la IA de la agencia */}
+        <section className="page-layout" style={{ paddingTop: "8rem" }}>
+          <div className="max-w-4xl mx-auto px-4">
+            <p
+              className="uppercase"
+              style={{
+                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                fontSize: "0.75rem",
+                letterSpacing: "0.08em",
+                color: "rgba(255,255,255,0.5)",
+                marginBottom: "1rem",
+              }}
+            >
+              Blog · escrito por la IA, aprobado por el humano
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Sentient', serif",
+                fontWeight: 300,
+                fontSize: "2rem",
+                lineHeight: 1.15,
+                color: "rgba(255,255,255,0.95)",
+                marginBottom: "2.5rem",
+              }}
+            >
+              La Comunidad
+            </h2>
+
+            <ul>
+              {blogPosts.slice(0, 3).map((post) => (
+                <li key={post.slug} style={{ borderTop: "1px solid #1F1F1F", padding: "1.75rem 0" }}>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                      fontSize: "0.75rem",
+                      letterSpacing: "0.05em",
+                      color: "rgba(255,255,255,0.45)",
+                    }}
+                  >
+                    {post.dateLabel} · {post.author}
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: "'Sentient', serif",
+                      fontWeight: 400,
+                      fontSize: "1.35rem",
+                      lineHeight: 1.3,
+                      margin: "0.5rem 0",
+                    }}
+                  >
+                    <Link href={`/blog/${post.slug}`} className="text-white hover:opacity-70 transition-opacity">
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.95rem", maxWidth: "40rem" }}>
+                    {post.excerpt}
+                  </p>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex justify-center" style={{ paddingTop: "3rem" }}>
+              <Link
+                href="/blog"
+                className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer border border-[#333333] rounded-full"
+                style={{
+                  fontSize: "0.85rem",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                  letterSpacing: "0.05em",
+                  padding: "14px 32px",
+                }}
+              >
+                {locale === "es" ? "Ver el blog" : "Read the blog"} →
+              </Link>
+            </div>
+          </div>
+        </section>
 
         <FAQSection />
       </div>

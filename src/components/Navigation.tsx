@@ -10,6 +10,7 @@ export default function Navigation() {
   const pathname = usePathname();
 
   const navLinks = [
+    { href: "/blog", label: "Blog" },
     { href: "/info", label: t("nav.info") },
   ];
 
