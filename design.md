@@ -10,6 +10,9 @@ El sitio tiene DOS contextos visuales. Identifica en cuál estás ANTES de escri
 - **JetBrains Mono en todo.** `globals.css` la fuerza en body, h1-h6, p, span, div, a, li y button. Headings automáticamente `uppercase` + `letter-spacing: 0.05em`.
 - No poner `fontFamily` inline: dejar que la regla global actúe. Como los títulos van en mono uppercase, ocupan mucho ancho — tamaños contenidos (ver escala).
 
+### ⚠️ Estado real de las fuentes (verificado 2026-07-01)
+`public/fonts/` NO contiene los woff2 de Monument Grotesk ni Guyot (solo README), y `--font-inter` no está definido en `layout.tsx`. Consecuencia: en el contexto claro, la cadena `'Monument Grotesk Variable', var(--font-inter), system-ui` se invalida y TODO hereda JetBrains Mono del body. Detalle de proyectos y blog se ven mono hoy — consistentes entre sí, pero no es el diseño declarado. Si Pablo agrega los woff2 a `public/fonts/` (nombres exactos de los @font-face en globals.css) o define Inter en layout.tsx, detalle y blog se corrigen juntos sin tocar componentes. Mientras tanto: MANTENER estas cadenas tal cual — no "arreglar" con otra fuente.
+
 ### Contexto claro (detalle de proyecto, /blog, posts — fondo blanco)
 - Layout de referencia: `ProjectDetail.tsx` → página `bg-white text-black`, header CENTRADO en columna `max-w-[800px]`, y si hay secciones, índice lateral sticky (`w-[260-280px]`, `lg:sticky lg:top-24`, `border-r`) + contenido.
 - Headings: `'Monument Grotesk Variable', var(--font-inter), system-ui, sans-serif`, peso 600-700, `letterSpacing -0.01/-0.02em`, `textTransform: "none"` explícito (para anular el uppercase global).
