@@ -9,6 +9,20 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+const HEADING_FONT = "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif";
+const BODY_FONT = "var(--font-inter), system-ui, -apple-system, sans-serif";
+const MONO_FONT = "var(--font-jetbrains-mono), 'JetBrains Mono', monospace";
+
+function slugifyHeading(text: string): string {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .trim()
+        .replace(/\s+/g, "-");
+}
+
 export async function generateStaticParams() {
     return getAllBlogSlugs().map((slug) => ({ slug }));
 }
@@ -46,10 +60,15 @@ function Block({ block }: { block: BlogBlock }) {
         case "h2":
             return (
                 <h2
+                    id={slugifyHeading(block.text)}
+                    className="scroll-mt-24 text-black"
                     style={{
-                        fontWeight: 400,
-                        fontSize: "1.25rem",
-                        lineHeight: 1.35,
+                        fontFamily: HEADING_FONT,
+                        fontWeight: 600,
+                        fontSize: "1.35rem",
+                        lineHeight: 1.3,
+                        letterSpacing: "-0.01em",
+                        textTransform: "none",
                         margin: "3rem 0 1.25rem",
                     }}
                 >
@@ -58,14 +77,22 @@ function Block({ block }: { block: BlogBlock }) {
             );
         case "p":
             return (
-                <p style={{ color: "rgba(255,255,255,0.78)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+                <p
+                    style={{
+                        fontFamily: BODY_FONT,
+                        color: "#374151",
+                        fontSize: "1.05rem",
+                        lineHeight: 1.8,
+                        marginBottom: "1.5rem",
+                    }}
+                >
                     {block.text}
                 </p>
             );
         case "img":
             return (
                 <figure style={{ margin: "2.5rem 0" }}>
-                    <div style={{ borderRadius: "8px", overflow: "hidden", border: "1px solid #1F1F1F" }}>
+                    <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
                         <Image
                             src={block.src}
                             alt={block.alt}
@@ -77,10 +104,10 @@ function Block({ block }: { block: BlogBlock }) {
                     {block.caption && (
                         <figcaption
                             style={{
-                                fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                                fontFamily: MONO_FONT,
                                 fontSize: "0.75rem",
                                 lineHeight: 1.6,
-                                color: "rgba(255,255,255,0.45)",
+                                color: "#6B7280",
                                 marginTop: "0.75rem",
                             }}
                         >
@@ -92,16 +119,14 @@ function Block({ block }: { block: BlogBlock }) {
         case "code":
             return (
                 <pre
+                    className="bg-[#F8F9FA] border border-gray-200 rounded-xl"
                     style={{
-                        background: "#0D0D0D",
-                        border: "1px solid #1F1F1F",
-                        borderRadius: "8px",
                         padding: "1.25rem 1.5rem",
                         overflowX: "auto",
-                        fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                        fontFamily: MONO_FONT,
                         fontSize: "0.85rem",
                         lineHeight: 1.7,
-                        color: "rgba(255,255,255,0.85)",
+                        color: "#1F2937",
                         margin: "2rem 0",
                     }}
                 >
@@ -112,14 +137,14 @@ function Block({ block }: { block: BlogBlock }) {
             return (
                 <blockquote
                     style={{
-                        borderLeft: "2px solid rgba(255,255,255,0.35)",
+                        borderLeft: "3px solid #D1D5DB",
                         paddingLeft: "1.5rem",
                         margin: "2.5rem 0",
+                        fontFamily: BODY_FONT,
                         fontStyle: "italic",
-                        fontWeight: 300,
-                        fontSize: "1.1rem",
+                        fontSize: "1.15rem",
                         lineHeight: 1.7,
-                        color: "rgba(255,255,255,0.9)",
+                        color: "#4B5563",
                     }}
                 >
                     {block.text}
@@ -138,63 +163,86 @@ export default async function BlogPostPage({ params }: PageProps) {
         notFound();
     }
 
+    const headings = post.blocks.filter(
+        (b): b is Extract<BlogBlock, { type: "h2" }> => b.type === "h2"
+    );
+
     const related = (post.relatedProjects ?? [])
         .map((s) => getProjectBySlug(s))
         .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
     return (
-        <div className="min-h-screen bg-black text-white">
-            <article className="page-layout" style={{ paddingTop: "5rem", paddingBottom: "6rem" }}>
-                <div className="max-w-3xl mx-auto px-4">
+        <div className="bg-white text-black min-h-screen pb-24 flex flex-col items-center w-full" style={{ paddingTop: "6rem" }}>
+            {/* Header centrado, como el detalle de proyectos */}
+            <div className="w-full max-w-[800px] px-5 sm:px-8">
+                <div className="text-center flex flex-col items-center" style={{ marginBottom: "3rem", gap: "1rem" }}>
                     <Link
                         href="/blog"
-                        className="hover:opacity-70 transition-opacity"
-                        style={{
-                            fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                            fontSize: "0.75rem",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                            color: "rgba(255,255,255,0.5)",
-                        }}
+                        className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors font-medium border-b border-transparent hover:border-black"
+                        style={{ fontFamily: MONO_FONT, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}
                     >
-                        ← Blog
+                        ← Blog · La Comunidad
                     </Link>
 
                     <h1
+                        className="font-bold text-black leading-tight"
                         style={{
-                            fontWeight: 400,
-                            fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
-                            lineHeight: 1.25,
-                            margin: "1.5rem 0 1rem",
+                            fontFamily: HEADING_FONT,
+                            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                            letterSpacing: "-0.02em",
+                            textTransform: "none",
                         }}
                     >
                         {post.title}
                     </h1>
-                    <p
-                        style={{
-                            fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                            fontSize: "0.8rem",
-                            letterSpacing: "0.05em",
-                            color: "rgba(255,255,255,0.45)",
-                            marginBottom: "3rem",
-                        }}
-                    >
-                        {post.dateLabel} · escrito por {post.author}, la IA de la agencia
-                    </p>
 
+                    <div
+                        className="text-gray-500 flex items-center justify-center gap-2"
+                        style={{ fontSize: "0.9rem", fontFamily: BODY_FONT }}
+                    >
+                        <span>{post.dateLabel}</span>
+                        <span className="text-gray-300 mx-1">•</span>
+                        <span>
+                            Escrito por <strong className="text-gray-700">{post.author}</strong>, la IA de la agencia
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Índice lateral sticky + contenido, como el detalle de proyectos */}
+            <div className="w-full page-layout mt-4 flex flex-col lg:flex-row xl:justify-center gap-8 lg:gap-20 items-start">
+                {headings.length > 0 && (
+                    <aside className="w-full lg:w-[260px] flex-shrink-0 lg:sticky lg:top-24 mb-8 lg:mb-0 pr-6 lg:border-r border-gray-200">
+                        <ul className="space-y-3" style={{ paddingTop: "8px" }}>
+                            {headings.map((h) => (
+                                <li key={h.text}>
+                                    <a
+                                        href={`#${slugifyHeading(h.text)}`}
+                                        className="text-gray-500 hover:text-black transition-colors"
+                                        style={{ fontFamily: BODY_FONT, fontSize: "0.9rem", lineHeight: 1.5 }}
+                                    >
+                                        {h.text}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </aside>
+                )}
+
+                <article className="w-full max-w-[720px] min-w-0">
                     {post.blocks.map((block, i) => (
                         <Block key={i} block={block} />
                     ))}
 
                     {related.length > 0 && (
-                        <section style={{ marginTop: "4rem", borderTop: "1px solid #1F1F1F", paddingTop: "2rem" }}>
+                        <section className="border-t border-gray-200" style={{ marginTop: "4rem", paddingTop: "2rem" }}>
                             <h2
                                 style={{
-                                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                                    fontFamily: MONO_FONT,
                                     fontSize: "0.75rem",
                                     letterSpacing: "0.08em",
                                     textTransform: "uppercase",
-                                    color: "rgba(255,255,255,0.5)",
+                                    color: "#6B7280",
                                     marginBottom: "1.5rem",
                                 }}
                             >
@@ -205,8 +253,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                                     <li key={project.slug}>
                                         <Link
                                             href={`/${project.slug}`}
-                                            className="hover:opacity-70 transition-opacity"
-                                            style={{ fontSize: "1.05rem" }}
+                                            className="text-black hover:opacity-60 transition-opacity font-medium"
+                                            style={{ fontFamily: HEADING_FONT, fontSize: "1.05rem" }}
                                         >
                                             {project.title.es} →
                                         </Link>
@@ -217,29 +265,29 @@ export default async function BlogPostPage({ params }: PageProps) {
                     )}
 
                     <footer
+                        className="border-t border-gray-200"
                         style={{
                             marginTop: "4rem",
-                            borderTop: "1px solid #1F1F1F",
                             paddingTop: "2rem",
-                            color: "rgba(255,255,255,0.55)",
+                            fontFamily: BODY_FONT,
+                            color: "#6B7280",
                             fontSize: "0.9rem",
                             lineHeight: 1.7,
                         }}
                     >
                         Este blog lo escribe Gandalf, un agente de IA. Las decisiones las toma{" "}
-                        <strong style={{ color: "rgba(255,255,255,0.85)" }}>Pablo Vidal</strong>, product
-                        designer — disponible para proyectos freelance y roles de producto.{" "}
+                        <strong className="text-gray-800">Pablo Vidal</strong>, product designer — disponible
+                        para proyectos freelance y roles de producto.{" "}
                         <a
                             href="mailto:p.vidal005@gmail.com"
-                            className="underline hover:opacity-70 transition-opacity"
-                            style={{ color: "rgba(255,255,255,0.85)" }}
+                            className="underline text-gray-800 hover:opacity-60 transition-opacity"
                         >
                             Escríbele
                         </a>
                         .
                     </footer>
-                </div>
-            </article>
+                </article>
+            </div>
         </div>
     );
 }

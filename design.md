@@ -2,26 +2,33 @@
 
 Fuente de verdad visual. Humano la lee como documentación; agente la lee como spec ANTES de tocar cualquier componente o página. Si un valor no está aquí, no se inventa: se propone aquí primero y después se usa.
 
-## Regla cero: tipografía
+## Regla cero: dos contextos, cada uno con su tipografía
 
-**Una sola familia: JetBrains Mono.** No existe serif en este sitio.
+El sitio tiene DOS contextos visuales. Identifica en cuál estás ANTES de escribir estilos:
 
-- `globals.css` fuerza `JetBrains Mono` en body, h1-h6, p, span, div, a, li y button. Los headings además llevan `text-transform: uppercase` y `letter-spacing: 0.05em` automáticos.
-- **PROHIBIDO** poner `fontFamily` inline con Sentient, Source Serif, Fraunces o cualquier serif. Las clases `.sentient-text` y `.crimson-text-title` son legacy: hoy remapean a JetBrains Mono; no crear usos nuevos.
-- Como los títulos van en mono uppercase, ocupan mucho ancho: los tamaños se mantienen contenidos (ver escala). Nunca compensar con letter-spacing negativo inline.
+### Contexto oscuro (home, secciones sobre negro)
+- **JetBrains Mono en todo.** `globals.css` la fuerza en body, h1-h6, p, span, div, a, li y button. Headings automáticamente `uppercase` + `letter-spacing: 0.05em`.
+- No poner `fontFamily` inline: dejar que la regla global actúe. Como los títulos van en mono uppercase, ocupan mucho ancho — tamaños contenidos (ver escala).
+
+### Contexto claro (detalle de proyecto, /blog, posts — fondo blanco)
+- Layout de referencia: `ProjectDetail.tsx` → página `bg-white text-black`, header CENTRADO en columna `max-w-[800px]`, y si hay secciones, índice lateral sticky (`w-[260-280px]`, `lg:sticky lg:top-24`, `border-r`) + contenido.
+- Headings: `'Monument Grotesk Variable', var(--font-inter), system-ui, sans-serif`, peso 600-700, `letterSpacing -0.01/-0.02em`, `textTransform: "none"` explícito (para anular el uppercase global).
+- Cuerpo de lectura: `var(--font-inter), system-ui, sans-serif`, gris `#374151`/`#6B7280`.
+- Mono queda para: metadatos, fechas, captions, chips, código.
+- **PROHIBIDO en ambos contextos**: Sentient, Source Serif, Fraunces o cualquier serif inline. `.sentient-text` y `.crimson-text-title` son legacy (remapean a mono); no crear usos nuevos.
 
 ### Escala tipográfica
 
-| Rol | Tamaño | Peso | Notas |
+| Rol | Contexto | Tamaño | Peso |
 |---|---|---|---|
-| h1 hero (home) | 2.5rem | 400 | Único título grande del sitio |
-| h1 de página (/blog, posts) | clamp(1.5rem–2.25rem) | 400 | |
-| h2 de sección (home) | clamp(1.5rem, 3.5vw, 2rem) | 400 | |
-| h2 dentro de post | 1.25rem | 400 | |
-| h3 título de item en listas | 1.15–1.2rem | 400 | |
-| Cuerpo | 1rem (line-height 1.6–1.8) | 400 | |
-| Metadatos / fechas / captions | 0.75–0.8rem | 400 | letterSpacing 0.05em |
-| Chips y botones | 0.7–0.85rem | 400 | uppercase, letterSpacing 0.05–0.1em |
+| h1 hero (home) | oscuro/mono | 2.5rem | 400 |
+| h2 de sección (home) | oscuro/mono | clamp(1.5rem, 3.5vw, 2rem) | 400 |
+| h3 item de lista (home) | oscuro/mono | 1.15rem | 400 |
+| h1 de página (detalle, /blog, post) | claro/Grotesk | clamp(1.75rem, 4vw, 2.5rem) | 700 |
+| h2 dentro de post / item lista blog | claro/Grotesk | 1.35rem | 600 |
+| Cuerpo lectura larga | claro/Inter | 1–1.05rem, line-height 1.7-1.8 | 400 |
+| Metadatos / fechas / captions | ambos/mono | 0.75–0.8rem | 400 |
+| Chips y botones | ambos/mono | 0.7–0.85rem, uppercase | 400 |
 
 ## Color (tokens en `@theme` de globals.css)
 
@@ -41,7 +48,7 @@ Regla: no introducir colores nuevos. Acentos = contraste blanco/negro, no color.
 
 ## Encabezados de sección (patrón chip — referencia Fintoc)
 
-**Alineados a la IZQUIERDA** (no centrados). Estructura:
+Alineación por contexto: **en home (oscuro), a la IZQUIERDA**; **en páginas de detalle/blog (claro), header CENTRADO** como ProjectDetail. Estructura:
 
 1. Chip: pill `rounded-full`, uppercase, 0.7rem, letterSpacing 0.1em, padding `6px 14px`. Sobre negro: borde `#333`, fondo `rgba(255,255,255,0.05)`, texto `rgba(255,255,255,0.7)`. Sobre blanco: borde `#E5E5E5`, fondo `#FAFAFA`, texto `#555`.
 2. h2 de sección (escala de arriba).
