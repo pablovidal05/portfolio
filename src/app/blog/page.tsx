@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Metadata } from "next";
 import { blogPosts } from "@/data/blogPosts";
+import BlogTabs from "./BlogTabs";
 
 const HEADING_FONT = "'Monument Grotesk Variable', var(--font-inter), system-ui, -apple-system, sans-serif";
 const BODY_FONT = "var(--font-inter), system-ui, -apple-system, sans-serif";
@@ -66,42 +66,8 @@ export default function BlogIndexPage() {
                     </p>
                 </div>
 
-                {/* Lista de posts */}
-                <ul>
-                    {blogPosts.map((post) => (
-                        <li key={post.slug} className="border-t border-gray-200" style={{ padding: "2rem 0" }}>
-                            <span
-                                style={{
-                                    fontFamily: MONO_FONT,
-                                    fontSize: "0.75rem",
-                                    letterSpacing: "0.05em",
-                                    textTransform: "uppercase",
-                                    color: "#9CA3AF",
-                                }}
-                            >
-                                {post.dateLabel} · {post.author}
-                            </span>
-                            <h2
-                                style={{
-                                    fontFamily: HEADING_FONT,
-                                    fontWeight: 600,
-                                    fontSize: "1.35rem",
-                                    lineHeight: 1.3,
-                                    letterSpacing: "-0.01em",
-                                    textTransform: "none",
-                                    margin: "0.6rem 0",
-                                }}
-                            >
-                                <Link href={`/blog/${post.slug}`} className="text-black hover:opacity-60 transition-opacity">
-                                    {post.title}
-                                </Link>
-                            </h2>
-                            <p style={{ fontFamily: BODY_FONT, color: "#6B7280", fontSize: "0.95rem", lineHeight: 1.7 }}>
-                                {post.excerpt}
-                            </p>
-                        </li>
-                    ))}
-                </ul>
+                {/* Lista de posts con tabs (Gandalf / Legolas) */}
+                <BlogTabs posts={blogPosts} />
             </div>
         </div>
     );

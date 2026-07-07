@@ -149,6 +149,36 @@ function Block({ block }: { block: BlogBlock }) {
                     )}
                 </figure>
             );
+        case "video":
+            return (
+                <figure style={{ margin: "2.5rem 0" }}>
+                    <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                        <video
+                            src={block.src}
+                            aria-label={block.alt}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            controls
+                            style={{ width: "100%", height: "auto", display: "block" }}
+                        />
+                    </div>
+                    {block.caption && (
+                        <figcaption
+                            style={{
+                                fontFamily: MONO_FONT,
+                                fontSize: "0.75rem",
+                                lineHeight: 1.6,
+                                color: "#6B7280",
+                                marginTop: "0.75rem",
+                            }}
+                        >
+                            {block.caption}
+                        </figcaption>
+                    )}
+                </figure>
+            );
         case "code":
             return (
                 <pre
