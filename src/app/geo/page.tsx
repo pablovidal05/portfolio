@@ -1,14 +1,47 @@
 "use client";
 
 // Lead magnet GEO: "¿Tu negocio existe para ChatGPT?"
-// Funciona sin backend: el visitante deja su URL y el CTA abre WhatsApp
-// con el mensaje pre-armado. El diagnóstico lo corre Pablo a mano (motor GEO).
-// Destino de todo el outbound: ganchos, posts LinkedIn, bio IG.
+// El visitante pone su URL → /api/geo-scan corre checks reales al tiro
+// (schema, FAQ, precios, bots de IA, llms.txt) → score 0-100 + hallazgos.
+// El diagnóstico completo (qué responde ChatGPT vs competencia) lo hace
+// Pablo a mano — el CTA de WhatsApp lleva el score ya puesto.
 
 import { useState } from "react";
 import Link from "next/link";
 
 const WHATSAPP = "56940438271";
+
+interface ScanCheck {
+  id: string;
+  label: string;
+  pass: boolean;
+  detail: string;
+  weight: number;
+}
+
+interface ScanResult {
+  ok: boolean;
+  blocked: boolean;
+  url: string;
+  score: number;
+  tier: "invisible" | "borroso" | "bien";
+  checks: ScanCheck[];
+}
+
+const TIER_COPY: Record<string, { title: string; text: string }> = {
+  invisible: {
+    title: "Invisible para la IA",
+    text: "Cuando alguien le pregunta a ChatGPT por tu rubro, hoy no tienes cómo aparecer. La buena: tu competencia probablemente está igual — el que arregle esto primero, se lleva la recomendación.",
+  },
+  borroso: {
+    title: "Te ven, pero borroso",
+    text: "La IA puede encontrarte, pero le faltan piezas clave para recomendarte con confianza. Estás a unos arreglos concretos de destacar sobre tu competencia.",
+  },
+  bien: {
+    title: "Vas bien — faltan detalles",
+    text: "Tu base es mejor que la de la mayoría. Los puntos rojos de abajo son la diferencia entre aparecer y ser LA recomendación.",
+  },
+};
 
 const mono: React.CSSProperties = {
   fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
@@ -49,11 +82,37 @@ const PASOS = [
 
 export default function GeoPage() {
   const [url, setUrl] = useState("");
+  const [scanning, setScanning] = useState(false);
+  const [result, setResult] = useState<ScanResult | null>(null);
+  const [scanError, setScanError] = useState("");
 
   const waLink = () => {
-    const site = url.trim() || "mi sitio web";
-    const msg = `Hola Pablo! Quiero el diagnóstico gratis de visibilidad en IA para: ${site}`;
+    const site = (result?.url ?? url.trim()) || "mi sitio web";
+    const msg = result
+      ? `Hola Pablo! Escaneé mi sitio (${site}) y sacó ${result.score}/100 en visibilidad IA. Quiero el diagnóstico completo gratis.`
+      : `Hola Pablo! Quiero el diagnóstico gratis de visibilidad en IA para: ${site}`;
     return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  };
+
+  const runScan = async () => {
+    const target = url.trim();
+    if (!target || scanning) return;
+    setScanning(true);
+    setScanError("");
+    setResult(null);
+    try {
+      const res = await fetch(`/api/geo-scan?url=${encodeURIComponent(target)}`);
+      const data = await res.json();
+      if (!data.ok) {
+        setScanError("Esa dirección no parece válida — prueba con el formato tunegocio.cl");
+      } else {
+        setResult(data as ScanResult);
+      }
+    } catch {
+      setScanError("No pude escanear ahora — intenta de nuevo o escríbeme directo por WhatsApp.");
+    } finally {
+      setScanning(false);
+    }
   };
 
   return (
@@ -74,7 +133,7 @@ export default function GeoPage() {
               marginBottom: "1.5rem",
             }}
           >
-            Diagnóstico gratis · 24 hrs · Sin compromiso
+            Escáner gratis · Resultados al tiro · Sin compromiso
           </span>
 
           <h1
@@ -121,6 +180,7 @@ export default function GeoPage() {
                 placeholder="tunegocio.cl"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && runScan()}
                 className="flex-1 rounded-full outline-none"
                 style={{
                   ...mono,
@@ -131,11 +191,10 @@ export default function GeoPage() {
                   padding: "14px 24px",
                 }}
               />
-              <a
-                href={waLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-all duration-300 inline-flex items-center justify-center gap-2 rounded-full"
+              <button
+                onClick={runScan}
+                disabled={scanning}
+                className="hover:opacity-80 transition-all duration-300 inline-flex items-center justify-center gap-2 rounded-full cursor-pointer"
                 style={{
                   ...mono,
                   fontSize: "0.85rem",
@@ -145,15 +204,106 @@ export default function GeoPage() {
                   background: "#FFFFFF",
                   color: "#111111",
                   whiteSpace: "nowrap",
+                  opacity: scanning ? 0.6 : 1,
                 }}
               >
-                Pedir diagnóstico →
-              </a>
+                {scanning ? "Escaneando…" : "Escanear gratis →"}
+              </button>
             </div>
             <p style={{ ...mono, color: "rgba(255,255,255,0.4)", fontSize: "0.75rem", marginTop: "1rem" }}>
-              Se abre WhatsApp con el mensaje listo. 1 hallazgo real, gratis, en 24 hrs. Sin spam, sin llamadas.
+              Análisis real de tu página, al tiro y gratis. Sin registro, sin spam, sin llamadas.
             </p>
+            {scanError && (
+              <p style={{ ...mono, color: "rgba(255,255,255,0.7)", fontSize: "0.8rem", marginTop: "0.75rem" }}>
+                ⚠ {scanError}
+              </p>
+            )}
           </div>
+
+          {/* Resultado del escaneo */}
+          {result && (
+            <div
+              className="rounded-xl"
+              style={{ border: "1px solid #333333", background: "rgba(255,255,255,0.04)", padding: "2rem", marginTop: "1.5rem" }}
+            >
+              {result.blocked ? (
+                <>
+                  <span style={{ ...mono, fontSize: "0.7rem", letterSpacing: "0.08em", color: "rgba(255,255,255,0.45)", textTransform: "uppercase" }}>
+                    {result.url}
+                  </span>
+                  <h3 style={{ ...mono, fontWeight: 700, textTransform: "uppercase", fontSize: "1.2rem", color: "rgba(255,255,255,0.95)", marginTop: "0.75rem" }}>
+                    Tu sitio no deja que lo lean
+                  </h3>
+                  <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem", lineHeight: 1.7, marginTop: "0.75rem" }}>
+                    No pude acceder a tu página — bloquea las visitas automáticas. Eso mismo es el hallazgo:
+                    si mi escáner no entra, es probable que los bots de ChatGPT y Perplexity tampoco.
+                    Estás invisible por diseño, y probablemente nadie lo decidió a propósito.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-wrap items-baseline gap-4">
+                    <span style={{ ...mono, fontWeight: 700, fontSize: "3rem", color: "rgba(255,255,255,0.95)", lineHeight: 1 }}>
+                      {result.score}<span style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.4)" }}>/100</span>
+                    </span>
+                    <div>
+                      <h3 style={{ ...mono, fontWeight: 700, textTransform: "uppercase", fontSize: "1rem", color: "rgba(255,255,255,0.95)" }}>
+                        {TIER_COPY[result.tier].title}
+                      </h3>
+                      <span style={{ ...mono, fontSize: "0.7rem", color: "rgba(255,255,255,0.45)" }}>{result.url}</span>
+                    </div>
+                  </div>
+                  <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem", lineHeight: 1.7, marginTop: "1rem" }}>
+                    {TIER_COPY[result.tier].text}
+                  </p>
+                  <div style={{ marginTop: "1.5rem" }}>
+                    {result.checks.map((c) => (
+                      <div key={c.id} style={{ borderTop: "1px solid #1F1F1F", padding: "0.85rem 0" }}>
+                        <div className="flex items-baseline gap-3">
+                          <span style={{ ...mono, fontSize: "0.85rem", color: c.pass ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.45)" }}>
+                            {c.pass ? "✓" : "✕"}
+                          </span>
+                          <div>
+                            <span style={{ ...mono, fontSize: "0.8rem", letterSpacing: "0.03em", color: "rgba(255,255,255,0.85)", textTransform: "uppercase" }}>
+                              {c.label}
+                            </span>
+                            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.85rem", lineHeight: 1.6, marginTop: "0.2rem" }}>
+                              {c.detail}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+              <div style={{ borderTop: "1px solid #333333", marginTop: "1.5rem", paddingTop: "1.5rem" }}>
+                <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                  Esto es lo que un escáner puede ver. Lo que NO puede: qué responde ChatGPT cuando le
+                  preguntan por tu rubro, quién se está llevando TU recomendación y qué arreglar primero.
+                  Eso te lo mando yo, gratis, en 24 hrs.
+                </p>
+                <a
+                  href={waLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-all duration-300 inline-flex items-center gap-2 rounded-full"
+                  style={{
+                    ...mono,
+                    fontSize: "0.85rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    padding: "14px 32px",
+                    background: "#FFFFFF",
+                    color: "#111111",
+                    marginTop: "1.25rem",
+                  }}
+                >
+                  Quiero el diagnóstico completo →
+                </a>
+              </div>
+            </div>
+          )}
 
           {/* Cómo funciona */}
           <h2
