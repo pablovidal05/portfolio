@@ -110,6 +110,50 @@ function HomeContent() {
                 <br />
                 {t("")}
               </h1>
+              {/* Sublínea de contexto + CTAs: el visitante que no scrollea sabe quién soy y cómo contactarme */}
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.55)",
+                  fontSize: "0.95rem",
+                  marginTop: "0.5rem",
+                  fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {locale === "es"
+                  ? "5+ años · Fintech y B2B SaaS · Design systems + diseño con agentes IA · Chile (remoto)"
+                  : "5+ years · Fintech & B2B SaaS · Design systems + AI-agent workflows · Chile (remote)"}
+              </p>
+              <div className="flex flex-wrap justify-center gap-4" style={{ marginTop: "2.25rem" }}>
+                <a
+                  href="mailto:p.vidal005@gmail.com"
+                  className="hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 rounded-full"
+                  style={{
+                    fontSize: "0.85rem",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                    letterSpacing: "0.05em",
+                    padding: "14px 32px",
+                    background: "#FFFFFF",
+                    color: "#111111",
+                  }}
+                >
+                  {locale === "es" ? "Hablemos" : "Let's talk"} →
+                </a>
+                <Link
+                  href="/geo"
+                  className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 rounded-full border border-[#333333]"
+                  style={{
+                    fontSize: "0.85rem",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+                    letterSpacing: "0.05em",
+                    padding: "14px 32px",
+                  }}
+                >
+                  {locale === "es" ? "¿Tu negocio existe para ChatGPT?" : "Does ChatGPT know your business?"}
+                </Link>
+              </div>
             </div>
           </div>
           <div id="projects-anchor" className="h-0 w-0" />

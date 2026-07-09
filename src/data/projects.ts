@@ -580,7 +580,7 @@ export const allProjects: Project[] = ([
       es: "El entregable no fue un formulario de carga ni una tabla de cobros — fue un sistema que hace imposible una categoría completa de errores.\n\nNingún cobro con datos inválidos llega a FNS. Cualquier fallo nocturno se reporta automáticamente antes de que alguien lo tenga que buscar. Las reglas de facturación están en el sistema, no en la cabeza de nadie.\n\n**Esperamos:** 10–20 hrs/mes recuperadas en finanzas · 0 cobros con datos inválidos en FNS · tiempo de detección de fallos de días a horas · 100% de reglas de facturación cubiertas por el sistema, sin depender de conocimiento tácito.",
       en: "The deliverable wasn't an upload form or a charges table — it was a system that makes an entire category of errors impossible.\n\nNo charge with invalid data reaches FNS. Any overnight failure is reported automatically before anyone has to go looking for it. The invoicing rules are in the system, not in anyone's head.\n\n**We expect:** 10–20 hrs/month recovered in finance · 0 invalid charges created in FNS · fault detection time from days to hours · 100% of invoicing rules covered by the system, without depending on tacit knowledge."
     },
-    images: [],
+    images: ["/images/vertice/vertice-1-cover.jpg"],
     videos: [
       "/images/vertice/vertice-1.mp4",
       "/images/vertice/vertice-2.mp4",
