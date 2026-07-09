@@ -140,20 +140,10 @@ function HomeContent() {
                 >
                   {locale === "es" ? "Hablemos" : "Let's talk"} →
                 </a>
-                <Link
-                  href="/geo"
-                  className="text-white hover:opacity-70 transition-all duration-300 inline-flex items-center gap-2 rounded-full border border-[#333333]"
-                  style={{
-                    fontSize: "0.85rem",
-                    textTransform: "uppercase",
-                    fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
-                    letterSpacing: "0.05em",
-                    padding: "14px 32px",
-                  }}
-                >
-                  {locale === "es" ? "¿Tu negocio existe para ChatGPT?" : "Does ChatGPT know your business?"}
-                </Link>
               </div>
+              {/* Regla de perfiles: /geo (servicios locales, perfil B) queda SIN link
+                  desde el portfolio — se llega solo por link directo (ganchos, IG, WhatsApp).
+                  El portfolio es 100% perfil A (Agentic Product Designer). */}
             </div>
           </div>
           <div id="projects-anchor" className="h-0 w-0" />
