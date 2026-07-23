@@ -229,7 +229,7 @@ export default function ProjectDetail({
     const renderMediaGrid = (mediaList: typeof allMedia) => {
         if (!mediaList || mediaList.length === 0) return null;
         return (
-            <div className={`grid gap-4 mt-8 ${mediaList.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`} style={{ marginTop: '1.5rem' }}>
+            <div className="grid gap-4 mt-8 grid-cols-1" style={{ marginTop: '1.5rem' }}>
                 {mediaList.map((item, localIndex) => {
                     // Find original index for carousel
                     const originalIndex = allMedia.findIndex(m => m.src === item.src);
@@ -392,7 +392,7 @@ export default function ProjectDetail({
                 )}
 
                 {/* Center Column: Contenido con Accordions */}
-                <div className="flex-1 w-full max-w-[768px] mx-auto lg:mx-0 xl:mx-auto pb-8">
+                <div className="flex-1 w-full max-w-[860px] mx-auto lg:mx-0 xl:mx-auto pb-8">
 
                     {/* Hero Image / Video debajo del título (DESKTOP ONLY) */}
                     {allMedia.length > 0 && (
