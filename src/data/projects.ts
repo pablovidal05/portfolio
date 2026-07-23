@@ -253,6 +253,7 @@ export const allProjects: Project[] = ([
     },
     year: "2023",
     category: "product-design",
+    hidden: true,
     tags: ["UI Kit", "Product Design", "Design Tokens", "DesignOps", "UX/UI"],
     shortDescription: {
       es: "Cada pantalla nueva se construía desde cero. Eso frenaba al equipo y el viajero lo sentía.",

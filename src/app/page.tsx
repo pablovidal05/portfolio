@@ -63,12 +63,13 @@ function HomeContent() {
     router.replace(newUrl, { scroll: false });
   };
 
-  // Orden destacado: estos 4 se ven primero (Vertice + Explora abajo del bloque visible)
+  // Orden destacado: estos se ven primero (Vertice abajo del bloque visible)
   const FEATURED_ORDER = [
     "consorcio-mi-inversion",
     "copiloto-financiero-conversacional",
     "latam-airlines-recap",
     "buk-design-system-escalamiento",
+    "literas-mx",
   ];
   // Grilla vertical de 3 columnas (img → título → resto). Volver al layout
   // horizontal antiguo = poner esto en false.
@@ -76,7 +77,7 @@ function HomeContent() {
   const VISIBLE_COUNT = VERTICAL_GRID ? 6 : 4;
 
   const filteredProjects = useMemo(() => {
-    const pd = projects.filter((project) => project.category === "product-design");
+    const pd = projects.filter((project) => project.category === "product-design" || project.slug === "literas-mx");
     const rank = (slug: string) => {
       const i = FEATURED_ORDER.indexOf(slug);
       return i === -1 ? 999 : i;
