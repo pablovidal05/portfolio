@@ -68,16 +68,16 @@ export const allProjects: Project[] = ([
     category: "ecommerce-landings",
     tags: ["UX/UI", "E-commerce", "B2B", "CRO", "Growth Design"],
     shortDescription: {
-      es: "Rediseño B2B para un e-commerce de literas en Shopify. Su comprador más valioso —hoteles, escuelas, hostales que compran en volumen— llegaba y se iba porque el sitio no lo atendía. Diseñé un embudo de pre-calificación (banner → landing B2B → cotización por WhatsApp) que sube la calidad del lead sin romper el retail.",
-      en: "B2B redesign for a bunk-beds e-commerce on Shopify. Its most valuable buyer —hotels, schools, hostels buying in volume— arrived and left because the site didn't serve them. I designed a pre-qualification funnel (banner → B2B landing → WhatsApp quote) that raises lead quality without breaking retail."
+      es: "Rediseño B2B para un e-commerce de literas en Shopify. Su comprador más valioso —hoteles, escuelas, hostales que compran en volumen— llegaba y se iba porque el sitio no lo atendía. Diseñé un embudo de pre-calificación (banner → landing B2B → cotización por WhatsApp) que sube la calidad del lead sin romper el retail. En 11 meses de producción: 1.229 contactos de mayoreo, 23,6% de conversión.",
+      en: "B2B redesign for a bunk-beds e-commerce on Shopify. Its most valuable buyer —hotels, schools, hostels buying in volume— arrived and left because the site didn't serve them. I designed a pre-qualification funnel (banner → B2B landing → WhatsApp quote) that raises lead quality without breaking retail. Across 11 months in production: 1,229 wholesale leads, 23.6% conversion."
     },
     fullDescription: {
       es: "",
       en: ""
     },
     kpiSubtitle: {
-      es: "Del carrito al WhatsApp — embudo de pre-calificación B2B con handoff agentic",
-      en: "From cart to WhatsApp — a B2B pre-qualification funnel with an agentic handoff"
+      es: "1.229 contactos de mayoreo en 11 meses · 23,6% de conversión visita → contacto",
+      en: "1,229 wholesale leads in 11 months · 23.6% visit → contact conversion"
     },
     sectionProblem: { es: "Problema", en: "Problem" },
     contentProblem: {
@@ -101,8 +101,8 @@ export const allProjects: Project[] = ([
     },
     sectionResult: { es: "Impacto", en: "Impact" },
     contentResult: {
-      es: "Etiqueto siempre la fuente del dato — medido, proyectado o propuesto, nunca mezclados:\n\n- **Medido (real):** comportamiento en Hotjar + 10 conversaciones reales + **10-15% de cotización→venta** (dato del cliente).\n- **Propuesta (no corrida):** un A/B de banner vs. control, con métrica = **clicks al camino B2B** (no checkout — el mayorista no compra por carrito). El engagement cerró en el handoff al dev, sin analytics post-lanzamiento.\n- **Proyección de benchmark (no medido):** rangos de abandono y conversión de referencia del sector.\n\nEl valor real: le dimos al negocio una forma de **ver, atender y escalar** a su cliente más valioso — y una landing que hace el trabajo que antes el dueño hacía a mano en cada chat. La siguiente apuesta, ya diseñada y dejada en el handoff: un **cotizador asistido** (cantidad + producto + código postal → cotización) para automatizar el cierre.\n\n👉 https://literas.mx/pages/literas-al-por-mayor",
-      en: "I always label the source of a number — measured, projected or proposed, never mixed:\n\n- **Measured (real):** behavior in Hotjar + 10 real conversations + **10-15% quote→sale** (client's figure).\n- **Proposed (not run):** an A/B of banner vs. control, metric = **clicks to the B2B path** (not checkout — the wholesale buyer doesn't buy through the cart). The engagement closed at the dev handoff, with no post-launch analytics.\n- **Benchmark projection (not measured):** industry reference ranges for abandonment and conversion.\n\nThe real value: we gave the business a way to **see, serve and scale** its most valuable customer — and a landing that does the work the owner used to do by hand in every chat. The next bet, already designed and left in the handoff: an **assisted quoter** (quantity + product + postal code → quote) to automate the close.\n\n👉 https://literas.mx/pages/literas-al-por-mayor"
+      es: "- **5.202 usuarios** pasaron por la landing B2B\n- **1.229 contactos de mayoreo** generados\n- **23,6% de conversión** visita → contacto\n- Crecimiento de **7 a 714 usuarios/mes** desde el lanzamiento (×102)\n- Mejor mes: **164 contactos**\n\n*Medido en Google Analytics 4.*\n\n**El dato que valida la decisión de diseño:** en el mismo sitio hay **2.463 clicks a WhatsApp contra 1 sola compra por checkout** en 28 días. El negocio entero convierte por conversación, no por carrito. Diseñar el camino B2B hacia WhatsApp no era una preferencia estética — era ir donde ya estaba ocurriendo la venta.",
+      en: "- **5,202 users** went through the B2B landing\n- **1,229 wholesale leads** generated\n- **23.6% conversion** visit → contact\n- Growth from **7 to 714 users/month** since launch (×102)\n- Best month: **164 leads**\n\n*Measured in Google Analytics 4.*\n\n**The number that validates the design decision:** the same site records **2,463 WhatsApp clicks against a single checkout purchase** in 28 days. The entire business converts through conversation, not through the cart. Designing the B2B path toward WhatsApp wasn't an aesthetic preference — it was going where the sale was already happening."
     },
     images: [
       "/images/literas/literas-1.jpg",
